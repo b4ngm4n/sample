@@ -18,9 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'biodata_id',
         'email',
         'password',
+        'username'
     ];
 
     /**
@@ -42,4 +43,49 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function biodata()
+    {
+        return $this->belongsTo(Biodata::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id')->withTimestamps();
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'user_permissions', 'user_id', 'permission_id')->withTimestamps();
+    }
+
+    public function hasPermission($permission)
+    {
+        // cek apakah role yang dimiliki adalah super admin
+        if ($this->roles()->where('slug', 'administrator')->exists()) {
+            return true;
+        }
+
+        // Cek apakah user memiliki permission langsung atau melalui role
+        return $this->permissions()->where('slug', $permission)->exists() ||
+            $this->roles()->whereHas('permissions', function ($query) use ($permission) {
+                $query->where('slug', $permission);
+            })->exists();
+    }
+
+    // Generate UUID secara dinamis
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = (string) \Illuminate\Support\Str::uuid();
+        });
+    }
+
+    // Keyname menggunakan UUID
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('biodatas', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->primary()->unique();
+            $table->uuid('uuid')->unique();
             $table->string('nama_lengkap', 255);
             $table->string('nama_depan', 50)->nullable();
             $table->string('nama_tengah', 50)->nullable();

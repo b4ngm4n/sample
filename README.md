@@ -49,3 +49,15 @@ If you have a seeder you can using this command
 ```bash
 php artisan db:seed
 ```
+
+## KONFIGURASI MULTI PERMISSION
+
+Process sync permission. where you can using this command and create permission in database
+```bash
+php artisan permission:sync
+```
+
+you can see process sync permission in file `app/Console/Commands/SyncPermission.php`
+
+and checking permission role in file `app/Http/Middleware/CheckPermission.php`
+and register to kernel in file `app/Http/Kernel.php`
