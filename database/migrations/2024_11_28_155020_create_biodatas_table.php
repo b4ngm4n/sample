@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->char('nik', 16)->nullable();
             $table->date('tanggal_lahir')->nullable();
-            $table->string('tempat_lahir', 255);
+            $table->string('tempat_lahir', 255)->nullable();
             $table->string('agama', 100)->nullable();
             $table->string('pekerjaan', 100)->nullable();
             $table->text('alamat')->nullable();

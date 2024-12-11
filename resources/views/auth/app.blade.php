@@ -13,6 +13,9 @@
 </head>
 
 <body>
+
+  @include('sweetalert::alert')
+
   <!-- Preloader -->
   <div id="preloader">
     <div class="preloader-book">

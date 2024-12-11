@@ -14,6 +14,9 @@
 </head>
 
 <body>
+
+    @include('sweetalert::alert')
+
     <!-- Preloader -->
     <div id="preloader">
         <div class="preloader-book">
@@ -50,7 +53,7 @@
                         <div class="log-header-area p-4 mb-4 text-center">
                             <div class="lock-icon">
                                 <i class='bx bx-error'></i>
-                              </div>
+                            </div>
                             @yield('content')
                         </div>
 

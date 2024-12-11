@@ -5,28 +5,32 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Kecamatan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'kabupaten_id',
+        'nama_kecamatan',
         'slug',
+        'kode_kecamatan',
     ];
 
-
-
-    public function users()
+    public function kabupaten()
     {
-        return $this->belongsToMany(User::class, 'user_roles', 'role_id', 'user_id')->withTimestamps();
+        return $this->belongsTo(Kabupaten::class);
     }
 
-    public function permissions()
+    public function kelurahans()
     {
-        return $this->belongsToMany(Permission::class, 'role_permissions', 'role_id', 'permission_id')->withTimestamps();
+        return $this->hasMany(Kelurahan::class);
     }
 
-    // Generate UUID secara dinamis
+    public function puskesmas()
+    {
+        return $this->hasMany(Puskesmas::class);
+    }
+
     public static function boot()
     {
         parent::boot();

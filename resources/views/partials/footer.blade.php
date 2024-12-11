@@ -7,11 +7,11 @@
               <!-- Copywrite Text -->
               <div class="copywrite-text">
                   <p class="font-13">
-                      Developed by &copy; <a href="index.html#">Theme-life</a>
+                      Development by &copy; <a href="https://github.com/b4ngm4n" target="_blank">B4ng M4m4n</a>
                   </p>
               </div>
               <div class="fotter-icon text-center">
-                  <p class="mb-0 font-13">2023 &copy; Flapt Admin</p>
+                  <p class="mb-0 font-13">{{ \Carbon\Carbon::parse(now())->isoFormat('YYYY') }} &copy; Dinkes App</p>
               </div>
           </footer>
       </div>

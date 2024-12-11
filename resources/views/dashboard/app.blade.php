@@ -9,10 +9,14 @@
 
     {{-- For Stling --}}
     @include('partials.style')
+
     @stack('style')
 </head>
 
 <body>
+
+    @include('sweetalert::alert')
+
     <!-- Preloader -->
     <div id="preloader">
         <div class="preloader-book">
@@ -37,14 +41,11 @@
     </div>
     <!-- /Preloader -->
 
-    <!-- Choose Layout -->
-    {{-- DISNI TEMPAT --}}
-    @include('partials.change_layout')
-
     <!-- ======================================
     ******* Page Wrapper Area Start **********
     ======================================= -->
     <div class="flapt-page-wrapper">
+
         <!-- Sidemenu Area -->
         {{-- DISINI TEMPAT MENU --}}
         @include('partials.sidebar')
@@ -58,8 +59,20 @@
             <!-- Main Content Area -->
             <div class="main-content introduction-farm">
                 <div class="content-wraper-area">
-                    
-                    @yield('content')
+                    <div class="dashboard-area">
+                        <div class="container-fluid">
+                            <div class="row g-4">
+
+                                @if (!request()->is('dashboard'))
+                                @include('partials.breadcrumb')
+                                @endif
+
+                                @yield('content')
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- Footer Area -->
