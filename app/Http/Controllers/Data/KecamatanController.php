@@ -13,13 +13,13 @@ class KecamatanController extends Controller
 {
     public function index()
     {
-        $kecamatans = Kecamatan::all();
+        $kecamatans = Kecamatan::with('kabupaten')->get();
         return view('dashboard.page.kecamatan.index', compact('kecamatans'));
     }
 
     public function create()
     {
-        $kabupatens = Kabupaten::all();
+        $kabupatens = Kabupaten::pluck('uuid', 'nama_kabupaten');
         return view('dashboard.page.kecamatan.create', compact('kabupatens'));
     }
 
@@ -68,7 +68,7 @@ class KecamatanController extends Controller
 
     public function edit(Kecamatan $kecamatan)
     {
-        $kabupatens = Kabupaten::all();
+        $kabupatens = Kabupaten::pluck('uuid', 'nama_kabupaten');
         return view('dashboard.page.kecamatan.edit', compact('kecamatan', 'kabupatens'));
     }
 

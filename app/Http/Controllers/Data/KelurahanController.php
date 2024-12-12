@@ -13,13 +13,13 @@ class KelurahanController extends Controller
 {
     public function index()
     {
-        $kelurahans = Kelurahan::all();
+        $kelurahans = Kelurahan::with('kecamatan')->get();
         return view('dashboard.page.kelurahan.index', compact('kelurahans'));
     }
 
     public function create()
     {
-        $kecamatans = Kecamatan::all();
+        $kecamatans = Kecamatan::pluck('uuid', 'nama_kecamatan');
         return view('dashboard.page.kelurahan.create', compact('kecamatans'));
     }
 
@@ -69,7 +69,7 @@ class KelurahanController extends Controller
 
     public function edit(Kelurahan $kelurahan)
     {
-        $kecamatans = Kecamatan::all();
+        $kecamatans = Kecamatan::pluck('uuid', 'nama_kecamatan');
         return view('dashboard.page.kelurahan.edit', compact('kelurahan', 'kecamatans'));
     }
 

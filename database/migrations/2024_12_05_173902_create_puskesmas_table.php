@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('puskesmas', function (Blueprint $table) {
             $table->id();
-            $table->ulid('uuid')->unique();
+            $table->uuid('uuid')->unique();
             $table->foreignId('kecamatan_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('nama_puskesmas');
             $table->string('slug')->unique();
             $table->string('kode_puskesmas')->nullable();
+            $table->enum('status_puskesmas', ['aktif', 'non-aktif'])->default('aktif');
+            $table->text('alamat')->nullable();
             $table->timestamps();
         });
     }

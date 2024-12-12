@@ -29,7 +29,7 @@
             </ul>
           </li>
 
-          <li class="{{ request()->routeIs('puskesmas.index') ? 'active' : '' }}">
+          <li class="{{ request()->is('dashboard/puskesmas*') ? 'active' : '' }}">
             <a href="{{ route('puskesmas.index') }}"><i class="bx bx-buildings"></i><span>Data Puskesmas</span></a>
           </li>
 

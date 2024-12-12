@@ -13,14 +13,14 @@ class KabupatenController extends Controller
 {
     public function index()
     {
-        $kabupatens = Kabupaten::all();
+        $kabupatens = Kabupaten::with('provinsi')->get();
 
         return view('dashboard.page.kabupaten.index', compact('kabupatens'));
     }
 
     public function create()
     {
-        $provinsis = Provinsi::all();
+        $provinsis = Provinsi::pluck('uuid', 'nama_provinsi');
         return view('dashboard.page.kabupaten.create', compact('provinsis'));
     }
 
@@ -65,7 +65,7 @@ class KabupatenController extends Controller
 
     public function edit(Kabupaten $kabupaten)
     {
-        $provinsis = Provinsi::all();
+        $provinsis = Provinsi::pluck('uuid', 'nama_provinsi');
         return view('dashboard.page.kabupaten.edit', compact('kabupaten', 'provinsis'));
     }
 

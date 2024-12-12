@@ -19,14 +19,14 @@
          <form action="{{ route('kelurahan.store') }}" method="POST">
             @csrf
             <div class="border-bottom border-1 mb-4">
-               <h5>Edit Data Kelurahan</h5>
+               <h5>Tambah Data Kelurahan</h5>
             </div>
 
             <div class="mb-3">
                <label class="form-label" for="kecamatan">Kecamatan</label>
                <select name="kecamatan" class="select2 form-control" data-placeholder="Pilih Kecamatan ...">
-                  @foreach ($kecamatans as $kecamatan)
-                  <option value="{{ $kecamatan->uuid }}">{{ $kecamatan->nama_kecamatan }}</option>
+                  @foreach ($kecamatans as $name => $key)
+                  <option value="{{ $key }}">{{ $name }}</option>
                   @endforeach
                </select>
 
@@ -57,7 +57,7 @@
 
             <div class="mt-4">
                <a href="{{ route('kelurahan.index') }}" class="btn btn-danger w-md">Batal</a>
-               <button type="submit" class="btn btn-warning w-md">Ubah</button>
+               <button type="submit" class="btn btn-primary w-md">Tambah</button>
             </div>
          </form>
 

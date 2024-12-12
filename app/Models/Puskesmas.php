@@ -13,7 +13,9 @@ class Puskesmas extends Model
         'kecamatan_id',
         'nama_puskesmas',
         'slug',
-        'kode_puskesmas'
+        'kode_puskesmas',
+        'status_puskesmas',
+        'alamat'
     ];
 
     public function kecamatan()

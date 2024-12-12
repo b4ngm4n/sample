@@ -25,19 +25,14 @@
 
             <div class="mb-3">
                <label class="form-label" for="provinsi">Provinsi</label>
-               {{-- <select name="provinsi" id="provinsi" class="form-select">
-                  <option value="{{ $kabupaten->provinsi->uuid }}">{{ $kabupaten->provinsi->nama_provinsi }}</option>
-                  <option value="">Pilih Provinsi</option>
-                  @foreach ($provinsis as $provinsi)
-                  <option value="{{ $provinsi->uuid }}">{{ $provinsi->nama_provinsi }}</option>
-                  @endforeach
-               </select> --}}
                <select name="provinsi" class="select2 form-select"
                   data-placeholder="Pilih Provinsi ...">
                   <option value="{{ $kabupaten->provinsi->uuid }}">{{ $kabupaten->provinsi->nama_provinsi }}</option>
                   <option value="">Pilih Provinsi</option>
-                  @foreach ($provinsis as $provinsi)
-                  <option value="{{ $provinsi->uuid }}">{{ $provinsi->nama_provinsi }}</option>
+                  @foreach ($provinsis as $name => $key)
+                  @if ($kabupaten->provinsi->uuid !== $key)
+                  <option value="{{ $key }}">{{ $name }}</option>
+                  @endif
                   @endforeach
                </select>
 

@@ -26,8 +26,8 @@
                <label class="form-label" for="provinsi">Provinsi</label>
                <select name="provinsi" class="select2 form-control"
                   data-placeholder="Pilih Provinsi ...">
-                  @foreach ($provinsis as $provinsi)
-                  <option value="{{ $provinsi->uuid }}">{{ $provinsi->nama_provinsi }}</option>
+                  @foreach ($provinsis as $name => $key)
+                  <option value="{{ $key }}">{{ $name }}</option>
                   @endforeach
                </select>
 

@@ -24,9 +24,9 @@
 
             <div class="mb-3">
                <label for="kecamatan" class="form-label">Kecamatan</label>
-               <select name="kecamatan" class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Pilih Kecamatan ...">
-                  @foreach ($kecamatans as $kecamatan)
-                  <option value="{{ $kecamatan->slug }}">{{ $kecamatan->nama_kecamatan }}</option>
+               <select name="kecamatan" class="select2 form-select" data-placeholder="Pilih Kecamatan ...">
+                  @foreach ($kecamatans as $name => $key)
+                  <option value="{{ $key }}">{{ $name }}</option>
                   @endforeach
                </select>
 
@@ -37,7 +37,8 @@
 
             <div class="mb-3">
                <label class="form-label" for="nama-puskesmas">Nama Puskesmas</label>
-               <input type="text" class="form-control" id="nama-puskesmas" name="nama_puskesmas" >
+               <input type="text" class="form-control" id="nama-puskesmas" name="nama_puskesmas"
+                  placeholder="PUSKESMAS KOTA UTARA">
 
                @error('nama_puskesmas')
                <small class="text-danger">{{ $message }}</small>
@@ -46,11 +47,30 @@
 
             <div class="mb-3">
                <label class="form-label" for="kode-puskesmas">Kode Puskesmas</label>
-               <input type="text" class="form-control" id="kode-puskesmas" name="kode_puskesmas" >
+               <input type="text" class="form-control" id="kode-puskesmas" name="kode_puskesmas" placeholder="101">
 
                @error('kode_puskesmas')
                <small class="text-danger">{{ $message }}</small>
                @enderror
+            </div>
+
+            <div class="mb-3">
+               <label class="form-label" for="alamat-puskesmas">Alamat Puskesmas</label>
+               <input type="text" class="form-control" id="alamat-puskesmas" name="alamat_puskesmas"
+                  placeholder="JL. K.H Adam Zakaria">
+
+               @error('alamat_puskesmas')
+               <small class="text-danger">{{ $message }}</small>
+               @enderror
+            </div>
+
+            <div class="mb-3">
+               <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="status" name="status">
+                  <label class="form-check-label" for="status">
+                     Status Aktif
+                  </label>
+               </div>
             </div>
 
             <div class="mt-4">

@@ -19,8 +19,11 @@
       <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap data-table-area">
         <thead>
           <tr>
-            <th>Nama Puskesmas</th>
+            <th>No</th>
             <th>Kode Puskesmas</th>
+            <th>Nama Puskesmas</th>
+            <th>Status</th>
+            <th>Kecamatan</th>
             <th>Wilayah Kerja</th>
             <th>Aksi</th>
           </tr>
@@ -30,16 +33,19 @@
         <tbody>
           @foreach ($listpuskes as $puskesmas)
           <tr>
-            <td>{{ $puskesmas->nama_puskesmas }}</td>
+            <td>{{ $loop->iteration }}</td>
             <td>{{ $puskesmas->kode_puskesmas }}</td>
-            <td>{{ $puskesmas->wilayah_kerja }}</td>
+            <td>{{ $puskesmas->nama_puskesmas }}</td>
+            <td><span class="badge bg-{{ $puskesmas->status_puskesmas == 'aktif' ? 'primary' : 'secondary' }}">{{ Str::upper($puskesmas->status_puskesmas) }}</span></td>
+            <td><a href="{{ route('kecamatan.show', $puskesmas->kecamatan->uuid)  }}">{{ $puskesmas->kecamatan->nama_kecamatan }}</a></td>
+            <td>{{ $puskesmas->wilayah_kerja_count }}</td>
             <td>
               <ul>
                 <a href="{{ route('puskesmas.show', $puskesmas->uuid) }}" class="btn btn-sm btn-info"><i
                     class="ti-info-alt"></i></a>
                 <a href="{{ route('puskesmas.edit', $puskesmas->uuid) }}" class="btn btn-sm btn-warning"><i
                     class="ti-pencil-alt"></i></a>
-                <a href="{{ route('user.destroy', $user->uuid) }}" class="btn btn-sm btn-danger" data-confirm-delete="true"><i class="ti-trash"></i></a>
+                <a href="{{ route('puskesmas.destroy', $puskesmas->uuid) }}" class="btn btn-sm btn-danger"><i class="ti-trash"></i></a>
               </ul>
             </td>
           </tr>

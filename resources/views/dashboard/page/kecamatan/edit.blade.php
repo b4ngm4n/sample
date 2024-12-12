@@ -25,19 +25,12 @@
 
             <div class="mb-3">
                <label class="form-label" for="kabupaten">Kabupaten</label>
-               {{-- <select name="kabupaten" id="kabupaten" class="form-select">
-                  <option value="{{ $kecamatan->kabupaten->uuid }}">{{ $kecamatan->kabupaten->nama_kabupaten }}</option>
-                  <option value="">Pilih Kabupaten</option>
-                  @foreach ($kabupatens as $kabupaten)
-                  <option value="{{ $kabupaten->uuid }}">{{ $kabupaten->nama_kabupaten }}</option>
-                  @endforeach
-               </select> --}}
                <select name="kabupaten" class="select2 form-control" data-placeholder="Pilih Kabupaten ...">
                   <option value="{{ $kecamatan->kabupaten->uuid }}" selected>{{ $kecamatan->kabupaten->nama_kabupaten }}
                   </option>
-                  @foreach ($kabupatens as $kabupaten)
-                  @if ($kabupaten->uuid !== $kecamatan->kabupaten->uuid)
-                  <option value="{{ $kabupaten->uuid }}">{{ $kabupaten->nama_kabupaten }}</option>
+                  @foreach ($kabupatens as $name => $key)
+                  @if ($key !== $kecamatan->kabupaten->uuid)
+                  <option value="{{ $key }}">{{ $name }}</option>
                   @endif
                   @endforeach
                </select>

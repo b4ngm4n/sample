@@ -28,9 +28,9 @@
                <select name="kecamatan" class="select2 form-control" data-placeholder="Pilih Kecamatan ...">
                   <option value="{{ $kelurahan->kecamatan->uuid }}" selected>{{ $kelurahan->kecamatan->nama_kecamatan }}
                   </option>
-                  @foreach ($kecamatans as $kecamatan)
-                  @if ($kecamatan->uuid !== $kelurahan->kecamatan->uuid)
-                  <option value="{{ $kecamatan->uuid }}">{{ $kecamatan->nama_kecamatan }}</option>
+                  @foreach ($kecamatans as $name => $key)
+                  @if ($key !== $kelurahan->kecamatan->uuid)
+                  <option value="{{ $key }}">{{ $name }}</option>
                   @endif
                   @endforeach
                </select>
