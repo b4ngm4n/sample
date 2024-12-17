@@ -35,15 +35,16 @@
                   <td>{{ $provinsi->kode_provinsi }}</td>
                   <td>
                      <ul>
+                        @can('permission', 'read-provinsi')
                         <a href="{{ route('provinsi.show', $provinsi->uuid) }}" class="btn btn-sm btn-info"><i
                               class="ti-info-alt"></i></a>
+                        @endcan
                         <a href="{{ route('provinsi.edit', $provinsi->uuid) }}" class="btn btn-sm btn-warning"><i
                               class="ti-pencil-alt"></i></a>
                         <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
                            data-bs-target="#hapusProvinsi-{{ $provinsi->uuid }}" aria-controls="hapusProvinsi"><i
                               class="ti-trash"></i>
                         </button>
-
 
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusProvinsi-{{ $provinsi->uuid }}"
                            aria-labelledby="hapusProvinsiLabel">

@@ -34,6 +34,7 @@ class SyncPermissions extends Command
         foreach ($routes as $route) {
             $middlewares = $route->gatherMiddleware();
 
+            
             foreach ($middlewares as $middleware) {
                 if (Str::startsWith($middleware, 'permission:')) {
                     $permissionSlug = Str::after($middleware, 'permission:');

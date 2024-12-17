@@ -27,7 +27,7 @@
           @foreach ($roles as $role)
           <tr>
             <td>{{ $role->name }}</td>
-            <td>{{ $role->permissions->count() }}</td>
+            <td>{{ $role->permission_count }}</td>
             <td class="gap-2">
               <a href="{{ route('role.show', $role->uuid) }}" class="btn btn-sm btn-info"><i class="ti-info-alt"></i></a>
               <a href="{{ route('role.edit', $role->uuid) }}" class="btn btn-sm btn-warning"><i class="ti-pencil-alt"></i></a>

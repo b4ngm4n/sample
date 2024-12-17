@@ -12,7 +12,8 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::with('permissions')->get();
+        $roles = Role::withCount('permissions')->get();
+        
         return view('dashboard.page.role.index', compact('roles'));
     }
 

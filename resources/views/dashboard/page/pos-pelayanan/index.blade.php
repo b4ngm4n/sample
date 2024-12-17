@@ -31,27 +31,18 @@
 
 
         <tbody>
-          @foreach ($listpuskes as $puskesmas)
+          @foreach ($posPelayanans as $posPelayanan)
           <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $puskesmas->kode_puskesmas }}</td>
-            <td>{{ $puskesmas->nama_puskesmas }}</td>
-            <td><span class="badge bg-{{ $puskesmas->status_puskesmas == 'aktif' ? 'primary' : 'secondary' }}">{{
-                Str::upper($puskesmas->status_puskesmas) }}</span></td>
-            <td><a href="{{ route('kecamatan.show', $puskesmas->kecamatan->uuid)  }}">{{
-                $puskesmas->kecamatan->nama_kecamatan }}</a></td>
-            <td>{{ $puskesmas->wilayah_kerja_count }}</td>
+            <td>{{ $posPelayanan->lokasi_pelayanan }}</td>
+            <td>{{ Str::upper($posPelayanan->jenis_pelayanan) }}</td>
             <td>
               <ul>
-                {{-- @can('permission', 'read-puskesmas') --}}
-                    
-                <a href="{{ route('puskesmas.show', $puskesmas->uuid) }}" class="btn btn-sm btn-info"><i
+                <a href="{{ route('puskesmas.show', $posPelayanan->uuid) }}" class="btn btn-sm btn-info"><i
                     class="ti-info-alt"></i></a>
-                {{-- @endcan --}}
-
-                <a href="{{ route('puskesmas.edit', $puskesmas->uuid) }}" class="btn btn-sm btn-warning"><i
+                <a href="{{ route('puskesmas.edit', $posPelayanan->uuid) }}" class="btn btn-sm btn-warning"><i
                     class="ti-pencil-alt"></i></a>
-                <a href="{{ route('puskesmas.destroy', $puskesmas->uuid) }}" class="btn btn-sm btn-danger"><i
+                <a href="{{ route('puskesmas.destroy', $posPelayanan->uuid) }}" class="btn btn-sm btn-danger"><i
                     class="ti-trash"></i></a>
               </ul>
             </td>

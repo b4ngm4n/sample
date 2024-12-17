@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('permissions', 'roles')->get();
+        $users = User::with('permissions', 'roles', 'biodata')->get();
         return view('dashboard.page.user.index', compact('users'));
     }
 

@@ -1,0 +1,3 @@
+@can('update', $post)
+    
+@endcan
