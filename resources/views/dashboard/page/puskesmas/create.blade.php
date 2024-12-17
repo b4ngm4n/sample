@@ -37,7 +37,7 @@
 
             <div class="mb-3">
                <label class="form-label" for="nama-puskesmas">Nama Puskesmas</label>
-               <input type="text" class="form-control" id="nama-puskesmas" name="nama_puskesmas"
+               <input type="text" class="form-control" id="nama-puskesmas" name="nama_puskesmas" value="{{ old('nama_puskesmas') }}"
                   placeholder="PUSKESMAS KOTA UTARA">
 
                @error('nama_puskesmas')
@@ -47,7 +47,7 @@
 
             <div class="mb-3">
                <label class="form-label" for="kode-puskesmas">Kode Puskesmas</label>
-               <input type="text" class="form-control" id="kode-puskesmas" name="kode_puskesmas" placeholder="101">
+               <input type="text" class="form-control" id="kode-puskesmas" name="kode_puskesmas" placeholder="101" value="{{ old('kode_puskesmas') }}">
 
                @error('kode_puskesmas')
                <small class="text-danger">{{ $message }}</small>
@@ -56,7 +56,7 @@
 
             <div class="mb-3">
                <label class="form-label" for="alamat-puskesmas">Alamat Puskesmas</label>
-               <input type="text" class="form-control" id="alamat-puskesmas" name="alamat_puskesmas"
+               <input type="text" class="form-control" id="alamat-puskesmas" name="alamat_puskesmas" value="{{ old('alamat_puskesmas') }}"
                   placeholder="JL. K.H Adam Zakaria">
 
                @error('alamat_puskesmas')
@@ -66,7 +66,7 @@
 
             <div class="mb-3">
                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="status" name="status">
+                  <input class="form-check-input" type="checkbox" id="status" name="status" @checked(old('status'))>
                   <label class="form-check-label" for="status">
                      Status Aktif
                   </label>
@@ -74,6 +74,7 @@
             </div>
 
             <div class="mt-4">
+               <a href="{{ route('puskesmas.index') }}" class="btn btn-danger w-md">Batal</a>
                <button type="submit" class="btn btn-primary w-md">Simpan</button>
             </div>
          </form>

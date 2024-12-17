@@ -43,16 +43,46 @@
             <td>{{ $puskesmas->wilayah_kerja_count }}</td>
             <td>
               <ul>
-                {{-- @can('permission', 'read-puskesmas') --}}
-                    
+
+                @can('permission', 'read-puskesmas')
                 <a href="{{ route('puskesmas.show', $puskesmas->uuid) }}" class="btn btn-sm btn-info"><i
                     class="ti-info-alt"></i></a>
-                {{-- @endcan --}}
+                @endcan
 
+                @can('permission', 'edit-puskesmas')
                 <a href="{{ route('puskesmas.edit', $puskesmas->uuid) }}" class="btn btn-sm btn-warning"><i
                     class="ti-pencil-alt"></i></a>
-                <a href="{{ route('puskesmas.destroy', $puskesmas->uuid) }}" class="btn btn-sm btn-danger"><i
-                    class="ti-trash"></i></a>
+                @endcan
+
+                @can('permission', 'delete-puskesmas')
+                <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
+                  data-bs-target="#hapusPuskesmas-{{ $puskesmas->uuid }}" aria-controls="hapusPuskesmas"><i
+                    class="ti-trash"></i>
+                </button>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusPuskesmas-{{ $puskesmas->uuid }}"
+                  aria-labelledby="hapusPuskesmasLabel">
+                  <div class="offcanvas-header border-bottom p-4">
+                    <h5 class="offcanvas-title" id="hapusPuskesmasLabel">Hapus Puskesmas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+
+                  <div class="offcanvas-body p-4">
+                    <form action="{{ route('puskesmas.destroy', $puskesmas->uuid) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <div class="mb-3">
+                        <span class="fs-6">Hapus {{ $puskesmas->nama_puskesmas }}?</span>
+                      </div>
+
+                      <div class="mt-4">
+                        <button type="submit" class="btn btn-danger w-md">Hapus</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                @endcan
+
               </ul>
             </td>
           </tr>

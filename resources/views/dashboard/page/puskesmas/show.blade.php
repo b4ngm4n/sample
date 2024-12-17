@@ -12,7 +12,7 @@
 
 @section('content')
 
-<div class="col-xl-12">
+<div class="col-xl-6">
    <div class="card">
       <div class="card-title m-4">
          <h4 class="card-title float-start">DETAIL PUSKESMAS</h4>
@@ -40,36 +40,38 @@
    </div>
 </div>
 
-{{-- DATA KABUPATEN --}}
-
-<div class="col-xl-12">
+{{-- DATA WILAYAH KERJA --}}
+<div class="col-xl-6">
    <div class="card">
       <div class="card-body">
          <form action="{{ route('puskesmas.wilayah-kerja', $puskesmas->uuid) }}" method="post">
             @csrf
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between card-title mb-4">
                <h4 class="card-title float-start">WILAYAH KERJA</h4>
+      
                <div>
                   <button class="btn btn-primary w-20" type="submit"><i class="ti-save me-2"></i>Simpan</button>
                </div>
             </div>
 
-
             <div class="row">
                @foreach ($kelurahans as $name => $key)
-               <div class="col-sm-3">
+               <div class="col-xl-6">
                   <div class="form-check">
-                     <input class="form-check-input" type="checkbox" value="{{ $key }}" id="kelurahan-{{ $key }}" name="wilayah[]" multiple {{ $puskesmas->wilayah_kerja->contains(fn($item) => $item->uuid === $key) ? 'checked' : '' }}>
-                     <label class="form-check-label" for="kelurahan-{{ $key }}">{{ $name }}</label>
+                     <input class="form-check-input" type="checkbox" value="{{ $key }}" id="kelurahan-{{ $key }}"
+                        name="wilayah[]" multiple {{ $puskesmas->wilayah_kerja->contains(fn($item) => $item->uuid ===
+                     $key) ? 'checked' : '' }}>
+                     <label class="form-check-label ms-2" for="kelurahan-{{ $key }}">{{ $name }}</label>
                   </div>
                </div>
                @endforeach
             </div>
 
-
          </form>
       </div>
    </div>
 </div>
+
+
 
 @endsection

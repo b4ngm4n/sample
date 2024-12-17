@@ -61,17 +61,6 @@ class User extends Authenticatable
 
     public function hasPermission($permission)
     {
-        // // cek apakah role yang dimiliki adalah super admin
-        // if ($this->roles()->where('slug', 'administrator')->exists()) {
-        //     return true;
-        // }
-
-        // // Cek apakah user memiliki permission langsung atau melalui role
-        // return $this->permissions()->where('slug', $permission)->exists() ||
-        //     $this->roles()->whereHas('permissions', function ($query) use ($permission) {
-        //         $query->where('slug', $permission);
-        //     })->exists();
-        
         if ($this->roles->pluck('slug')->contains('administrator')) {
             return true; // Super admin
         }

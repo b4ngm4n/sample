@@ -11,10 +11,9 @@ use App\Http\Controllers\Data\KecamatanController;
 use App\Http\Controllers\Data\KelurahanController;
 use App\Http\Controllers\Data\ProvinsiController;
 use App\Http\Controllers\Data\PuskesmasController;
-use App\Http\Controllers\JenisPelayananController;
-use App\Http\Controllers\PelayananController;
-use App\Http\Controllers\PosPelayananController;
-use App\Http\Controllers\VaksinController;
+use App\Http\Controllers\Data\JenisPelayananController;
+use App\Http\Controllers\Data\PosPelayananController;
+use App\Http\Controllers\Data\VaksinController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
