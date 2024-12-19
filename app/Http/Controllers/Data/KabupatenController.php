@@ -30,6 +30,12 @@ class KabupatenController extends Controller
             'provinsi' => 'required|exists:provinsis,uuid',
             'nama_kabupaten' => 'required',
             'kode_kabupaten' => 'required|required|unique:kabupatens,kode_kabupaten',
+        ], [
+            'provinsi.exists' => 'Provinsi tidak ditemukan',
+            'provinsi.required' => 'Provinsi harus diisi',
+            'kode_kabupaten.required' => 'Kode Kabupaten harus diisi',
+            'kode_kabupaten.unique' => 'Kode Kabupaten sudah ada',
+            'nama_kabupaten.required' => 'Nama Kabupaten harus diisi',
         ]);
 
         if ($validasi->fails()) {

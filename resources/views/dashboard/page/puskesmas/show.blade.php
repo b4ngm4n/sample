@@ -12,7 +12,7 @@
 
 @section('content')
 
-<div class="col-xl-6">
+<div class="col-xl-7">
    <div class="card">
       <div class="card-title m-4">
          <h4 class="card-title float-start">DETAIL PUSKESMAS</h4>
@@ -29,9 +29,23 @@
             </div>
          </div>
          <div class="row mb-4">
-            <label for="kode-puskesmas" class="col-sm-3 col-form-label">Kode puskesmas</label>
+            <label for="kode-puskesmas" class="col-sm-3 col-form-label">Kode Puskesmas</label>
             <div class="col-sm-9">
                <input type="email" class="form-control" id="kode-puskesmas" value="{{ $puskesmas->kode_puskesmas }}"
+                  readonly>
+            </div>
+         </div>
+         <div class="row mb-4">
+            <label for="status" class="col-sm-3 col-form-label">Status Aktif</label>
+            <div class="col-sm-9">
+               <input type="email" class="form-control" id="status" value="{{ Str::upper($puskesmas->status_puskesmas) }}"
+                  readonly>
+            </div>
+         </div>
+         <div class="row mb-4">
+            <label for="alamat" class="col-sm-3 col-form-label">Alamat Puskesmas</label>
+            <div class="col-sm-9">
+               <input type="email" class="form-control" id="alamat" value="{{ $puskesmas->alamat }}"
                   readonly>
             </div>
          </div>
@@ -41,7 +55,7 @@
 </div>
 
 {{-- DATA WILAYAH KERJA --}}
-<div class="col-xl-6">
+<div class="col-xl-5">
    <div class="card">
       <div class="card-body">
          <form action="{{ route('puskesmas.wilayah-kerja', $puskesmas->uuid) }}" method="post">

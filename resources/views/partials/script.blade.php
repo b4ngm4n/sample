@@ -30,3 +30,19 @@
 {{-- SELECT2 MULTIPLE SELECT --}}
 <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 <script src="{{ asset('assets/js/form-advanced.init.js') }}"></script>
+
+<script>
+   $(document).ready(function() {
+      $("#dtPosPelayanan").DataTable({
+         language: {
+               paginate: {
+                  previous: "<i class='bx bx-chevron-left'></i>",
+                  next: "<i class='bx bx-chevron-right'></i>"
+               }
+         },
+         drawCallback: function () {
+               $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+         }
+      });
+   });
+</script>

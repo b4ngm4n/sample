@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('pos_pelayanans', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->foreignId('puskesmas_id')->constrained()->onDelete('cascade');
+            $table->foreignId('kelurahan_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('nama_pos_pelayanan');
+            $table->string('slug');
+            $table->text('alamat')->nullable();
+            $table->foreignId('jenis_pelayanan_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

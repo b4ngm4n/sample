@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('vaksins', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
+            $table->string('nama_vaksin');
+            $table->string('slug')->unique();
+            $table->string('nomor_batch');
+            $table->string('tanggal_kedaluwarsa');
+            $table->string('produsen')->nullable();
+            $table->foreignId('jenis_pelayanan_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

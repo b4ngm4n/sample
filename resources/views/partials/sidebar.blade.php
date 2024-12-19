@@ -51,20 +51,20 @@
           @endcan
 
           @can('permission', 'list-jenis-pelayanan')
-          <li class="{{ request()->is('dashboard/data-pelayanan/pelayanan*') ? 'active' : '' }}">
+          <li class="{{ request()->is('dashboard/jenis-pelayanan*') ? 'active' : '' }}">
             <a href="{{ route('jenis-pelayanan.index') }}"><i class="bx bx-grid-alt"></i><span>Jenis
                 Pelayanan</span></a>
           </li>
           @endcan
 
           @can('permission', 'list-vaksin')
-          <li class="{{ request()->is('dashboard/data-pelayanan/vaksin*') ? 'active' : '' }}">
+          <li class="{{ request()->is('dashboard/vaksin*') ? 'active' : '' }}">
             <a href="{{ route('vaksin.index') }}"><i class="bx bx-first-aid"></i><span>Data Vaksin</span></a>
           </li>
           @endcan
 
           @can('permission', 'list-pos')
-          <li class="{{ request()->is('dashboard/data-pelayanan/pos-pelayanan*') ? 'active' : '' }}">
+          <li class="{{ request()->is('dashboard/pos-pelayanan*') ? 'active' : '' }}">
             <a href="{{ route('pos-pelayanan.index') }}"><i class="bx bx-map-pin"></i><span>Pos Pelayan</span></a>
           </li>
           @endcan
