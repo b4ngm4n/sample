@@ -68,7 +68,7 @@ class VaksinController extends Controller
 
     public function edit(Vaksin $vaksin)
     {
-        $jenisPelayanans = JenisPelayanan::all();
+        $jenisPelayanans = JenisPelayanan::pluck('uuid', 'nama_pelayanan');
 
         return view('dashboard.page.vaksin.edit', compact('vaksin', 'jenisPelayanans'));
     }
@@ -78,7 +78,7 @@ class VaksinController extends Controller
         $validasi = Validator::make($request->all(), [
             'jenis_pelayanan' => 'required|exists:jenis_pelayanans,uuid',
             'nama_vaksin' => 'required',
-            'nomor_batch' => 'required|unique:vaksins,nomor_batch',
+            'nomor_batch' => 'required|unique:vaksins,nomor_batch, ' . $vaksin->id,
             'tanggal_kedaluwarsa' => 'required|date',
         ], [
             'jenis_pelayanan.exists' => 'Jenis Pelayanan tidak ditemukan',
@@ -104,6 +104,10 @@ class VaksinController extends Controller
             'produsen' => $request->produsen,
             'jenis_pelayanan_id' => $jenisPelayanan,
         ]);
+
+        toast('Vaksin berhasil diubah', 'success');
+
+        return redirect()->route('vaksin.index');
     }
 
     public function destroy(Vaksin $vaksin)

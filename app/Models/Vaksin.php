@@ -18,6 +18,7 @@ class Vaksin extends Model
         'jenis_pelayanan_id'
     ];
 
+
     public function jenisPelayanan()
     {
         return $this->belongsTo(JenisPelayanan::class);

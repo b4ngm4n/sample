@@ -38,7 +38,7 @@
             <td>{{ $vaksin->nomor_batch }}</td>
             <td>{{ \Carbon\Carbon::parse($vaksin->tanggal_kedaluwarsa)->isoFormat('LLLL') }}</td>
             <td>{{ $vaksin->produsen ?? '-' }}</td>
-            <td>{{ $vaksin->jenisPelayanan->nama_pelayanan }}</td>
+            <td><a href="{{ route('jenis-pelayanan.show', $vaksin->jenisPelayanan->uuid) }}">{{ $vaksin->jenisPelayanan->nama_pelayanan }}</a></td>
             <td>
               <ul>
 
