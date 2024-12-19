@@ -18,11 +18,14 @@ class Puskesmas extends Model
         'alamat'
     ];
 
+
+// protected $with = ['wilayah_kerja', 'kecamatan'];
+
     public function kecamatan()
     {
         return $this->belongsTo(Kecamatan::class);
     }
-    
+
     public function wilayah_kerja()
     {
         return $this->belongsToMany(Kelurahan::class, 'wilayah_kerjas', 'puskesmas_id', 'kelurahan_id')->withTimestamps();

@@ -48,7 +48,7 @@
          <h4 class="card-title float-start">List Data Vaksin</h4>
 
          <a href="{{ route('vaksin.index') }}" class="btn btn-primary w-md float-end"><i
-               class="bx bxs-plus-square me-3"></i>Tambah Vaksin</a>
+               class="bx bxs-hand-right me-3"></i>Lihat Data Vaksin</a>
       </div>
       <div class="card-body">
          <table id="selection-datatable"
@@ -60,7 +60,6 @@
                   <th>Nomor Batch</th>
                   <th>Tanggal Kedaluwarsa</th>
                   <th>Produsen</th>
-                  <th>Aksi</th>
                </tr>
             </thead>
 
@@ -69,10 +68,10 @@
                @foreach ($jenisPelayanan->vaksins as $vaksin)
                <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $vaksin?->nama_vaksin }}</td>
+                  <td>{{ Str::upper($vaksin?->nama_vaksin) }}</td>
                   <td>{{ $vaksin?->nomor_batch }}</td>
                   <td>{{ \Carbon\Carbon::parse($vaksin?->tanggal_kedaluwarsa)->isoFormat('LLLL') }}</td>
-                  <td>{{ $vaksin->produsen }}</td>
+                  <td>{{ $vaksin->produsen ?? '-' }}</td>
                </tr>
                @endforeach
             </tbody>
@@ -88,7 +87,7 @@
          <h4 class="card-title float-start">List Pos Pelayanan</h4>
 
          <a href="{{ route('pos-pelayanan.index') }}" class="btn btn-primary w-md float-end"><i
-               class="bx bxs-plus-square me-3"></i>Tambah Pos Pelayanan</a>
+               class="bx bxs-hand-right me-3"></i>Lihat Pos Pelayanan</a>
       </div>
       <div class="card-body">
          <table id="datatable"
@@ -100,7 +99,6 @@
                   <th>Puskesmas</th>
                   <th>Kelurahan</th>
                   <th>Alamat</th>
-                  <th>Aksi</th>
                </tr>
             </thead>
 

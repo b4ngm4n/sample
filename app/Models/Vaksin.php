@@ -23,6 +23,11 @@ class Vaksin extends Model
         return $this->belongsTo(JenisPelayanan::class);
     }
 
+    public function imunisasis()
+    {
+        return $this->hasMany(Imunisasi::class);
+    }
+
     public static function boot()
     {
         parent::boot();

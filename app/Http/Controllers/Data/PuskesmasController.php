@@ -14,7 +14,7 @@ class PuskesmasController extends Controller
 {
     public function index()
     {
-        $listpuskes =  Puskesmas::withCount('wilayah_kerja')->get();
+        $listpuskes =  Puskesmas::withCount('wilayah_kerja')->with('kecamatan')->get();
 
         return view('dashboard.page.puskesmas.index', compact('listpuskes'));
     }
@@ -61,7 +61,7 @@ class PuskesmasController extends Controller
 
     public function show(Puskesmas $puskesmas)
     {
-        $kelurahans = Kelurahan::where('kecamatan_id', $puskesmas->kecamatan_id)->with('kecamatan')->pluck('uuid', 'nama_kelurahan');
+        $kelurahans = Kelurahan::where('kecamatan_id', $puskesmas->kecamatan_id)->pluck('uuid', 'nama_kelurahan');
 
         return view('dashboard.page.puskesmas.show', compact('puskesmas', 'kelurahans'));
     }

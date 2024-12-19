@@ -1,18 +1,18 @@
 @extends('dashboard.app')
 
-@section('title', 'Puskesmas')
+@section('title', 'Vaksin')
 
-@section('breadcrumbTitle', 'Puskesmas')
+@section('breadcrumbTitle', 'Vaksin')
 
-@section('breadcrumbActive', 'List Puskesmas')
+@section('breadcrumbActive', 'List Vaksin')
 
 @section('content')
 
 <div class="col-12">
   <div class="card">
     <div class="card-title">
-      <a href="{{ route('puskesmas.create') }}" class="btn btn-primary float-end mt-4 me-4"><i
-          class="bx bxs-plus-square me-2"></i>Tambah Puskesmas</a>
+      <a href="{{ route('vaksin.create') }}" class="btn btn-primary float-end mt-4 me-4"><i
+          class="bx bxs-plus-square me-2"></i>Tambah Vaksin</a>
     </div>
     <div class="card-body">
 
@@ -20,59 +20,57 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Kode Puskesmas</th>
-            <th>Nama Puskesmas</th>
-            <th>Status</th>
-            <th>Kecamatan</th>
-            <th>Wilayah Kerja</th>
+            <th>Nama Vaksin</th>
+            <th>Nomor Batch</th>
+            <th>Expired</th>
+            <th>Produsen</th>
+            <th>Jenis</th>
             <th>Aksi</th>
           </tr>
         </thead>
 
 
         <tbody>
-          @foreach ($listpuskes as $puskesmas)
+          @foreach ($vaksins as $vaksin)
           <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $puskesmas->kode_puskesmas }}</td>
-            <td>{{ $puskesmas->nama_puskesmas }}</td>
-            <td><span class="badge bg-{{ $puskesmas->status_puskesmas == 'aktif' ? 'primary' : 'secondary' }}">{{
-                Str::upper($puskesmas->status_puskesmas) }}</span></td>
-            <td><a href="{{ route('kecamatan.show', $puskesmas->kecamatan->uuid)  }}">{{
-                $puskesmas->kecamatan->nama_kecamatan }}</a></td>
-            <td>{{ $puskesmas->wilayah_kerja_count }}</td>
+            <td>{{ Str::upper($vaksin->nama_vaksin) }}</td>
+            <td>{{ $vaksin->nomor_batch }}</td>
+            <td>{{ \Carbon\Carbon::parse($vaksin->tanggal_kedaluwarsa)->isoFormat('LLLL') }}</td>
+            <td>{{ $vaksin->produsen ?? '-' }}</td>
+            <td>{{ $vaksin->jenisPelayanan->nama_pelayanan }}</td>
             <td>
               <ul>
 
-                @can('permission', 'read-puskesmas')
-                <a href="{{ route('puskesmas.show', $puskesmas->uuid) }}" class="btn btn-sm btn-info"><i
+                @can('permission', 'read-vaksin')
+                <a href="{{ route('vaksin.show', $vaksin->uuid) }}" class="btn btn-sm btn-info"><i
                     class="ti-info-alt"></i></a>
                 @endcan
 
-                @can('permission', 'edit-puskesmas')
-                <a href="{{ route('puskesmas.edit', $puskesmas->uuid) }}" class="btn btn-sm btn-warning"><i
+                @can('permission', 'edit-vaksin')
+                <a href="{{ route('vaksin.edit', $vaksin->uuid) }}" class="btn btn-sm btn-warning"><i
                     class="ti-pencil-alt"></i></a>
                 @endcan
 
-                @can('permission', 'delete-puskesmas')
+                @can('permission', 'delete-vaksin')
                 <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
-                  data-bs-target="#hapusPuskesmas-{{ $puskesmas->uuid }}" aria-controls="hapusPuskesmas"><i
+                  data-bs-target="#hapusVaksin-{{ $vaksin->uuid }}" aria-controls="hapusVaksin"><i
                     class="ti-trash"></i>
                 </button>
 
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusPuskesmas-{{ $puskesmas->uuid }}"
-                  aria-labelledby="hapusPuskesmasLabel">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusVaksin-{{ $vaksin->uuid }}"
+                  aria-labelledby="hapusVaksinLabel">
                   <div class="offcanvas-header border-bottom p-4">
-                    <h5 class="offcanvas-title" id="hapusPuskesmasLabel">Hapus Puskesmas</h5>
+                    <h5 class="offcanvas-title" id="hapusVaksinLabel">Hapus Vaksin</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                   </div>
 
                   <div class="offcanvas-body p-4">
-                    <form action="{{ route('puskesmas.destroy', $puskesmas->uuid) }}" method="POST">
+                    <form action="{{ route('vaksin.destroy', $vaksin->uuid) }}" method="POST">
                       @csrf
                       @method('DELETE')
                       <div class="mb-3">
-                        <span class="fs-6">Hapus {{ $puskesmas->nama_puskesmas }}?</span>
+                        <span class="fs-6">Hapus {{ $vaksin->nama_vaksin }}?</span>
                       </div>
 
                       <div class="mt-4">
