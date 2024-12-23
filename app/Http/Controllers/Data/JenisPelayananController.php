@@ -37,7 +37,7 @@ class JenisPelayananController extends Controller
         $cekSlug = JenisPelayanan::pluck('slug')->contains(Str::slug($request->nama_pelayanan . '-' . $request->tahun));
 
         if ($cekSlug) {
-            toast('Terjadi duplikat data', 'error');
+            toast('Jenis Pelayanan sudah ada', 'error');
             return redirect()->back()->withInput();
         }
 
@@ -75,10 +75,10 @@ class JenisPelayananController extends Controller
             return redirect()->back()->withErrors($validasi)->withInput();
         }
 
-        $cekSlug = JenisPelayanan::pluck('slug')->contains(Str::slug($request->nama_pelayanan . '-' . $request->tahun));
+        $cekSlug = JenisPelayanan::where('uuid', '!=', $jenisPelayanan->uuid)->pluck('slug')->contains(Str::slug($request->nama_pelayanan . '-' . $request->tahun));
 
         if ($cekSlug) {
-            toast('Terjadi duplikat data', 'error');
+            toast('Jenis Pelayanan sudah ada', 'error');
             return redirect()->back()->withInput();
         }
 

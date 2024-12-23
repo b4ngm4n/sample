@@ -1,11 +1,11 @@
 @extends('dashboard.app')
 
-@section('title', 'Edit Vaksin')
+@section('title', 'Edit Pos Pelayanan')
 
-@section('breadcrumbTitle', 'Vaksin')
+@section('breadcrumbTitle', 'Pos Pelayanan')
 
 @section('breadcrumbParent')
-<li class="breadcrumb-item"><a href="{{ route('vaksin.index') }}">List Vaksin</a></li>
+<li class="breadcrumb-item"><a href="{{ route('pos-pelayanan.index') }}">List Pos Pelayanan</a></li>
 @endsection
 
 @section('breadcrumbActive', 'Edit')
@@ -16,20 +16,20 @@
    <div class="card">
       <div class="card-body">
 
-         <form action="{{ route('vaksin.update', $vaksin->uuid) }}" method="POST">
+         <form action="{{ route('pos-pelayanan.update', $posPelayanan->uuid) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="border-bottom border-1 my-3">
-               <h5>Edit Data Vaksin</h5>
+               <h5>Edit Data Pos Pelayanan</h5>
             </div>
 
             <div class="mb-3">
-               <label for="jenis_pelayanan_" class="form-label">Jenis Vaksin</label>
-               <select name="jenis_pelayanan" class="select2 form-select" data-placeholder="Pilih Jenis Vaksin...">
+               <label for="jenis_pelayanan_" class="form-label">Jenis Pos Pelayanan</label>
+               <select name="jenis_pelayanan" class="select2 form-select" data-placeholder="Pilih Jenis pos Pelayanan...">
                   @foreach ($jenisPelayanans as $name => $key)
-                  <option value="{{ $key }}" {{ $key == $vaksin->jenisPelayanan->uuid ? 'selected' : '' }}>{{ $name }}</option>
+                  <option value="{{ $key }}" {{ $key == $posPelayanan->jenisPelayanan->uuid ? 'selected' : '' }}>{{ $name }}</option>
                   @endforeach
-               </select>   
+               </select>
 
                @error('jenis_pelayanan')
                <small class="text-danger">{{ $message }}</small>
@@ -37,45 +37,55 @@
             </div>
 
             <div class="mb-3">
-               <label class="form-label" for="nama-vaksin">Nama Vaksin</label>
-               <input type="text" class="form-control" id="nama-vaksin" name="nama_vaksin" value="{{ old('nama_vaksin', $vaksin->nama_vaksin) }}"
-                  placeholder="Contoh: CoronaVac / BCG / Polio / IPV">
+               <label for="puskesmas" class="form-label">Puskesmas</label>
+               <select name="puskesmas" class="select2 form-select" data-placeholder="Pilih Puskesmas...">
+                  @foreach ($puskesmas as $name => $key)
+                  <option value="{{ $key }}" {{ $key == $posPelayanan->puskesmas->uuid ? 'selected' : '' }}>{{ $name }}</option>
+                  @endforeach
+               </select>
 
-               @error('nama_vaksin')
+               @error('puskesmas')
                <small class="text-danger">{{ $message }}</small>
                @enderror
             </div>
 
             <div class="mb-3">
-               <label class="form-label" for="nomor-batch">Nomor Batch</label>
-               <input type="text" class="form-control" id="nomor-batch" name="nomor_batch" placeholder="Contoh: VCV2021000363" value="{{ old('nomor_batch', $vaksin->nomor_batch) }}">
+               <label for="kelurahan" class="form-label">Kelurahan</label>
+               <select name="kelurahan" class="select2 form-select" data-placeholder="Pilih Kelurahan...">
+                  @foreach ($kelurahans as $name => $key)
+                  <option value="{{ $key }}" {{ $key == $posPelayanan->kelurahan->uuid ? 'selected' : '' }}>{{ $name }}</option>
+                  @endforeach
+               </select>
 
-               @error('nomor_batch')
+               @error('kelurahan')
+               <small class="text-danger">{{ $message }}</small>
+               @enderror
+            </div>
+
+
+            <div class="mb-3">
+               <label class="form-label" for="nama_pos">Nama Pos</label>
+               <input type="text" class="form-control" id="nama_pos" name="nama_pos" value="{{ old('nama_pos', $posPelayanan->nama_pos_pelayanan) }}"
+                  placeholder="Contoh: Seruni 1 / SDN 99 Kota Utara">
+
+               @error('nama_pos')
                <small class="text-danger">{{ $message }}</small>
                @enderror
             </div>
 
             <div class="mb-3">
-               <label class="form-label" for="produsen">Produsen</label>
-               <input type="text" class="form-control" id="produsen" name="produsen" value="{{ old('produsen', $vaksin->produsen) }}"
-                  placeholder="Contoh: Sinovac Biotech Ltd">
+               <label class="form-label" for="alamat">Alamat</label>
+               <input type="text" class="form-control" id="alamat" name="alamat" value="{{ old('alamat', $posPelayanan->alamat) }}"
+                  placeholder="Contoh: Jl. K.H Adam Zakaria">
 
-               @error('produsen')
+               @error('alamat')
                <small class="text-danger">{{ $message }}</small>
                @enderror
             </div>
-
-            <div class="mb-3">
-               <label class="form-label" for="tanggal_kedaluwarsa">tanggal_kedaluwarsa</label>
-               <input type="date" class="form-control" id="tanggal_kedaluwarsa" name="tanggal_kedaluwarsa" value="{{ old('tanggal_kedaluwarsa', $vaksin->tanggal_kedaluwarsa) }}">
-
-               @error('tanggal_kedaluwarsa')
-               <small class="text-danger">{{ $message }}</small>
-               @enderror
-            </div>
+            
 
             <div class="mt-4">
-               <a href="{{ route('vaksin.index') }}" class="btn btn-danger w-md">Batal</a>
+               <a href="{{ route('pos-pelayanan.index') }}" class="btn btn-danger w-md">Batal</a>
                <button type="submit" class="btn btn-warning w-md">Ubah</button>
             </div>
          </form>

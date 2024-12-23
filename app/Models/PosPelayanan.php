@@ -9,6 +9,8 @@ class PosPelayanan extends Model
 {
     use HasFactory;
 
+    // protected $with = ['puskesmas', 'jenisPelayanan', 'Kelurahan'];
+
     protected $fillable = [
         'puskesmas_id',
         'kelurahan_id',
@@ -31,6 +33,11 @@ class PosPelayanan extends Model
     public function jenisPelayanan()
     {
         return $this->belongsTo(JenisPelayanan::class);
+    }
+
+    public function imunisasis()
+    {
+        return $this->hasMany(Imunisasi::class);
     }
 
     public static function boot()

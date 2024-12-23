@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('imunisasis', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->foreignId('biodata_id')->constrained()->onDelete('cascade');
+            $table->foreignId('pos_pelayanan_id')->constrained()->onDelete('cascade');
+            $table->foreignId('vaksin_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('orang_tua_id')->nullable()->constrained()->onDelete('set null');
+            $table->enum('dosis', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+            $table->date('tanggal_imunisasi')->default(now());
+            $table->date('tanggal_pelayanan')->default(now());
             $table->timestamps();
         });
     }

@@ -5,39 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Imunisasi extends Model
+class OrangTua extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'uuid',
         'biodata_id',
-        'pos_pelayanan_id',
-        'vaksin_id',
-        'orang_tua_id',
-        'dosis',
-        'tanggal_imunisasi',
-        'tanggal_pelayanan',
+        'status'
     ];
 
     public function biodata()
     {
         return $this->belongsTo(Biodata::class);
-    }
-
-    public function posPelayanan()
-    {
-        return $this->belongsTo(PosPelayanan::class);
-    }
-
-    public function vaksin()
-    {
-        return $this->belongsTo(Vaksin::class);
-    }
-
-    public function orangTua()
-    {
-        return $this->belongsTo(OrangTua::class);
     }
 
     public static function boot()
@@ -49,7 +28,7 @@ class Imunisasi extends Model
         });
     }
 
-    public function getRouteKeyName()
+    public function getRouteKey()
     {
         return 'uuid';
     }
