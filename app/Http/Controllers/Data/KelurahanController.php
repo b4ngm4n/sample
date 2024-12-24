@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -14,6 +15,7 @@ class KelurahanController extends Controller
     public function index()
     {
         $kelurahans = Kelurahan::with('kecamatan')->get();
+
         return view('dashboard.page.kelurahan.index', compact('kelurahans'));
     }
 

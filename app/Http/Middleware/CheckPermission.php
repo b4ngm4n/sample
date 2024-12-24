@@ -6,6 +6,7 @@ use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckPermission
@@ -17,18 +18,19 @@ class CheckPermission
      */
     public function handle(Request $request, Closure $next, $permission): Response
     {
-        $user = User::where('uuid', auth()->user()->uuid)->first();
-
-        if (!$user || !$user->hasPermission($permission)) {
-            // Cek apakah request dari json
+        // Cek apakah user memiliki izin untuk mengakses halaman ini
+        if (Gate::denies('permission', $permission)) {
+            // Jika user mengakses halaman ini melalui ajax/json
             if ($request->wantsJson()) {
+                // Kembalikan response json dengan kode 403 dan pesan kesalahan
                 return response()->json([
-                    'message' => 'Unauthorized. Kamu tidak dapat izin untuk halaman ini', 
-                    'required_permission' => $permission
-                ], 403);
+                    'message' => 'Unauthorized. Kamu tidak dapat izin untuk halaman ini', // pesan kesalahan
+                    'required_permission' => $permission, // izin yang dibutuhkan
+                ], 403); // kode status 403
             }
 
-            abort(403, 'Unauthorized. Kamu tidak dapat izin untuk halaman ini');
+            // Jika user mengakses halaman ini secara langsung, maka kembalikan kode 403 dan pesan kesalahan
+            abort(403, 'Unauthorized. Kamu tidak dapat izin untuk halaman ini'); // pesan kesalahan
         }
 
         return $next($request);

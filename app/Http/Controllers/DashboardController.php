@@ -9,7 +9,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $permissions = Permission::all();
-        return view('dashboard.page.index', compact('permissions'));
+        return view('dashboard.page.index');
     }
 }

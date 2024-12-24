@@ -18,6 +18,7 @@
 
           <li class="menu-header-title">Data</li>
 
+          @can('any-permission', [['list-provinsi', 'list-kabupaten', 'list-kecamatan', 'list-kelurahan']])
           <li class="treeview {{ request()->is('dashboard/wilayah/*') ? 'active ' : '' }}">
             <a href="javascript:void(0)"><i class="bx bx-sitemap"></i><span>Wilayah</span>
               <i class="fa fa-angle-right"></i></a>
@@ -43,6 +44,8 @@
               @endcan
             </ul>
           </li>
+          
+          @endcan
 
           @can('permission', 'list-puskesmas')
           <li class="{{ request()->is('dashboard/puskesmas*') ? 'active' : '' }}">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Account\RoleController;
 use App\Http\Controllers\Account\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DashboardController;
@@ -32,6 +33,9 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
+
+    Route::match(['get', 'post'], '/logout', [LogoutController::class, 'logout'])->name('logout');
+
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('permission:dashboard');
 
     // GROUPING WILAYAH

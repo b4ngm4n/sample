@@ -34,19 +34,23 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $kelurahan->nama_kelurahan }}</td>
                   <td>{{ $kelurahan->kode_kelurahan }}</td>
-                  <td><a href="{{ route('kecamatan.show', $kelurahan->kecamatan->uuid) }}">{{ $kelurahan->kecamatan->nama_kecamatan }}</a></td>
+                  <td><a href="{{ route('kecamatan.show', $kelurahan->kecamatan->uuid) }}">{{
+                        $kelurahan->kecamatan->nama_kecamatan }}</a></td>
                   <td>
                      <ul>
+                        @can('has-permission', 'read-kelurahan')
                         <a href="{{ route('kelurahan.show', $kelurahan->uuid) }}" class="btn btn-sm btn-info"><i
                               class="ti-info-alt"></i></a>
+                        @endcan
+
                         <a href="{{ route('kelurahan.edit', $kelurahan->uuid) }}" class="btn btn-sm btn-warning"><i
                               class="ti-pencil-alt"></i></a>
+
                         <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
                            data-bs-target="#hapusKelurahan-{{ $kelurahan->uuid }}" aria-controls="hapusKelurahan"><i
                               class="ti-trash"></i>
                         </button>
-
-
+                        {{-- MODAL --}}
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusKelurahan-{{ $kelurahan->uuid }}"
                            aria-labelledby="hapusKelurahanLabel">
                            <div class="offcanvas-header border-bottom p-4">
@@ -69,8 +73,11 @@
                               </form>
                            </div>
                         </div>
+                        {{-- END MODAL --}}
+
                      </ul>
                   </td>
+
                </tr>
                @endforeach
             </tbody>

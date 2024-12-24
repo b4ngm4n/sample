@@ -9,6 +9,8 @@ class Kelurahan extends Model
 {
     use HasFactory;
 
+    // protected $with = ['kecamatan'];
+
     protected $fillable = [
         'kecamatan_id',
         'nama_kelurahan',
@@ -20,6 +22,17 @@ class Kelurahan extends Model
     {
         return $this->belongsTo(Kecamatan::class);
     }
+
+    // public function getUserPermissionsAttribute()
+    // {
+    //     $user = auth()->user();
+
+    //     return [
+    //         'canView' => $user->hasPermission('read-kelurahan'),
+    //         'canEdit' => $user->hasPermission('edit-kelurahan'),
+    //         'canDelete' => $user->hasPermission('delete-kelurahan'),
+    //     ];
+    // }
 
     public static function boot()
     {

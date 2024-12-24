@@ -1,11 +1,11 @@
 @extends('dashboard.app')
 
-@section('title', 'Detail Vaksin')
+@section('title', 'Detail Pos Pelayanan')
 
-@section('breadcrumbTitle', 'Vaksin')
+@section('breadcrumbTitle', 'Pos Pelayanan')
 
 @section('breadcrumbParent')
-<li class="breadcrumb-item"><a href="{{ route('vaksin.index') }}">List Vaksin</a></li>
+<li class="breadcrumb-item"><a href="{{ route('pos-pelayanan.index') }}">List Pos Pelayanan</a></li>
 @endsection
 
 @section('breadcrumbActive', 'Detail')
@@ -15,44 +15,49 @@
 <div class="col-xl-12">
    <div class="card">
       <div class="card-title mt-4 ms-4 me-4">
-         <h4 class="card-title float-start">Detail Vaksin</h4>
+         <h4 class="card-title float-start">DETAIL Pos PELAYANAN</h4>
 
-         <a href="{{ route('vaksin.index') }}" class="btn btn-primary w-md float-end"><i
+         <a href="{{ route('pos-pelayanan.index') }}" class="btn btn-primary w-md float-end"><i
                class="ti-arrow-left me-3"></i>Kembali</a>
       </div>
       <div class="card-body">
-         <div class="row">
-            <div class="col-xl-6 col-sm-12">
-               <div class="mb-3">
-                  <label for="jenis_pelayanan_" class="form-label">Jenis Vaksin</label>
-                  <input type="text" class="form-control" id="nama-vaksin"
-                     value="{{ $vaksin->jenisPelayanan->nama_pelayanan }}" readonly>
-               </div>
 
-               <div class="mb-3">
-                  <label class="form-label" for="nama-vaksin">Nama Vaksin</label>
-                  <input type="text" class="form-control" id="nama-vaksin" value="{{ $vaksin->nama_vaksin }}" readonly>
-               </div>
-
-               <div class="mb-3">
-                  <label class="form-label" for="nomor-batch">Nomor Batch</label>
-                  <input type="text" class="form-control" id="nomor-batch" value="{{ $vaksin->nomor_batch }}" readonly>
-               </div>
-            </div>
-            <div class="col-xl-6 col-sm-12">
-               
-               <div class="mb-3">
-                  <label class="form-label" for="produsen">Produsen</label>
-                  <input type="text" class="form-control" id="produsen" value="{{ $vaksin->produsen }}" readonly>
-               </div>
-
-               <div class="mb-3">
-                  <label class="form-label" for="tanggal_kedaluwarsa">tanggal_kedaluwarsa</label>
-                  <input type="text" class="form-control" id="tanggal_kedaluwarsa"
-                     value="{{ \Carbon\Carbon::parse($vaksin->tanggal_kedaluwarsa)->isoFormat('LL') }}" readonly>
-               </div>
+         <div class="row mb-4">
+            <label for="jenis" class="col-sm-3 col-form-label">Jenis Pelayanan</label>
+            <div class="col-sm-9">
+               <input type="text" class="form-control" id="jenis" value="{{ $posPelayanan->jenisPelayanan->nama_pelayanan }}"
+                  readonly>
             </div>
          </div>
+         <div class="row mb-4">
+            <label for="puskesmas" class="col-sm-3 col-form-label">Puskesmas</label>
+            <div class="col-sm-9">
+               <input type="text" class="form-control" id="puskesmas" value="{{ $posPelayanan->puskesmas->nama_puskesmas }}"
+                  readonly>
+            </div>
+         </div>
+         <div class="row mb-4">
+            <label for="kelurahan" class="col-sm-3 col-form-label">Kelurahan</label>
+            <div class="col-sm-9">
+               <input type="text" class="form-control" id="kelurahan" value="{{ $posPelayanan->kelurahan->nama_kelurahan }}"
+                  readonly>
+            </div>
+         </div>
+         <div class="row mb-4">
+            <label for="nama_pos" class="col-sm-3 col-form-label">Nama Pos</label>
+            <div class="col-sm-9">
+               <input type="text" class="form-control" id="nama_pos" value="{{ $posPelayanan->nama_pos_pelayanan }}"
+                  readonly>
+            </div>
+         </div>
+         <div class="row mb-4">
+            <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+            <div class="col-sm-9">
+               <input type="text" class="form-control" id="alamat" value="{{ $posPelayanan->alamat }}"
+                  readonly>
+            </div>
+         </div>
+         
       </div>
    </div>
 </div>

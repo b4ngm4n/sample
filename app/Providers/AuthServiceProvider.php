@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
-
+use App\Models\Kelurahan;
 use App\Models\User;
+use App\Policies\KelurahanPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,17 +15,36 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array<class-string, class-string>
      */
-    protected $policies = [
-        //
-    ];
+    protected $policies = [];
 
     /**
      * Register any authentication / authorization services.
      */
     public function boot(): void
     {
-        Gate::define('permission', function (User $user, $permission) {
-            return $user->hasPermission($permission);
+
+        // Define multiple permissions check (any-permission)
+        Gate::define('any-permission', function (User $user, array $permissions) {
+            foreach ($permissions as $permission) {
+                if (
+                    $user->permissions->pluck('slug')->contains($permission) ||
+                    $user->roles->pluck('permissions')->flatten()->pluck('slug')->contains($permission)
+                ) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        Gate::define('permission', function ($user, $permission) {
+            // Super admin memiliki akses penuh
+            if ($user->roles->pluck('slug')->contains('administrator')) {
+                return true;
+            }
+
+            // Cek permission
+            return $user->permissions->pluck('slug')->contains($permission) ||
+                $user->roles->pluck('permissions')->flatten()->pluck('slug')->contains($permission);
         });
     }
 }
