@@ -10,10 +10,12 @@
 
 <div class="col-12">
    <div class="card">
+      @can('permission', 'create-kelurahan')
       <div class="card-title">
          <a href="{{ route('kelurahan.create') }}" class="btn btn-primary float-end mt-4 me-4"><i
                class="bx bxs-plus-square me-2"></i>Tambah Kelurahan</a>
       </div>
+      @endcan
       <div class="card-body">
          <table id="selection-datatable"
             class="table dt-responsive nowrap w-100 table-striped table-bordered nowrap data-table-area">
@@ -34,20 +36,20 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $kelurahan->nama_kelurahan }}</td>
                   <td>{{ $kelurahan->kode_kelurahan }}</td>
-                  <td><a href="{{ route('kecamatan.show', $kelurahan->kecamatan->uuid) }}">{{
-                        $kelurahan->kecamatan->nama_kecamatan }}</a></td>
+                  <td>{{ $kelurahan->kecamatan->nama_kecamatan }}</td>
                   <td>
                      <ul>
-                        @if ($kelurahan->user_permissions['canView'])
+                        @can('permission', 'read-kelurahan')
                         <a href="{{ route('kelurahan.show', $kelurahan->uuid) }}" class="btn btn-sm btn-info"><i
                               class="ti-info-alt"></i></a>
-                        @endif
+                        @endcan
 
-                        @if ($kelurahan->user_permissions['canEdit'])
+                        @can('permission', 'edit-kelurahan')
                         <a href="{{ route('kelurahan.edit', $kelurahan->uuid) }}" class="btn btn-sm btn-warning"><i
                               class="ti-pencil-alt"></i></a>
-                        @endif
+                        @endcan
 
+                        @can('permission', 'delete-kelurahan')
                         <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
                            data-bs-target="#hapusKelurahan-{{ $kelurahan->uuid }}" aria-controls="hapusKelurahan"><i
                               class="ti-trash"></i>
@@ -76,6 +78,7 @@
                            </div>
                         </div>
                         {{-- END MODAL --}}
+                        @endcan
 
                      </ul>
                   </td>

@@ -23,27 +23,21 @@ class Kelurahan extends Model
         return $this->belongsTo(Kecamatan::class);
     }
 
-    public function getUserPermissionsAttribute()
-    {
-        // $user = auth()->user();
-
-        // return [
-        //     'canView' => $user->hasPermission('read-kelurahan'),
-        //     'canEdit' => $user->hasPermission('edit-kelurahan'),
-        //     'canDelete' => $user->hasPermission('delete-kelurahan'),
-        // ];
-        if (!isset($this->cachedPermissions)) {
-            $user = auth()->user();
+    // Jika anda ingin manual maka hidupkan ini pada masing masing model
+    // public function getUserPermissionsAttribute()
+    // {
+    //     if (!isset($this->cachedPermissions)) {
+    //         $user = auth()->user();
     
-            $this->cachedPermissions = [
-                'canView' => $user->hasPermission('read-kelurahan'),
-                'canEdit' => $user->hasPermission('edit-kelurahan'),
-                'canDelete' => $user->hasPermission('delete-kelurahan'),
-            ];
-        }
+    //         $this->cachedPermissions = [
+    //             'canView' => $user->hasPermission('read-kelurahan'),
+    //             'canEdit' => $user->hasPermission('edit-kelurahan'),
+    //             'canDelete' => $user->hasPermission('delete-kelurahan'),
+    //         ];
+    //     }
     
-        return $this->cachedPermissions;
-    }
+    //     return $this->cachedPermissions;
+    // }
 
     public static function boot()
     {

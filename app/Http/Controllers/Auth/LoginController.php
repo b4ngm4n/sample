@@ -36,7 +36,7 @@ class LoginController extends Controller
                 ->withInput();
         }
 
-        // Cek apakah password cocok dengan username yang valid
+        // Cek apakah password cocok dengan elusername yang valid
         if (!auth()->attempt($credentials)) {
             return redirect()->back()
                 ->withErrors(['password' => 'Password salah.'])

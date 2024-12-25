@@ -178,7 +178,7 @@ view App\Models\Kelurahan(id=1) [▼
 ]
 ```
 
-#### karena ini menghasilkan banyak sekali gate. makanya saya merubah kembali dengan menggunakan manual
+#### karena ini menghasilkan banyak sekali gate
 
 ## PACKAGE INSTALLATION
 resource package installation

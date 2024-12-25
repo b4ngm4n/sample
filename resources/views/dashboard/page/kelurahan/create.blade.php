@@ -57,7 +57,9 @@
 
             <div class="mt-4">
                <a href="{{ route('kelurahan.index') }}" class="btn btn-danger w-md">Batal</a>
+               @can('permission', 'store-kelurahan')
                <button type="submit" class="btn btn-primary w-md">Tambah</button>
+               @endcan
             </div>
          </form>
 
