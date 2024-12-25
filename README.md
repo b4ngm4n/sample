@@ -244,3 +244,5 @@ Url
 ```bash
 https://docs.laravel-excel.com/3.1/getting-started/
 ```
+
+### 5. Laravel Telescope

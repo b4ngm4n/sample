@@ -14,7 +14,7 @@ class KelurahanController extends Controller
 {
     public function index()
     {
-        $kelurahans = Kelurahan::with('kecamatan')->get();
+        $kelurahans = Kelurahan::with(['kecamatan'])->get();
 
         return view('dashboard.page.kelurahan.index', compact('kelurahans'));
     }

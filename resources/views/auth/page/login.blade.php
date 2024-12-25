@@ -5,9 +5,13 @@
 @section('content')
 
 {{-- Menampilkan session flash error --}}
-@if (session('error'))
+@if ($errors->any())
 <div class="log-header-area card p-4 mb-4 text-center">
-  <span class="text-danger">{{ session('error') }}</span>
+  <ul class="text-danger" style="list-style: none; padding: 0; margin: 0;">
+      @foreach ($errors->all() as $error)
+      <li>• {{ $error }}</li>
+      @endforeach
+  </ul>
 </div>
 @endif
 
@@ -33,7 +37,7 @@
 
       <div class="form-group mb-3">
         <label class="text-muted" for="password">Password</label>
-        <input class="form-control" type="password" id="password" required placeholder="Enter your password"
+        <input class="form-control" type="password" id="password" placeholder="Enter your password"
           name="password">
 
         {{-- Menampilkan error validasi untuk password --}}

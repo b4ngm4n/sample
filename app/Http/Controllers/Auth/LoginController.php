@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+use function Laravel\Prompts\error;
 
 class LoginController extends Controller
 {
@@ -18,22 +23,28 @@ class LoginController extends Controller
         $this->validate($request, [
             'username' => 'required',
             'password' => 'required',
+        ], [
+            'username.required' => 'Username harus diisi',
+            'password.required' => 'Password harus diisi',
         ]);
 
         $credentials = $request->only('username', 'password');
-
-        if (auth()->attempt($credentials)) {
-            return redirect()->intended(route('dashboard'));
+        // Cek apakah username ada di database
+        if (!User::where('username', $credentials['username'])->exists()) {
+            return redirect()->back()
+                ->withErrors(['username' => 'Username tidak ditemukan.'])
+                ->withInput();
         }
 
-        if (!auth()->attempt(['username' => $credentials['username'], 'password' => ' dummy'])) {
-            session()->flash('error', 'Username salah');
+        // Cek apakah password cocok dengan username yang valid
+        if (!auth()->attempt($credentials)) {
+            return redirect()->back()
+                ->withErrors(['password' => 'Password salah.'])
+                ->withInput();
         }
 
-        if (!auth()->attempt(['username' => ' dummy', 'password' => $credentials['password']])) {
-            session()->flash('error', 'Password salah');
-        }
-
-        return redirect()->back()->withErrors(['error' => 'Username atau Password salah'])->withInput();
+        // Login berhasil
+        toast('Login berhasil', 'success');
+        return redirect()->intended(route('dashboard'));
     }
 }

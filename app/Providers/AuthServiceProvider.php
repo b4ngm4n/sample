@@ -15,26 +15,31 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array<class-string, class-string>
      */
-    protected $policies = [];
+    protected $policies = [
+        // Kelurahan::class => KelurahanPolicy::class,
+    ];
 
     /**
      * Register any authentication / authorization services.
      */
     public function boot(): void
     {
+        // $this->registerPolicies();
 
-        // Define multiple permissions check (any-permission)
         Gate::define('any-permission', function (User $user, array $permissions) {
-            foreach ($permissions as $permission) {
-                if (
-                    $user->permissions->pluck('slug')->contains($permission) ||
-                    $user->roles->pluck('permissions')->flatten()->pluck('slug')->contains($permission)
-                ) {
-                    return true;
-                }
+            // Super admin memiliki akses penuh
+            if ($user->roles->pluck('slug')->contains('administrator')) {
+                return true;
             }
-            return false;
+        
+            // Gabungkan semua izin pengguna dan izin dari roles
+            $userPermissions = $user->permissions->pluck('slug')
+                ->merge($user->roles->pluck('permissions')->flatten()->pluck('slug'));
+        
+            // Cek apakah salah satu izin yang diminta ada pada koleksi izin
+            return $userPermissions->intersect($permissions)->isNotEmpty();
         });
+        
 
         Gate::define('permission', function ($user, $permission) {
             // Super admin memiliki akses penuh

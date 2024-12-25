@@ -38,13 +38,15 @@
                         $kelurahan->kecamatan->nama_kecamatan }}</a></td>
                   <td>
                      <ul>
-                        @can('has-permission', 'read-kelurahan')
+                        @if ($kelurahan->user_permissions['canView'])
                         <a href="{{ route('kelurahan.show', $kelurahan->uuid) }}" class="btn btn-sm btn-info"><i
                               class="ti-info-alt"></i></a>
-                        @endcan
+                        @endif
 
+                        @if ($kelurahan->user_permissions['canEdit'])
                         <a href="{{ route('kelurahan.edit', $kelurahan->uuid) }}" class="btn btn-sm btn-warning"><i
                               class="ti-pencil-alt"></i></a>
+                        @endif
 
                         <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
                            data-bs-target="#hapusKelurahan-{{ $kelurahan->uuid }}" aria-controls="hapusKelurahan"><i

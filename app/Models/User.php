@@ -59,6 +59,17 @@ class User extends Authenticatable
         return $this->belongsToMany(Permission::class, 'user_permissions', 'user_id', 'permission_id')->withTimestamps();
     }
 
+    public function hasPermission($permission)
+    {
+        if ($this->roles->pluck('slug')->contains('administrator')) {
+            return true; // Super admin
+        }
+    
+        // Cek permission langsung dan dari role yang sudah di-load
+        return $this->permissions->pluck('slug')->contains($permission) ||
+               $this->roles->pluck('permissions')->flatten()->pluck('slug')->contains($permission);
+    }
+
     // Generate UUID secara dinamis
     public static function boot()
     {
