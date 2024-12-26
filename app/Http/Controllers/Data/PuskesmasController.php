@@ -124,6 +124,7 @@ class PuskesmasController extends Controller
     // WILAYAH KERJA
     public function wilayahKerja(Request $request, Puskesmas $puskesmas)
     {
+        // dd($request->all());
         $validasi = Validator::make($request->all(), [
             // 'wilayah' => 'required|array',
             'wilayah.*' => 'required|exists:kelurahans,uuid'

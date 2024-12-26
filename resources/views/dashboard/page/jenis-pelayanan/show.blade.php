@@ -15,7 +15,7 @@
 <div class="col-xl-12">
    <div class="card">
       <div class="card-title mt-4 ms-4 me-4">
-         <h4 class="card-title float-start">DETAIL JENIS PELAYANAN</h4>
+         <h4 class="card-title float-start">Detail Jenis Pelayanan</h4>
 
          <a href="{{ route('jenis-pelayanan.index') }}" class="btn btn-primary w-md float-end"><i
                class="ti-arrow-left me-3"></i>Kembali</a>
@@ -32,8 +32,7 @@
          <div class="row mb-4">
             <label for="tahun" class="col-sm-3 col-form-label">Tahun</label>
             <div class="col-sm-9">
-               <input type="number" class="form-control" id="tahun" value="{{ $jenisPelayanan->tahun }}"
-                  readonly>
+               <input type="number" class="form-control" id="tahun" value="{{ $jenisPelayanan->tahun }}" readonly>
             </div>
          </div>
 
@@ -47,12 +46,15 @@
       <div class="card-title mt-4 ms-4 me-4">
          <h4 class="card-title float-start">List Data Vaksin</h4>
 
+         @can('permission', 'list-vaksin')
          <a href="{{ route('vaksin.index') }}" class="btn btn-primary w-md float-end"><i
                class="bx bxs-hand-right me-3"></i>Lihat Data Vaksin</a>
+         @endcan
       </div>
       <div class="card-body">
          <table id="selection-datatable"
             class="table dt-responsive nowrap w-100 table-striped table-bordered nowrap data-table-area">
+            @can('permission', 'list-vaksin')
             <thead>
                <tr>
                   <th>No</th>
@@ -75,6 +77,8 @@
                </tr>
                @endforeach
             </tbody>
+            @endcan
+
          </table>
       </div>
    </div>
@@ -86,12 +90,16 @@
       <div class="card-title mt-4 ms-4 me-4">
          <h4 class="card-title float-start">List Pos Pelayanan</h4>
 
+         @can('permission', 'list-pos-pelayanan')
          <a href="{{ route('pos-pelayanan.index') }}" class="btn btn-primary w-md float-end"><i
                class="bx bxs-hand-right me-3"></i>Lihat Pos Pelayanan</a>
+         @endcan
+
       </div>
       <div class="card-body">
          <table id="datatable"
             class="table dt-responsive nowrap w-100 table-striped table-bordered nowrap data-table-area">
+            @can('permission', 'list-pos-pelayanan')
             <thead>
                <tr>
                   <th>No</th>
@@ -114,6 +122,8 @@
                </tr>
                @endforeach
             </tbody>
+            @endcan
+
          </table>
       </div>
    </div>

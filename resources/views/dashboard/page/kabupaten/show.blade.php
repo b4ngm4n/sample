@@ -16,7 +16,7 @@
    <div class="card">
       <div class="card-body">
          <div class="card-title">
-            <h4 class="card-title">DETAIL KABUPATEN</h4>
+            <h4 class="card-title">Detail Kabupaten</h4>
          </div>
          <div class="row mb-4">
             <label for="nama-provinsi" class="col-sm-3 col-form-label">Provinsi</label>
@@ -51,6 +51,7 @@
    <div class="card">
       <div class="card-title">
 
+         @can('permission', 'create-kecamatan')
          <button class="btn btn-primary float-start mt-3 ms-3" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#tambahKecamatan" aria-controls="tambahKecamatan"><i class="bx bxs-plus-square me-2"></i>
             Tambah Kecamatan
@@ -86,12 +87,17 @@
                      @enderror
                   </div>
 
+                  @can('permission', 'store-kecamatan')
                   <div class="mt-4">
                      <button type="submit" class="btn btn-primary w-md">Simpan</button>
                   </div>
+                  @endcan
                </form>
             </div>
          </div>
+         @endcan
+
+         <h4 class="titile float-end mt-3 me-3">Data Kecamatan</h4>
 
       </div>
 
@@ -116,15 +122,21 @@
                   <td>{{ $kecamatan->kode_kecamatan }}</td>
                   <td>
                      <ul>
+                        @can('permission', 'read-kecamatan')
                         <a href="{{ route('kecamatan.show', $kecamatan->uuid) }}" class="btn btn-sm btn-info"><i
                               class="ti-info-alt"></i></a>
+                        @endcan
+
+                        @can('permission', 'edit-kecamatan')
                         <a href="{{ route('kecamatan.edit', $kecamatan->uuid) }}" class="btn btn-sm btn-warning"><i
                               class="ti-pencil-alt"></i></a>
+                        @endcan
+
+                        @can('permission', 'delete-kecamatan')
                         <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
                            data-bs-target="#hapusKecamatan-{{ $kecamatan->uuid }}" aria-controls="hapusKecamatan"><i
                               class="ti-trash"></i>
                         </button>
-
 
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusKecamatan-{{ $kecamatan->uuid }}"
                            aria-labelledby="hapusKecamatanLabel">
@@ -148,6 +160,7 @@
                               </form>
                            </div>
                         </div>
+                        @endcan
 
                      </ul>
                   </td>

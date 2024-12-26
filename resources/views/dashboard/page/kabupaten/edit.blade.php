@@ -25,8 +25,7 @@
 
             <div class="mb-3">
                <label class="form-label" for="provinsi">Provinsi</label>
-               <select name="provinsi" class="select2 form-select"
-                  data-placeholder="Pilih Provinsi ...">
+               <select name="provinsi" class="select2 form-select" data-placeholder="Pilih Provinsi ...">
                   <option value="{{ $kabupaten->provinsi->uuid }}">{{ $kabupaten->provinsi->nama_provinsi }}</option>
                   <option value="">Pilih Provinsi</option>
                   @foreach ($provinsis as $name => $key)
@@ -43,7 +42,8 @@
 
             <div class="mb-3">
                <label class="form-label" for="nama-kabupaten">Nama Kabupaten</label>
-               <input type="text" class="form-control" id="nama-kabupaten" name="nama_kabupaten" value="{{ old('nama_kabupaten', $kabupaten->nama_kabupaten) }}">
+               <input type="text" class="form-control" id="nama-kabupaten" name="nama_kabupaten"
+                  value="{{ old('nama_kabupaten', $kabupaten->nama_kabupaten) }}">
 
                @error('nama_kabupaten')
                <small class="text-danger">{{ $message }}</small>
@@ -52,7 +52,8 @@
 
             <div class="mb-3">
                <label class="form-label" for="kode-kabupaten">Kode Kabupaten</label>
-               <input type="number" class="form-control" id="kode-kabupaten" name="kode_kabupaten" value="{{ old('kode_kabupaten', $kabupaten->kode_kabupaten) }}">
+               <input type="number" class="form-control" id="kode-kabupaten" name="kode_kabupaten"
+                  value="{{ old('kode_kabupaten', $kabupaten->kode_kabupaten) }}">
 
                @error('kode_kabupaten')
                <small class="text-danger">{{ $message }}</small>
@@ -61,7 +62,10 @@
 
             <div class="mt-4">
                <a href="{{ route('kabupaten.index') }}" class="btn btn-danger w-md">Batal</a>
+
+               @can('permission', 'update-kabupaten')
                <button type="submit" class="btn btn-warning w-md">Ubah</button>
+               @endcan
             </div>
          </form>
 

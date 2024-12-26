@@ -12,7 +12,7 @@
                   <div class="card-body p-4 p-lg-5">
                       <div class="dash-banner d-flex justify-content-between align-items-center">
                           <div class="dash-banner-text mb-4">
-                              <h2 class="mb-4">Kelola data anda dengan<br>
+                              <h2 class="mb-4">Kelola data apapun jadi<br>
                               Lebih mudah</h2>
 
                               <span class="badge bg-primary p-2 fs-6">Super App - Dinas Kesehatan Kota Gorontalo</span>

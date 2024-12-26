@@ -28,10 +28,13 @@ class ProvinsiController extends Controller
         $validasi = Validator::make($request->all(), [
             'kode_provinsi' => 'required|unique:provinsis,kode_provinsi',
             'nama_provinsi' => 'required',
+        ], [
+            'kode_provinsi.unique' => 'Kode Provinsi sudah ada',
+            'kode_provinsi.required' => 'Kode Provinsi harus diisi',
+            'nama_provinsi.required' => 'Nama Provinsi harus diisi',
         ]);
 
         if ($validasi->fails()) {
-            toast('Provinsi gagal ditambahkan', 'error');
             return redirect()->back()->withErrors($validasi)->withInput();
         }
 
@@ -60,10 +63,13 @@ class ProvinsiController extends Controller
         $validasi = Validator::make($request->all(), [
             'kode_provinsi' => 'required|unique:provinsis,kode_provinsi,' . $provinsi->id,
             'nama_provinsi' => 'required',
+        ], [
+            'kode_provinsi.unique' => 'Kode Provinsi sudah ada',
+            'kode_provinsi.required' => 'Kode Provinsi harus diisi',
+            'nama_provinsi.required' => 'Nama Provinsi harus diisi',
         ]);
 
         if ($validasi->fails()) {
-            toast('Provinsi gagal diubah', 'error');
             return redirect()->back()->withErrors($validasi)->withInput();
         }
 

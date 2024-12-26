@@ -27,11 +27,49 @@
           @foreach ($roles as $role)
           <tr>
             <td>{{ $role->name }}</td>
-            <td>{{ $role->permission_count }}</td>
-            <td class="gap-2">
-              <a href="{{ route('role.show', $role->uuid) }}" class="btn btn-sm btn-info"><i class="ti-info-alt"></i></a>
-              <a href="{{ route('role.edit', $role->uuid) }}" class="btn btn-sm btn-warning"><i class="ti-pencil-alt"></i></a>
-              <button class="btn btn-danger btn-sm"><i class="ti-trash"></i></button>
+            <td>{{ $role->permissions_count ?? 0 }} Hak Akses</td>
+            <td>
+              <ul>
+
+                @can('permission', 'read-role')
+                <a href="{{ route('role.show', $role->uuid) }}" class="btn btn-sm btn-info"><i
+                    class="ti-info-alt"></i></a>
+                @endcan
+
+                @can('permission', 'edit-role')
+                <a href="{{ route('role.edit', $role->uuid) }}" class="btn btn-sm btn-warning"><i
+                    class="ti-pencil-alt"></i></a>
+                @endcan
+
+                @can('permission', 'delete-role')
+                <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
+                  data-bs-target="#hapusRole-{{ $role->uuid }}" aria-controls="hapusRole"><i class="ti-trash"></i>
+                </button>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusRole-{{ $role->uuid }}"
+                  aria-labelledby="hapusRoleLabel">
+                  <div class="offcanvas-header border-bottom p-4">
+                    <h5 class="offcanvas-title" id="hapusRoleLabel">Hapus Role</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+
+                  <div class="offcanvas-body p-4">
+                    <form action="{{ route('role.destroy', $role->uuid) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <div class="mb-3">
+                        <span class="fs-6">Hapus {{ $role->name }}?</span>
+                      </div>
+
+                      <div class="mt-4">
+                        <button type="submit" class="btn btn-danger w-md">Hapus</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                @endcan
+
+              </ul>
             </td>
           </tr>
           @endforeach

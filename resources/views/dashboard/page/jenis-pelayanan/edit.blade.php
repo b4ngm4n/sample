@@ -25,7 +25,9 @@
 
             <div class="mb-3">
                <label class="form-label" for="nama-pelayanan">Jenis Pelayanan</label>
-               <input type="text" class="form-control" id="nama-pelayanan" name="nama_pelayanan" value="{{ old('nama_pelayanan', $jenisPelayanan->nama_pelayanan) }}" placeholder="Contoh: PIN Polio / COVID 19 / IMUNISASI RUTIN">
+               <input type="text" class="form-control" id="nama-pelayanan" name="nama_pelayanan"
+                  value="{{ old('nama_pelayanan', $jenisPelayanan->nama_pelayanan) }}"
+                  placeholder="Contoh: PIN Polio / COVID 19 / IMUNISASI RUTIN">
 
                @error('nama_pelayanan')
                <small class="text-danger">{{ $message }}</small>
@@ -34,7 +36,8 @@
 
             <div class="mb-3">
                <label class="form-label" for="tahun">Tahun</label>
-               <input type="number" class="form-control" id="tahun" name="tahun" value="{{ old('tahun', $jenisPelayanan->tahun) }}" placeholder="Contoh: 2024">
+               <input type="number" class="form-control" id="tahun" name="tahun"
+                  value="{{ old('tahun', $jenisPelayanan->tahun) }}" placeholder="Contoh: 2024">
 
                @error('tahun')
                <small class="text-danger">{{ $message }}</small>
@@ -43,7 +46,10 @@
 
             <div class="mt-4">
                <a href="{{ route('jenis-pelayanan.index') }}" class="btn btn-danger w-md">Batal</a>
+
+               @can('permission', 'update-jenis-pelayanan')
                <button type="submit" class="btn btn-warning w-md">Ubah</button>
+               @endcan
             </div>
          </form>
 

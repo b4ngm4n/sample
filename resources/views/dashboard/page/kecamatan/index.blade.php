@@ -10,10 +10,15 @@
 
 <div class="col-12">
    <div class="card">
+
       <div class="card-title">
+         <h4 class="title ms-4 mt-4 float-start">List Kecamatan</h4>
+         @can('permission', 'create-kecamatan')
          <a href="{{ route('kecamatan.create') }}" class="btn btn-primary float-end mt-4 me-4"><i
                class="bx bxs-plus-square me-2"></i>Tambah Kecamatan</a>
+               @endcan
       </div>
+
       <div class="card-body">
          <table id="selection-datatable"
             class="table dt-responsive nowrap w-100 table-striped table-bordered nowrap data-table-area">
@@ -34,18 +39,26 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $kecamatan->nama_kecamatan }}</td>
                   <td>{{ $kecamatan->kode_kecamatan }}</td>
-                  <td><a href="{{ route('kabupaten.show', $kecamatan->kabupaten->uuid) }}">{{ $kecamatan->kabupaten->nama_kabupaten }}</a></td>
+                  <td><a href="{{ route('kabupaten.show', $kecamatan->kabupaten->uuid) }}">{{
+                        $kecamatan->kabupaten->nama_kabupaten }}</a></td>
                   <td>
                      <ul>
+
+                        @can('permission', 'read-kecamatan')
                         <a href="{{ route('kecamatan.show', $kecamatan->uuid) }}" class="btn btn-sm btn-info"><i
                               class="ti-info-alt"></i></a>
+                        @endcan
+
+                        @can('permission', 'edit-kecamatan')
                         <a href="{{ route('kecamatan.edit', $kecamatan->uuid) }}" class="btn btn-sm btn-warning"><i
                               class="ti-pencil-alt"></i></a>
+                        @endcan
+
+                        @can('permission', 'delete-kecamatan')
                         <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
                            data-bs-target="#hapusKecamatan-{{ $kecamatan->uuid }}" aria-controls="hapusKecamatan"><i
                               class="ti-trash"></i>
                         </button>
-
 
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusKecamatan-{{ $kecamatan->uuid }}"
                            aria-labelledby="hapusKecamatanLabel">
@@ -69,6 +82,8 @@
                               </form>
                            </div>
                         </div>
+                        @endcan
+
                      </ul>
                   </td>
                </tr>

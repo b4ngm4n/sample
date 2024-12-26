@@ -85,7 +85,9 @@
 
             <div class="mt-4">
                <a href="{{ route('pos-pelayanan.index') }}" class="btn btn-danger w-md">Batal</a>
+               @can('permission', 'store-pos-pelayanan')
                <button type="submit" class="btn btn-primary w-md">Simpan</button>
+               @endcan
             </div>
          </form>
 

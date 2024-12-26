@@ -61,4 +61,10 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('user.index');
     }
+
+    // PERMISSIONS
+    public function permissions(User $user)
+    {
+        
+    }
 }

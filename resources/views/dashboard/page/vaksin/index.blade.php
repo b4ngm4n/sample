@@ -11,8 +11,11 @@
 <div class="col-12">
   <div class="card">
     <div class="card-title">
+      <h4 class="title ms-4 mt-4 float-start">List Vaksin</h4>
+      @can('permission', 'create-vaksin')
       <a href="{{ route('vaksin.create') }}" class="btn btn-primary float-end mt-4 me-4"><i
           class="bx bxs-plus-square me-2"></i>Tambah Vaksin</a>
+      @endcan
     </div>
     <div class="card-body">
 
@@ -38,7 +41,8 @@
             <td>{{ $vaksin->nomor_batch }}</td>
             <td>{{ \Carbon\Carbon::parse($vaksin->tanggal_kedaluwarsa)->isoFormat('LLLL') }}</td>
             <td>{{ $vaksin->produsen ?? '-' }}</td>
-            <td><a href="{{ route('jenis-pelayanan.show', $vaksin->jenisPelayanan->uuid) }}">{{ $vaksin->jenisPelayanan->nama_pelayanan }}</a></td>
+            <td><a href="{{ route('jenis-pelayanan.show', $vaksin->jenisPelayanan->uuid) }}">{{
+                $vaksin->jenisPelayanan->nama_pelayanan }}</a></td>
             <td>
               <ul>
 
@@ -54,8 +58,7 @@
 
                 @can('permission', 'delete-vaksin')
                 <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
-                  data-bs-target="#hapusVaksin-{{ $vaksin->uuid }}" aria-controls="hapusVaksin"><i
-                    class="ti-trash"></i>
+                  data-bs-target="#hapusVaksin-{{ $vaksin->uuid }}" aria-controls="hapusVaksin"><i class="ti-trash"></i>
                 </button>
 
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusVaksin-{{ $vaksin->uuid }}"

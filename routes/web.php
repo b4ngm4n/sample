@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home')->middleware('permission:home-care');
 
-Route::group(['middleware' => 'guest'], function () {
+Route::group(['middleware' => 'guest', 'prefix' => 'auth'], function () {
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login/submit', [LoginController::class, 'storeLogin'])->name('login.store');
 
@@ -87,73 +87,92 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     });
     // END GROUPING WILAYAH
 
-    // Data Puskesmas
-    Route::group(['prefix' => 'puskesmas', 'as' => 'puskesmas.'], function () {
-        Route::get('/', [PuskesmasController::class, 'index'])->name('index')->middleware('permission:list-puskesmas');
-        Route::get('create', [PuskesmasController::class, 'create'])->name('create')->middleware('permission:create-puskesmas');
-        Route::post('store', [PuskesmasController::class, 'store'])->name('store')->middleware('permission:store-puskesmas');
-        Route::get('show/{puskesmas}', [PuskesmasController::class, 'show'])->name('show')->middleware('permission:read-puskesmas');
-        Route::get('edit/{puskesmas}', [PuskesmasController::class, 'edit'])->name('edit')->middleware('permission:edit-puskesmas');
-        Route::put('update/{puskesmas}', [PuskesmasController::class, 'update'])->name('update')->middleware('permission:update-puskesmas');
-        Route::delete('destroy/{puskesmas}', [PuskesmasController::class, 'destroy'])->name('destroy')->middleware('permission:delete-puskesmas');
+    // GROUPING PELAYANAN
+    Route::group(['prefix' => 'pelayanan'], function () {
 
-        // Wilayah Kerja
-        Route::post('puskesmas/{puskesmas}/wilayah-kerja', [PuskesmasController::class, 'wilayahKerja'])->name('wilayah-kerja')->middleware('permission:store-wilayah-kerja-puskesmas');
-    });
-    // END Puskesmas
+        // Data Puskesmas
+        Route::group(['prefix' => 'puskesmas', 'as' => 'puskesmas.'], function () {
+            Route::get('/', [PuskesmasController::class, 'index'])->name('index')->middleware('permission:list-puskesmas');
+            Route::get('create', [PuskesmasController::class, 'create'])->name('create')->middleware('permission:create-puskesmas');
+            Route::post('store', [PuskesmasController::class, 'store'])->name('store')->middleware('permission:store-puskesmas');
+            Route::get('show/{puskesmas}', [PuskesmasController::class, 'show'])->name('show')->middleware('permission:read-puskesmas');
+            Route::get('edit/{puskesmas}', [PuskesmasController::class, 'edit'])->name('edit')->middleware('permission:edit-puskesmas');
+            Route::put('update/{puskesmas}', [PuskesmasController::class, 'update'])->name('update')->middleware('permission:update-puskesmas');
+            Route::delete('destroy/{puskesmas}', [PuskesmasController::class, 'destroy'])->name('destroy')->middleware('permission:delete-puskesmas');
 
-    // JENIS PELAYANAN
-    Route::group(['prefix' => 'jenis-pelayanan', 'as' => 'jenis-pelayanan.'], function () {
-        Route::get('/', [JenisPelayananController::class, 'index'])->name('index')->middleware('permission:list-jenis-pelayanan');
-        Route::get('create', [JenisPelayananController::class, 'create'])->name('create')->middleware('permission:create-jenis-pelayanan');
-        Route::post('store', [JenisPelayananController::class, 'store'])->name('store')->middleware('permission:store-jenis-pelayanan');
-        Route::get('show/{jenis_pelayanan}', [JenisPelayananController::class, 'show'])->name('show')->middleware('permission:read-jenis-pelayanan');
-        Route::get('edit/{jenis_pelayanan}', [JenisPelayananController::class, 'edit'])->name('edit')->middleware('permission:edit-jenis-pelayanan');
-        Route::put('update/{jenis_pelayanan}', [JenisPelayananController::class, 'update'])->name('update')->middleware('permission:update-jenis-pelayanan');
-        Route::delete('destroy/{jenis_pelayanan}', [JenisPelayananController::class, 'destroy'])->name('destroy')->middleware('permission:delete-jenis-pelayanan');
-    });
+            // Wilayah Kerja
+            Route::post('puskesmas/{puskesmas}/wilayah-kerja', [PuskesmasController::class, 'wilayahKerja'])->name('wilayah-kerja')->middleware('permission:store-wilayah-kerja-puskesmas');
+        });
+        // END Puskesmas
 
-    // VAKSIN
-    Route::group(['prefix' => 'vaksin', 'as' => 'vaksin.'], function () {
-        Route::get('/', [VaksinController::class, 'index'])->name('index')->middleware('permission:list-vaksin');
-        Route::get('create', [VaksinController::class, 'create'])->name('create')->middleware('permission:create-vaksin');
-        Route::post('store', [VaksinController::class, 'store'])->name('store')->middleware('permission:store-vaksin');
-        Route::get('show/{vaksin}', [VaksinController::class, 'show'])->name('show')->middleware('permission:read-vaksin');
-        Route::get('edit/{vaksin}', [VaksinController::class, 'edit'])->name('edit')->middleware('permission:edit-vaksin');
-        Route::put('update/{vaksin}', [VaksinController::class, 'update'])->name('update')->middleware('permission:update-vaksin');
-        Route::delete('destroy/{vaksin}', [VaksinController::class, 'destroy'])->name('destroy')->middleware('permission:delete-vaksin');
-    });
+        // JENIS PELAYANAN
+        Route::group(['prefix' => 'jenis-pelayanan', 'as' => 'jenis-pelayanan.'], function () {
+            Route::get('/', [JenisPelayananController::class, 'index'])->name('index')->middleware('permission:list-jenis-pelayanan');
+            Route::get('create', [JenisPelayananController::class, 'create'])->name('create')->middleware('permission:create-jenis-pelayanan');
+            Route::post('store', [JenisPelayananController::class, 'store'])->name('store')->middleware('permission:store-jenis-pelayanan');
+            Route::get('show/{jenis_pelayanan}', [JenisPelayananController::class, 'show'])->name('show')->middleware('permission:read-jenis-pelayanan');
+            Route::get('edit/{jenis_pelayanan}', [JenisPelayananController::class, 'edit'])->name('edit')->middleware('permission:edit-jenis-pelayanan');
+            Route::put('update/{jenis_pelayanan}', [JenisPelayananController::class, 'update'])->name('update')->middleware('permission:update-jenis-pelayanan');
+            Route::delete('destroy/{jenis_pelayanan}', [JenisPelayananController::class, 'destroy'])->name('destroy')->middleware('permission:delete-jenis-pelayanan');
+        });
 
-    // POS PELAYANAN
-    Route::group(['prefix' => 'pos-pelayanan', 'as' => 'pos-pelayanan.'], function () {
-        Route::get('/', [PosPelayananController::class, 'index'])->name('index')->middleware('permission:list-pos-pelayanan');
-        Route::get('create', [PosPelayananController::class, 'create'])->name('create')->middleware('permission:create-pos-pelayanan');
-        Route::post('store', [PosPelayananController::class, 'store'])->name('store')->middleware('permission:store-pos-pelayanan');
-        Route::get('show/{pos_pelayanan}', [PosPelayananController::class, 'show'])->name('show')->middleware('permission:read-pos-pelayanan');
-        Route::get('edit/{pos_pelayanan}', [PosPelayananController::class, 'edit'])->name('edit')->middleware('permission:edit-pos-pelayanan');
-        Route::put('update/{pos_pelayanan}', [PosPelayananController::class, 'update'])->name('update')->middleware('permission:update-pos-pelayanan');
-        Route::delete('destroy/{pos_pelayanan}', [PosPelayananController::class, 'destroy'])->name('destroy')->middleware('permission:delete-pos-pelayanan');
-    });
+        // VAKSIN
+        Route::group(['prefix' => 'vaksin', 'as' => 'vaksin.'], function () {
+            Route::get('/', [VaksinController::class, 'index'])->name('index')->middleware('permission:list-vaksin');
+            Route::get('create', [VaksinController::class, 'create'])->name('create')->middleware('permission:create-vaksin');
+            Route::post('store', [VaksinController::class, 'store'])->name('store')->middleware('permission:store-vaksin');
+            Route::get('show/{vaksin}', [VaksinController::class, 'show'])->name('show')->middleware('permission:read-vaksin');
+            Route::get('edit/{vaksin}', [VaksinController::class, 'edit'])->name('edit')->middleware('permission:edit-vaksin');
+            Route::put('update/{vaksin}', [VaksinController::class, 'update'])->name('update')->middleware('permission:update-vaksin');
+            Route::delete('destroy/{vaksin}', [VaksinController::class, 'destroy'])->name('destroy')->middleware('permission:delete-vaksin');
+        });
 
-    // User
-    Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
-        Route::get('/', [UserController::class, 'index'])->name('index')->middleware('permission:list-user');
-        Route::get('create', [UserController::class, 'create'])->name('create')->middleware('permission:create-user');
-        Route::post('store', [UserController::class, 'store'])->name('store')->middleware('permission:store-user');
-        Route::get('show/{user}', [UserController::class, 'show'])->name('show')->middleware('permission:read-user');
-        Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit')->middleware('permission:edit-user');
-        Route::put('update/{user}', [UserController::class, 'update'])->name('update')->middleware('permission:update-user');
-        Route::delete('destroy/{id}', [UserController::class, 'destroy'])->name('destroy')->middleware('permission:delete-user');
-    });
+        // POS PELAYANAN
+        Route::group(['prefix' => 'pos-pelayanan', 'as' => 'pos-pelayanan.'], function () {
+            Route::get('/', [PosPelayananController::class, 'index'])->name('index')->middleware('permission:list-pos-pelayanan');
+            Route::get('create', [PosPelayananController::class, 'create'])->name('create')->middleware('permission:create-pos-pelayanan');
+            Route::post('store', [PosPelayananController::class, 'store'])->name('store')->middleware('permission:store-pos-pelayanan');
+            Route::get('show/{pos_pelayanan}', [PosPelayananController::class, 'show'])->name('show')->middleware('permission:read-pos-pelayanan');
+            Route::get('edit/{pos_pelayanan}', [PosPelayananController::class, 'edit'])->name('edit')->middleware('permission:edit-pos-pelayanan');
+            Route::put('update/{pos_pelayanan}', [PosPelayananController::class, 'update'])->name('update')->middleware('permission:update-pos-pelayanan');
+            Route::delete('destroy/{pos_pelayanan}', [PosPelayananController::class, 'destroy'])->name('destroy')->middleware('permission:delete-pos-pelayanan');
+        });
 
-    // Role
-    Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
-        Route::get('/', [RoleController::class, 'index'])->name('index')->middleware('permission:list-role');
-        Route::get('create', [RoleController::class, 'create'])->name('create')->middleware('permission:create-role');
-        Route::post('store', [RoleController::class, 'store'])->name('store')->middleware('permission:store-role');
-        Route::get('show/{role}', [RoleController::class, 'show'])->name('show')->middleware('permission:read-role');
-        Route::get('edit/{role}', [RoleController::class, 'edit'])->name('edit')->middleware('permission:edit-role');
-        Route::put('update/{role}', [RoleController::class, 'update'])->name('update')->middleware('permission:update-role');
-        Route::delete('destroy/{id}', [RoleController::class, 'destroy'])->name('destroy')->middleware('permission:delete-role');
     });
+    // END GROUPING PELAYANAN
+
+    // GROUPING ACCOUNT
+    Route::group(['prefix' => 'accounts'], function () {
+
+        // User
+        Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+            Route::get('/', [UserController::class, 'index'])->name('index')->middleware('permission:list-user');
+            Route::get('create', [UserController::class, 'create'])->name('create')->middleware('permission:create-user');
+            Route::post('store', [UserController::class, 'store'])->name('store')->middleware('permission:store-user');
+            Route::get('show/{user}', [UserController::class, 'show'])->name('show')->middleware('permission:read-user');
+            Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit')->middleware('permission:edit-user');
+            Route::put('update/{user}', [UserController::class, 'update'])->name('update')->middleware('permission:update-user');
+            Route::delete('destroy/{id}', [UserController::class, 'destroy'])->name('destroy')->middleware('permission:delete-user');
+           
+            // Store Permisison User
+            Route::post('permissions/{user}',[UserController::class, 'permissions'])->name('permissions')->middleware('permission:store-user-permissions');
+        });
+
+        // Role
+        Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
+            Route::get('/', [RoleController::class, 'index'])->name('index')->middleware('permission:list-role');
+            Route::get('create', [RoleController::class, 'create'])->name('create')->middleware('permission:create-role');
+            Route::post('store', [RoleController::class, 'store'])->name('store')->middleware('permission:store-role');
+            Route::get('show/{role}', [RoleController::class, 'show'])->name('show')->middleware('permission:read-role');
+            Route::get('edit/{role}', [RoleController::class, 'edit'])->name('edit')->middleware('permission:edit-role');
+            Route::put('update/{role}', [RoleController::class, 'update'])->name('update')->middleware('permission:update-role');
+            Route::delete('destroy/{role}', [RoleController::class, 'destroy'])->name('destroy')->middleware('permission:delete-role');
+            
+            // Store Permission Role
+            Route::post('permissions/{role}', [RoleController::class, 'permissions'])->name('permissions')->middleware('permission:store-role-permissions');
+        });
+
+    });
+    // END GROUPING ACCOUNT
+
 });

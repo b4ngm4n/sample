@@ -39,8 +39,7 @@ class KabupatenController extends Controller
         ]);
 
         if ($validasi->fails()) {
-            toast('Gagal menambahkan','error');
-            return back()->withErrors($validasi)->withInput();
+            return redirect()->back()->withErrors($validasi)->withInput();
         }
 
         $provinsi = Provinsi::where('uuid', $request->provinsi)->first();

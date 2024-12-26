@@ -10,10 +10,15 @@
 
 <div class="col-12">
   <div class="card">
+
     <div class="card-title">
+      <h4 class="title ms-4 mt-4 float-start">List Puskesmas</h4>
+      @can('permission', 'create-puskesmas')
       <a href="{{ route('puskesmas.create') }}" class="btn btn-primary float-end mt-4 me-4"><i
           class="bx bxs-plus-square me-2"></i>Tambah Puskesmas</a>
+      @endcan
     </div>
+
     <div class="card-body">
 
       <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap data-table-area">

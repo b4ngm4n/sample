@@ -15,7 +15,7 @@
 <div class="col-xl-7">
    <div class="card">
       <div class="card-title m-4">
-         <h4 class="card-title float-start">DETAIL PUSKESMAS</h4>
+         <h4 class="card-title float-start">Detail Puskesmas</h4>
 
          <a href="{{ route('puskesmas.index') }}" class="btn btn-primary w-md float-end"><i
                class="ti-arrow-left me-3"></i>Kembali</a>
@@ -38,15 +38,14 @@
          <div class="row mb-4">
             <label for="status" class="col-sm-3 col-form-label">Status Aktif</label>
             <div class="col-sm-9">
-               <input type="email" class="form-control" id="status" value="{{ Str::upper($puskesmas->status_puskesmas) }}"
-                  readonly>
+               <input type="email" class="form-control" id="status"
+                  value="{{ Str::upper($puskesmas->status_puskesmas) }}" readonly>
             </div>
          </div>
          <div class="row mb-4">
             <label for="alamat" class="col-sm-3 col-form-label">Alamat Puskesmas</label>
             <div class="col-sm-9">
-               <input type="email" class="form-control" id="alamat" value="{{ $puskesmas->alamat }}"
-                  readonly>
+               <input type="email" class="form-control" id="alamat" value="{{ $puskesmas->alamat }}" readonly>
             </div>
          </div>
 
@@ -61,11 +60,13 @@
          <form action="{{ route('puskesmas.wilayah-kerja', $puskesmas->uuid) }}" method="post">
             @csrf
             <div class="d-flex justify-content-between card-title mb-4">
-               <h4 class="card-title float-start">WILAYAH KERJA</h4>
-      
+               <h4 class="card-title float-start">Wilayah Kerja</h4>
+
+               @can('permission', 'store-wilayah-kerja-puskesmas')
                <div>
                   <button class="btn btn-primary w-20" type="submit"><i class="ti-save me-2"></i>Simpan</button>
                </div>
+               @endcan
             </div>
 
             <div class="row">

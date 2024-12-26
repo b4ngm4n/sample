@@ -16,7 +16,7 @@
    <div class="card">
       <div class="card-body">
          <div class="card-title">
-            <h4 class="card-title">DETAIL kelurahan</h4>
+            <h4 class="card-title">Detail kelurahan</h4>
          </div>
          <div class="row mb-4">
             <label for="nama-kecamatan" class="col-sm-3 col-form-label">Kecamatan</label>

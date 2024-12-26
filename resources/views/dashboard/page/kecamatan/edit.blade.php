@@ -62,7 +62,10 @@
 
             <div class="mt-4">
                <a href="{{ route('kecamatan.index') }}" class="btn btn-danger w-md">Batal</a>
+
+               @can('permission', 'update-kecamatan')
                <button type="submit" class="btn btn-warning w-md">Ubah</button>
+               @endcan
             </div>
          </form>
 

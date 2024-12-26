@@ -11,8 +11,11 @@
 <div class="col-12">
    <div class="card">
       <div class="card-title">
+         <h4 class="title ms-4 mt-4 float-start">List Provinsi</h4>
+         @can('permission', 'create-provinsi')
          <a href="{{ route('provinsi.create') }}" class="btn btn-primary float-end mt-4 me-4"><i
                class="bx bxs-plus-square me-2"></i>Tambah Provinsi</a>
+         @endcan
       </div>
       <div class="card-body">
          <table id="selection-datatable"

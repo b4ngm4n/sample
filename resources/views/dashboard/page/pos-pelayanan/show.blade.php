@@ -15,8 +15,8 @@
 <div class="col-xl-12">
    <div class="card">
       <div class="card-title mt-4 ms-4 me-4">
-         <h4 class="card-title float-start">DETAIL Pos PELAYANAN</h4>
-
+         <h4 class="card-title float-start">Detail Pos Pelayanan</h4>
+         
          <a href="{{ route('pos-pelayanan.index') }}" class="btn btn-primary w-md float-end"><i
                class="ti-arrow-left me-3"></i>Kembali</a>
       </div>

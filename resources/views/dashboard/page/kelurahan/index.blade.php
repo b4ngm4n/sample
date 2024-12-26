@@ -10,12 +10,14 @@
 
 <div class="col-12">
    <div class="card">
-      @can('permission', 'create-kelurahan')
       <div class="card-title">
+         <h4 class="title ms-4 mt-4 float-start">List Kelurahan</h4>
+         @can('permission', 'create-kelurahan')
          <a href="{{ route('kelurahan.create') }}" class="btn btn-primary float-end mt-4 me-4"><i
                class="bx bxs-plus-square me-2"></i>Tambah Kelurahan</a>
+         @endcan
       </div>
-      @endcan
+
       <div class="card-body">
          <table id="selection-datatable"
             class="table dt-responsive nowrap w-100 table-striped table-bordered nowrap data-table-area">
@@ -36,7 +38,8 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $kelurahan->nama_kelurahan }}</td>
                   <td>{{ $kelurahan->kode_kelurahan }}</td>
-                  <td>{{ $kelurahan->kecamatan->nama_kecamatan }}</td>
+                  <td><a href="{{ route('kecamatan.show', $kelurahan->kecamatan->uuid) }}">{{
+                        $kelurahan->kecamatan->nama_kecamatan }}</a></td>
                   <td>
                      <ul>
                         @can('permission', 'read-kelurahan')

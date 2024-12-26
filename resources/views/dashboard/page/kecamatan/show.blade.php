@@ -16,7 +16,7 @@
    <div class="card">
       <div class="card-body">
          <div class="card-title">
-            <h4 class="card-title">DETAIL KECAMATAN</h4>
+            <h4 class="card-title">Detail Kecamatan</h4>
          </div>
          <div class="row mb-4">
             <label for="nama-kabupaten" class="col-sm-3 col-form-label">Kabupaten</label>
@@ -51,6 +51,7 @@
    <div class="card">
       <div class="card-title">
 
+         @can('permission', 'create-kelurahan')
          <button class="btn btn-primary float-start mt-3 ms-3" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#tambahKelurahan" aria-controls="tambahKelurahan"><i class="bx bxs-plus-square me-2"></i>
             Tambah Kelurahan
@@ -86,12 +87,15 @@
                      @enderror
                   </div>
 
+                  @can('permission', 'store-kelurahan')
                   <div class="mt-4">
                      <button type="submit" class="btn btn-primary w-md">Simpan</button>
                   </div>
+                  @endcan
                </form>
             </div>
          </div>
+         @endcan
 
       </div>
 
@@ -107,7 +111,6 @@
                </tr>
             </thead>
 
-
             <tbody>
                @foreach ($kecamatan->kelurahans as $kelurahan)
                <tr>
@@ -116,15 +119,21 @@
                   <td>{{ $kelurahan->kode_kelurahan }}</td>
                   <td>
                      <ul>
+                        @can('permission', 'read-kelurahan')
                         <a href="{{ route('kelurahan.show', $kelurahan->uuid) }}" class="btn btn-sm btn-info"><i
                               class="ti-info-alt"></i></a>
+                        @endcan
+
+                        @can('permission', 'edit-kelurahan')
                         <a href="{{ route('kelurahan.edit', $kelurahan->uuid) }}" class="btn btn-sm btn-warning"><i
                               class="ti-pencil-alt"></i></a>
+                        @endcan
+
+                        @can('permission', 'delete-kelurahan')
                         <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
                            data-bs-target="#hapusKelurahan-{{ $kelurahan->uuid }}" aria-controls="hapusKelurahan"><i
                               class="ti-trash"></i>
                         </button>
-
 
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusKelurahan-{{ $kelurahan->uuid }}"
                            aria-labelledby="hapusKelurahanLabel">
@@ -148,6 +157,7 @@
                               </form>
                            </div>
                         </div>
+                        @endcan
 
                      </ul>
                   </td>

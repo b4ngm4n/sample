@@ -76,7 +76,10 @@
 
             <div class="mt-4">
                <a href="{{ route('vaksin.index') }}" class="btn btn-danger w-md">Batal</a>
+
+               @can('permission', 'update-vaksin')
                <button type="submit" class="btn btn-warning w-md">Ubah</button>
+               @endcan
             </div>
          </form>
 

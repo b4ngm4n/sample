@@ -24,8 +24,7 @@
 
             <div class="mb-3">
                <label class="form-label" for="provinsi">Provinsi</label>
-               <select name="provinsi" class="select2 form-control"
-                  data-placeholder="Pilih Provinsi ...">
+               <select name="provinsi" class="select2 form-control" data-placeholder="Pilih Provinsi ...">
                   @foreach ($provinsis as $name => $key)
                   <option value="{{ $key }}">{{ $name }}</option>
                   @endforeach
@@ -58,7 +57,11 @@
 
             <div class="mt-4">
                <a href="{{ route('kabupaten.index') }}" class="btn btn-danger w-md">Batal</a>
+
+               @can('permission', 'store-kabupaten')
                <button type="submit" class="btn btn-primary w-md">Simpan</button>
+               @endcan
+
             </div>
          </form>
 

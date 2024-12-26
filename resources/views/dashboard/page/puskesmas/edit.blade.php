@@ -77,7 +77,10 @@
 
             <div class="mt-4">
                <a href="{{ route('puskesmas.index') }}" class="btn btn-danger w-md">Batal</a>
+               
+               @can('permission', 'update-puskesmas')
                <button type="submit" class="btn btn-warning w-md">Ubah</button>
+               @endcan
             </div>
          </form>
 
