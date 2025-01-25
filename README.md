@@ -183,7 +183,19 @@ view App\Models\Kelurahan(id=1) [▼
 ## PACKAGE INSTALLATION
 resource package installation
 
-### 1. Sweet Alert
+### 1. composer require realrashid/sweet-alert
+URL : https://github.com/realrashid/sweet-alert
+```bash
+composer require realrashid/sweet-alert
+```
+how to use in controller
+```bash
+toast('Message', 'status');
+```
+Example
+```bash
+toast('Data in Saved', 'success');
+```
 URL : https://github.com/realrashid/sweet-alert
 ```bash
 composer require realrashid/sweet-alert
@@ -197,7 +209,7 @@ Example
 toast('Data in Saved', 'success');
 ```
 
-### 2. Debugbar
+### 2. composer require barryvdh/laravel-debugbar
 if you can use or view query you can use this package
 
 Url
@@ -210,7 +222,8 @@ open terminal and install
 composer require barryvdh/laravel-debugbar
 ```
 
-### 3. PDF
+### 3. composer require barryvdh/laravel-dompdf
+
 Url
 ```bash
 https://github.com/barryvdh/laravel-dompdf
@@ -238,11 +251,27 @@ or
 Pdf::loadHTML($html)->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf')
 ```
 
-### 4. Excel
+### 4. composer require maatwebsite/excel
+
 
 Url
 ```bash
 https://docs.laravel-excel.com/3.1/getting-started/
 ```
 
-### 5. Laravel Telescope
+### 5. composer require laravel/telescope
+
+### 6. composer require kalnoy/nestedset
+
+In Model use
+```bash
+use Kalnoy\Nestedset\NestedSet;
+```
+
+In migration use
+```bash
+$table->integer('lft')->nullable();
+$table->integer('rgt')->nullable();
+$table->integer('depth')->default(0);
+$table->integer('parent_id')->nullable();
+```

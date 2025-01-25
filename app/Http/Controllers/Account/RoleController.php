@@ -13,7 +13,11 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::withCount('permissions')->where('slug', '!=', 'administrator')->get();
+        if (auth()->user()->roles->contains('slug', 'administrator')) {
+            $roles = Role::withCount('permissions')->get();
+        } else {
+            $roles = Role::withCount('permissions')->where('slug', '!=', 'administrator')->get();
+        }
 
         return view('dashboard.page.role.index', compact('roles'));
     }
@@ -54,24 +58,6 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
-        // dd(auth()->user()->roles->contains('slug', 'administrator'));
-        // Ambil semua permission dan kelompokkan berdasarkan kategori
-        // $permissions = Permission::all()
-        //     ->groupBy(function ($permission) {
-        //         dd(explode('-', $permission->slug)[0]);
-        //         // Asumsikan kategori diambil dari slug yang dipisah dengan '-'
-        //         return explode('-', $permission->slug)[0]; // Misalnya: 'read-provinsi' -> 'provinsi'
-        //     });
-        // Grupkan permissions ke dalam kategori utama dan anak berdasarkan slug
-        // $permissions = Permission::all()->groupBy(function ($permission) {
-        //     $parts = explode('-', $permission->slug);
-        //     return count($parts) > 1 ? $parts[1] : $parts[0]; // Ambil kategori utama (provinsi, kabupaten, dll.)
-        // })->map(function ($group) {
-        //     return $group->groupBy(function ($permission) {
-        //         $parts = explode('-', $permission->slug);
-        //         return count($parts) > 1 ? $parts[0] : 'general'; // Ambil sub-kategori seperti list, create, dll.
-        //     });
-        // });
         if (auth()->user()->roles->contains('slug', 'administrator')) {
             $permissions = Permission::all()->groupBy(function ($permission) {
                 $parts = explode('-', $permission->slug);

@@ -27,17 +27,17 @@
           @foreach ($roles as $role)
           <tr>
             <td>{{ $role->name }}</td>
-            <td>{{ $role->permissions_count ?? 0 }} Hak Akses</td>
+            <td>{{ $role->slug == 'administrator' ? 'Semua' : ($role->permissions_count ?? 0) }} Hak Akses</td>
             <td>
               <ul>
 
                 @can('permission', 'read-role')
-                <a href="{{ route('role.show', $role->uuid) }}" class="btn btn-sm btn-info"><i
+                <a href="{{ route('role.show', $role->uuid) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Detail Role"><i
                     class="ti-info-alt"></i></a>
                 @endcan
 
                 @can('permission', 'edit-role')
-                <a href="{{ route('role.edit', $role->uuid) }}" class="btn btn-sm btn-warning"><i
+                <a href="{{ route('role.edit', $role->uuid) }}" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Role"><i
                     class="ti-pencil-alt"></i></a>
                 @endcan
 

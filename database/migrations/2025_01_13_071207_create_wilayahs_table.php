@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vaksins', function (Blueprint $table) {
+        Schema::create('wilayahs', function (Blueprint $table) {
             $table->id();
-            $table->uuid()->unique();
-            $table->string('nama_vaksin');
+            $table->uuid('uuid')->unique();
+            $table->string('nama_wilayah');
             $table->string('slug')->unique();
+            $table->string('kode_wilayah');
+            $table->enum('jenis_wilayah', ['provinsi', 'kabkot', 'kecamatan', 'kelurahan', 'desa'])->nullable();
+            $table->nestedSet();
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vaksins');
+        Schema::dropIfExists('wilayahs');
     }
 };

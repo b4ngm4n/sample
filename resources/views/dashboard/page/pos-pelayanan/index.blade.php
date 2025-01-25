@@ -46,12 +46,12 @@
               <ul>
 
                 @can('permission', 'read-pos-pelayanan')
-                <a href="{{ route('pos-pelayanan.show', $posPelayanan->uuid) }}" class="btn btn-sm btn-info"><i
+                <a href="{{ route('pos-pelayanan.show', $posPelayanan->uuid) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Detail Pos Pelayanan"><i
                     class="ti-info-alt"></i></a>
                 @endcan
 
                 @can('permission', 'edit-pos-pelayanan')
-                <a href="{{ route('pos-pelayanan.edit', $posPelayanan->uuid) }}" class="btn btn-sm btn-warning"><i
+                <a href="{{ route('pos-pelayanan.edit', $posPelayanan->uuid) }}" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Pos Pelayanan"><i
                     class="ti-pencil-alt"></i></a>
                 @endcan
 

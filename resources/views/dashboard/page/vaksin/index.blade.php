@@ -47,12 +47,12 @@
               <ul>
 
                 @can('permission', 'read-vaksin')
-                <a href="{{ route('vaksin.show', $vaksin->uuid) }}" class="btn btn-sm btn-info"><i
+                <a href="{{ route('vaksin.show', $vaksin->uuid) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Detail Vaksin"><i
                     class="ti-info-alt"></i></a>
                 @endcan
 
                 @can('permission', 'edit-vaksin')
-                <a href="{{ route('vaksin.edit', $vaksin->uuid) }}" class="btn btn-sm btn-warning"><i
+                <a href="{{ route('vaksin.edit', $vaksin->uuid) }}" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Vaksin"><i
                     class="ti-pencil-alt"></i></a>
                 @endcan
 

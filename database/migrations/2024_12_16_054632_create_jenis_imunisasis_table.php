@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vaksins', function (Blueprint $table) {
+        Schema::create('jenis_imunisasis', function (Blueprint $table) {
             $table->id();
-            $table->uuid()->unique();
-            $table->string('nama_vaksin');
+            $table->uuid('uuid')->unique();
+            $table->string('nama_jenis_imunisasi');
             $table->string('slug')->unique();
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vaksins');
+        Schema::dropIfExists('jenis_imunisasis');
     }
 };

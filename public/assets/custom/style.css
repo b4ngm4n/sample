@@ -1720,9 +1720,10 @@ span.flag-thumb-cu {
   padding-right: 1rem;
 }
 
-.sidebar-menu li.active a i,
-.sidebar-menu>li.menu-open>a i,
-.sidebar-menu>li>a:hover i {
+.sidebar-menu>li.active>a>i,
+.sidebar-menu>li.menu-open>a>i,
+.sidebar-menu>li.menu-open>ul>li.active>a>i,
+.sidebar-menu>li>a:hover>i {
   color: #0652DD;
 }
 

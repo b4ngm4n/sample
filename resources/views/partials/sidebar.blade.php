@@ -16,10 +16,15 @@
             <a href="{{ route('dashboard') }}"><i class="bx bx-home"></i><span>Dashboard</span></a>
           </li>
 
-          <li class="menu-header-title">Data</li>
+          <li class="{{ request()->routeIs('wilayah.index') ? 'active' : '' }}">
+            <a href="{{ route('wilayah.index') }}"><i class="bx bx-home"></i><span>Wilayah</span></a>
+          </li>
 
-          @can('any-permission', [['list-provinsi', 'list-kabupaten', 'list-kecamatan', 'list-kelurahan']])
-          <li class="treeview {{ request()->is('dashboard/wilayah/*') ? 'active ' : '' }}">
+          <li class="{{ request()->routeIs('faskes.index') ? 'active' : '' }}">
+            <a href="{{ route('faskes.index') }}"><i class="bx bx-home"></i><span>Faskes</span></a>
+          </li>
+
+          {{-- <li class="treeview {{ request()->is('dashboard/wilayah/*') ? 'active ' : '' }}">
             <a href="javascript:void(0)"><i class="bx bx-sitemap"></i><span>Wilayah</span>
               <i class="fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
@@ -43,10 +48,9 @@
                   href="{{ route('kelurahan.index') }}"><i class="bx bx-map-alt"></i>Kelurahan</a></li>
               @endcan
             </ul>
-          </li>
-          @endcan
+          </li> --}}
 
-          @can('any-permission', [['list-puskesmas', 'list-jenis-pelayanan', 'list-vaksin', 'list-pos']])
+          {{-- @can('any-permission', [['list-puskesmas', 'list-jenis-pelayanan', 'list-vaksin', 'list-pos']])
           <li class="treeview {{ request()->is('dashboard/pelayanan/*') ? 'active ' : '' }}">
             <a href="javascript:void(0)"><i class="bx bx-plus-medical"></i><span>Pelayanan</span>
               <i class="fa fa-angle-right"></i></a>
@@ -78,23 +82,65 @@
 
             </ul>
           </li>
-          @endcan
+          @endcan --}}
 
-          <li class="treeview">
+          {{-- <li class="treeview">
             <a href="javascript:void(0)"><i class="bx bx-bug-alt"></i><span>Imunisasi</span>
               <i class="fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
               <li><a href="elegant-icons.html">PIN</a></li>
             </ul>
-          </li>
+          </li> --}}
 
-          <li class="menu-header-title">Manajemen Akun</li>
-          <li class="{{ request()->is('dashboard/accounts/role*') ? 'active' : '' }}">
-            <a href="{{ route('role.index') }}"><i class="bx bx-user-circle"></i><span>Role</span></a>
+          <li class="menu-header-title">Pengaturan</li>
+
+          @can('any-permission', [['list-role', 'list-user']])
+          <li class="treeview {{ request()->is('dashboard/accounts/*') ? 'active ' : '' }}">
+            <a href="javascript:void(0)"><i class="bx bxs-user-detail"></i><span>Akun</span>
+              <i class="fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+              @can('permission', 'list-role')
+              <li class="{{ request()->is('dashboard/accounts/role*') ? 'active' : '' }}">
+                <a href="{{ route('role.index') }}"><i class="bx bx-user-circle"></i><span>Role</span></a>
+              </li>
+              @endcan
+
+              @can('permission', 'list-user')
+              <li class="{{ request()->is('dashboard/accounts/user*') ? 'active' : '' }}">
+                <a href="{{ route('user.index') }}"><i class="bx bx-user"></i><span>User</span></a>
+              </li>
+              @endcan
+            </ul>
           </li>
-          <li class="{{ request()->is('dashboard/accounts/user*') ? 'active' : '' }}">
-            <a href="{{ route('user.index') }}"><i class="bx bx-user"></i><span>User</span></a>
+          @endcan
+
+          {{-- @can('permission', 'pws')
+          <li class="treeview {{ request()->is('dashboard/pws/*') ? 'active ' : '' }}">
+            <a href="javascript:void(0)"><i class="bx bx-user-pin"></i><span>PWS</span>
+              <i class="fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+              <li class="{{ request()->is('dashboard/pws/puskesmas*') ? 'active' : '' }}">
+                <a href="{{ route('puskesmas.index') }}"><i class="bx bx-buildings"></i><span>Puskesmas</span></a>
+              </li>
+            </ul>
           </li>
+          @endcan --}}
+
+          @can('any-permission', [['list-table']])
+          <li class="treeview {{ request()->is('dashboard/database/*') ? 'active ' : '' }}">
+            <a href="javascript:void(0)"><i class="bx bx-data"></i><span>Database</span>
+              <i class="fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+
+              @can('permission', 'list-table')
+              <li class="{{ request()->is('dashboard/database/table*') ? 'active' : '' }}">
+                <a href="{{ route('table.index') }}"><i class="bx bx-table"></i><span>Table</span></a>
+              </li>
+              @endcan
+
+            </ul>
+          </li>
+          @endcan
 
         </ul>
       </nav>

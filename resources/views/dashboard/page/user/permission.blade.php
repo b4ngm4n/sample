@@ -29,7 +29,7 @@
 
 
                 <tbody>
-                    @foreach ($users as $user)
+                    {{-- @foreach ($users as $user)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->biodata->nama_lengkap }}</td>
@@ -37,17 +37,9 @@
                         <td><span class="badge text-bg-primary">{{ $user->roles()->pluck('name')->implode(', ')
                                 }}</span></td>
                         <td>{{ $user->email }}</td>
-                        <td>
-                            <a href="{{ route('user.permissions', $user->uuid) }}" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hak Akses User"><i
-                                class="ti-check-box"></i></a>
-                            <a href="{{ route('user.show', $user->uuid) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Detail User"><i
-                                    class="ti-info-alt"></i></a>
-                            <a href="{{ route('user.edit', $user->uuid) }}" class="btn btn-sm btn-warning"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit User"><i
-                                    class="ti-pencil-alt"></i></a>
-                            <button class="btn btn-danger btn-sm"><i class="ti-trash"></i></button>
-                        </td>
+                        
                     </tr>
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
             </table>
         </div>

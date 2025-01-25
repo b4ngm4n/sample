@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('permissions', 'roles', 'biodata')->get();
+        $users = User::get();
         return view('dashboard.page.user.index', compact('users'));
     }
 
@@ -27,15 +27,32 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $validasi = Validator::make($request->all(), [
-            
-        ]);
+        $validasi = Validator::make($request->all(), []);
 
         if ($validasi->fails()) {
-            
         }
 
         return redirect()->route('user.index');
+    }
+
+    public function show(User $user)
+    {
+        // $user = User::with(['roles', 'permissions'])->findOrFail($id);
+
+        // Fetch all roles with permissions
+    $roles = Role::with('permissions')->get();
+
+    // Fetch all permissions, grouped by category
+    $permissions = Permission::all()
+        ->groupBy(function ($permission) {
+            return explode('-', $permission->slug)[1] ?? $permission->slug;
+        });
+
+    // Fetch permissions granted via roles
+    $rolePermissions = $user->roles->flatMap->permissions;
+
+
+        return view('dashboard.page.user.show', compact('user', 'roles', 'permissions', 'rolePermissions'));
     }
 
     public function edit(User $user)
@@ -45,12 +62,9 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $validasi = Validator::make($request->all(), [
-            
-        ]);
+        $validasi = Validator::make($request->all(), []);
 
         if ($validasi->fails()) {
-            
         }
 
         return redirect()->route('user.index');
@@ -62,9 +76,13 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    // PERMISSIONS
-    public function permissions(User $user)
+    public function listPermissions(User $user) 
     {
-        
+        return view('dashboard.page.user.permissions', compact('user'));
     }
+
+    // PERMISSIONS
+    public function storePermissions(User $user) {}
+
+    public function assignRoles(User $user) {}
 }
