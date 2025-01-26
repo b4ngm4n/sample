@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -68,6 +69,11 @@ class User extends Authenticatable
         // Cek permission langsung dan dari role yang sudah di-load
         return $this->permissions->pluck('slug')->contains($permission) ||
                $this->roles->pluck('permissions')->flatten()->pluck('slug')->contains($permission);
+    }
+
+    public function akunPengguna(): HasMany
+    {
+        return $this->hasMany(AkunPengguna::class);
     }
 
     // Generate UUID secara dinamis

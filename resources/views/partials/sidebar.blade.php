@@ -16,45 +16,60 @@
             <a href="{{ route('dashboard') }}"><i class="bx bx-home"></i><span>Dashboard</span></a>
           </li>
 
+          @can('permission', 'wilayah')
           <li class="{{ request()->routeIs('wilayah.index') ? 'active' : '' }}">
             <a href="{{ route('wilayah.index') }}"><i class="bx bxs-map-alt"></i><span>Wilayah</span></a>
           </li>
+          @endcan
 
+          @can('permission', 'list-faskes')
           <li class="{{ request()->routeIs('faskes.index') ? 'active' : '' }}">
             <a href="{{ route('faskes.index') }}"><i class="bx bxs-business"></i><span>Faskes</span></a>
           </li>
+          @endcan
 
+          @can('permission', 'list-vaksin')
           <li class="{{ request()->routeIs('vaksin.index') ? 'active' : '' }}">
             <a href="{{ route('vaksin.index') }}"><i class="bx bxs-injection"></i><span>Vaksin</span></a>
           </li>
+          @endcan
 
+          @can('permission', 'list-kategori')
           <li class="{{ request()->routeIs('kategori.index') ? 'active' : '' }}">
             <a href="{{ route('kategori.index') }}"><i class='bx bxs-category'></i><span>Kategori</span></a>
           </li>
+          @endcan
 
 
-          @can('any-permission', [['list-role', 'list-user']])
+          @can('any-permission', [['list-pws-imunisasi-bayi', 'list-pws-imunisasi-baduta', 'list-pws-imunisasi-wus']])
           <li class="treeview {{ request()->is('dashboard/pws/*') ? 'active ' : '' }}">
             <a href="javascript:void(0)"><i class="bx bxs-book"></i><span>PWS</span>
               <i class="fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
 
+              @can('permission', 'list-pws-imunisasi-bayi')
               <li class="{{ request()->is('dashboard/pws/imunisasi-bayi*') ? 'active' : '' }}">
                 <a href="{{ route('pws.imunisasi-bayi') }}"><i class="bx bx-briefcase-alt-2"></i><span>Imunisasi Bayi</span></a>
               </li>
+              @endcan
+
+              @can('permission', 'list-pws-imunisasi-baduta')
               <li class="{{ request()->is('dashboard/pws/imunisasi-baduta*') ? 'active' : '' }}">
                 <a href="{{ route('pws.imunisasi-baduta') }}"><i class="bx bx-briefcase-alt-2"></i><span>Imunisasi Baduta</span></a>
               </li>
+              @endcan
+
+              @can('permission', 'list-pws-imunisasi-wus')
               <li class="{{ request()->is('dashboard/pws/imunisasi-wus*') ? 'active' : '' }}">
                 <a href="{{ route('pws.imunisasi-wus') }}"><i class="bx bx-briefcase-alt-2"></i><span>Imunisasi TT WUS</span></a>
               </li>
+              @endcan
             </ul>
           </li>
           @endcan
           
 
-          <li class="menu-header-title">Pengaturan</li>
-
+          
           @can('any-permission', [['list-role', 'list-user']])
           <li class="treeview {{ request()->is('dashboard/accounts/*') ? 'active ' : '' }}">
             <a href="javascript:void(0)"><i class="bx bxs-user-detail"></i><span>Akun</span>

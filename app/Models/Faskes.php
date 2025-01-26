@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Kalnoy\Nestedset\NodeTrait;
 
 class Faskes extends Model
@@ -34,6 +35,11 @@ class Faskes extends Model
     public function wilayahKerja()
     {
         return $this->hasMany(WilayahKerja::class);
+    }
+
+    public function akunPengguna(): HasMany
+    {
+        return $this->hasMany(AkunPengguna::class);
     }
 
     public static function boot()

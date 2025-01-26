@@ -12,6 +12,7 @@
                   <div class="card-body p-4 p-lg-5">
                       <div class="dash-banner d-flex justify-content-between align-items-center">
                           <div class="dash-banner-text mb-4">
+                              <h6>{{ auth()->user()->biodata->nama_lengkap . ' - '. (auth()->user()->roles->pluck('slug')->first() == 'administrator' ? 'Administrator' : auth()->user()->akunPengguna->pluck('faskes.nama_faskes')->implode(',')) }}</h6>
                               <h2 class="mb-4">Kelola data apapun jadi<br>
                               Lebih mudah</h2>
 

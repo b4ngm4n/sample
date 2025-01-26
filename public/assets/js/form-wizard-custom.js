@@ -1,1 +1,66 @@
-var currentTab=0;function showTab(e){var t=document.getElementsByClassName("wizard-form-tab");t[e].style.display="block",document.getElementById("prevBtn").style.display=0==e?"none":"inline",e==t.length-1?document.getElementById("nextBtn").innerHTML="Submit":document.getElementById("nextBtn").innerHTML="Next",fixStepIndicator(e)}function nextPrev(e){var t=document.getElementsByClassName("wizard-form-tab");t[currentTab].style.display="none",(currentTab+=e)>=t.length&&(t[currentTab-=e].style.display="block"),showTab(currentTab)}function fixStepIndicator(e){for(var t=document.getElementsByClassName("list-item"),n=0;n<t.length;n++)t[n].className=t[n].className.replace(" active","");t[e].className+=" active"}showTab(currentTab);
+var currentTab = 0; // Indeks tab saat ini
+
+function showTab(e) {
+   var tabs = document.getElementsByClassName("wizard-form-tab");
+   tabs[e].style.display = "block"; // Tampilkan tab saat ini
+
+   // Tombol Previous
+   document.getElementById("prevBtn").style.display = e === 0 ? "none" : "inline";
+
+   // Tombol Next atau Submit
+   var nextBtn = document.getElementById("nextBtn");
+   if (e === tabs.length - 1) {
+       nextBtn.innerHTML = "Submit";
+       nextBtn.type = "submit"; // Tombol berubah menjadi submit
+       nextBtn.removeAttribute("onclick"); // Hapus event onclick untuk submit manual
+   } else {
+       nextBtn.innerHTML = "Next";
+       nextBtn.type = "button"; // Ubah kembali ke tombol biasa
+       nextBtn.setAttribute("onclick", "nextPrev(1)");
+   }
+
+   fixStepIndicator(e); // Perbarui indikator langkah
+}
+
+function nextPrev(step) {
+   var tabs = document.getElementsByClassName("wizard-form-tab");
+
+   // Sembunyikan tab saat ini
+   tabs[currentTab].style.display = "none";
+
+   // Navigasi antar-tab
+   currentTab += step;
+
+   // Batasi navigasi agar tidak melebihi jumlah tab
+   if (currentTab >= tabs.length) {
+       currentTab = tabs.length - 1;
+       return;
+   }
+
+   if (currentTab < 0) {
+       currentTab = 0;
+       return;
+   }
+
+   // Tampilkan tab baru
+   showTab(currentTab);
+}
+
+function fixStepIndicator(e) {
+   var steps = document.getElementsByClassName("list-item");
+   for (var i = 0; i < steps.length; i++) {
+       steps[i].className = steps[i].className.replace(" active", "");
+   }
+   steps[e].className += " active";
+}
+
+// Mencegah submit otomatis jika form belum di tab terakhir
+document.getElementById("wizardForm").addEventListener("submit", function (e) {
+   if (currentTab < document.getElementsByClassName("wizard-form-tab").length - 1) {
+       e.preventDefault(); // Cegah pengiriman form
+       return false;
+   }
+});
+
+// Tampilkan tab pertama saat halaman dimuat
+showTab(currentTab);
