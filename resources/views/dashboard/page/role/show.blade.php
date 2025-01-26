@@ -5,7 +5,7 @@
 @section('breadcrumbTitle', 'Role')
 
 @section('breadcrumbParent')
-<li class="breadcrumb-item"><a href="{{ route('puskesmas.index') }}">List Role</a></li>
+<li class="breadcrumb-item"><a href="{{ route('role.index') }}">List Role</a></li>
 @endsection
 
 @section('breadcrumbActive', 'Detail')

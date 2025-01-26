@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Vaksin;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class VaksinSeeder extends Seeder
 {
@@ -92,5 +94,12 @@ class VaksinSeeder extends Seeder
                 'nama_vaksin' => 'PCV 3'
             ],
         ];
+
+        foreach ($vaksins as $vaksin) {
+            Vaksin::create([
+                'nama_vaksin' => $vaksin['nama_vaksin'],
+                'slug' => Str::slug($vaksin['nama_vaksin']),
+            ]);
+        }
     }
 }

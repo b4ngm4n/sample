@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Vaksin extends Model
 {
@@ -15,11 +16,15 @@ class Vaksin extends Model
         'produsen',
     ];
 
-    public function stokVaksin()
+    public function stokVaksin(): HasMany
     {
         return $this->hasMany(StokVaksin::class);
     }
 
+    public function kategoriVaksin(): HasMany
+    {
+        return $this->hasMany(KategoriVaksin::class);
+    }
 
     public static function boot()
     {

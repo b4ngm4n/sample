@@ -27,11 +27,13 @@
 <script src="{{ asset('assets/js/jszip.min.js') }}"></script>
 <script src="{{ asset('assets/js/dataTables-custom.js') }}"></script>
 
+{{-- <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script> --}}
+
 {{-- SELECT2 MULTIPLE SELECT --}}
 <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 <script src="{{ asset('assets/js/form-advanced.init.js') }}"></script>
 
-<script>
+{{-- <script>
    $(document).ready(function() {
       $("#dtPosPelayanan").DataTable({
          language: {
@@ -45,4 +47,4 @@
          }
       });
    });
-</script>
+</script> --}}

@@ -24,10 +24,6 @@
           <tr>
             <th>No</th>
             <th>Nama Vaksin</th>
-            <th>Nomor Batch</th>
-            <th>Expired</th>
-            <th>Produsen</th>
-            <th>Jenis</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -38,11 +34,6 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ Str::upper($vaksin->nama_vaksin) }}</td>
-            <td>{{ $vaksin->nomor_batch }}</td>
-            <td>{{ \Carbon\Carbon::parse($vaksin->tanggal_kedaluwarsa)->isoFormat('LLLL') }}</td>
-            <td>{{ $vaksin->produsen ?? '-' }}</td>
-            <td><a href="{{ route('jenis-pelayanan.show', $vaksin->jenisPelayanan->uuid) }}">{{
-                $vaksin->jenisPelayanan->nama_pelayanan }}</a></td>
             <td>
               <ul>
 

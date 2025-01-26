@@ -10,6 +10,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Data\PWSController;
 use App\Http\Controllers\Database\TableController;
 use App\Http\Controllers\Master\FaskesController;
+use App\Http\Controllers\Master\KategoriController;
+use App\Http\Controllers\Master\VaksinController;
 use App\Http\Controllers\Master\WilayahController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,14 +62,34 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::delete('{faskes}/wilayah-kerja/{wilayah}', [FaskesController::class, 'destroyWilayahKerja'])->name('destroy-wilayah-kerja')->middleware('permission:delete-wilayah-kerja');
     });
 
+    Route::group(['prefix' => 'kateogri', 'as' => 'kategori.'], function () {
+        Route::get('/', [KategoriController::class, 'index'])->name('index')->middleware('permission:list-kategori');
+        Route::get('/create', [KategoriController::class, 'create'])->name('create')->middleware('permission:create-kategori');
+        Route::post('/store', [KategoriController::class, 'store'])->name('store')->middleware('permission:store-kategori');
+        Route::get('/{kategori}', [KategoriController::class, 'show'])->name('show')->middleware('permission:read-kategori');
+        Route::get('/{kategori}/edit', [KategoriController::class, 'edit'])->name('edit')->middleware('permission:edit-kategori');
+        Route::put('{kategori}', [KategoriController::class, 'update'])->name('update')->middleware('permission:update-kategori');
+        Route::delete('{kategori}', [KategoriController::class, 'destroy'])->name('destroy')->middleware('permission:delete-kategori');
+    }); 
+
+    Route::group(['prefix' => 'vaksin', 'as' => 'vaksin.'], function () {
+        Route::get('/', [VaksinController::class, 'index'])->name('index')->middleware('permission:list-vaksin');
+        Route::get('/create', [VaksinController::class, 'create'])->name('create')->middleware('permission:create-vaksin');
+        Route::post('/store', [VaksinController::class, 'store'])->name('store')->middleware('permission:store-vaksin');
+        Route::get('/{vaksin}', [VaksinController::class, 'show'])->name('show')->middleware('permission:read-vaksin');
+        Route::get('/{vaksin}/edit', [VaksinController::class, 'edit'])->name('edit')->middleware('permission:edit-vaksin');
+        Route::put('{vaksin}', [VaksinController::class, 'update'])->name('update')->middleware('permission:update-vaksin');
+        Route::delete('{vaksin}', [VaksinController::class, 'destroy'])->name('destroy')->middleware('permission:delete-vaksin');
+    });
+
     Route::group(['prefix' => 'pws', 'as' => 'pws.'], function () {
-        // Route::get('/', [PWSController::class, 'index'])->name('index')->middleware('permission:list-pws');
-        // Route::get('/create', [PWSController::class, 'create'])->name('create')->middleware('permission:create-pws');
-        // Route::post('/store', [PWSController::class, 'store'])->name('store')->middleware('permission:store-pws');
-        // Route::get('/{pws}', [PWSController::class, 'show'])->name('show')->middleware('permission:read-pws');
-        // Route::get('/{pws}/edit', [PWSController::class, 'edit'])->name('edit')->middleware('permission:edit-pws');
-        // Route::put('{pws}', [PWSController::class, 'update'])->name('update')->middleware('permission:update-pws');
-        // Route::delete('{pws}', [PWSController::class, 'destroy'])->name('destroy')->middleware('permission:delete-pws');
+        Route::get('/imunisasi-bayi', [PWSController::class, 'getImunisasiBayi'])->name('imunisasi-bayi')->middleware('permission:list-pws-imunisasi-bayi');
+        Route::get('/imunisasi-baduta', [PWSController::class, 'getImunisasiBaduta'])->name('imunisasi-baduta')->middleware('permission:list-pws-imunisasi-baduta');
+        Route::get('/imunisasi-wus', [PWSController::class, 'getImunisasiWUS'])->name('imunisasi-wus')->middleware('permission:list-pws-imunisasi-wus');
+
+        Route::post('imunisasi-bayi', [PWSController::class, 'storeImunisasiBayi'])->name('imunisasi-bayi')->middleware('permission:store-pws-imunisasi-bayi');
+        Route::post('imunisasi-baduta', [PWSController::class, 'storeImunisasiBaduta'])->name('imunisasi-baduta')->middleware('permission:store-pws-imunisasi-baduta');
+        Route::post('imunisasi-wus', [PWSController::class, 'storeImunisasiWUS'])->name('imunisasi-wus')->middleware('permission:store-pws-imunisasi-wus');
     });
 
     // GROUPING ACCOUNT

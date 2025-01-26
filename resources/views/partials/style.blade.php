@@ -17,3 +17,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap5.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/buttons.bootstrap5.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/select.dataTables.min.css') }}">
+
+{{-- BOX ICON --}}
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+

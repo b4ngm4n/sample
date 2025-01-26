@@ -24,21 +24,29 @@
             <a href="{{ route('faskes.index') }}"><i class="bx bxs-business"></i><span>Faskes</span></a>
           </li>
 
+          <li class="{{ request()->routeIs('vaksin.index') ? 'active' : '' }}">
+            <a href="{{ route('vaksin.index') }}"><i class="bx bxs-injection"></i><span>Vaksin</span></a>
+          </li>
+
+          <li class="{{ request()->routeIs('kategori.index') ? 'active' : '' }}">
+            <a href="{{ route('kategori.index') }}"><i class='bx bxs-category'></i><span>Kategori</span></a>
+          </li>
+
 
           @can('any-permission', [['list-role', 'list-user']])
-          <li class="treeview {{ request()->is('dashboard/accounts/*') ? 'active ' : '' }}">
+          <li class="treeview {{ request()->is('dashboard/pws/*') ? 'active ' : '' }}">
             <a href="javascript:void(0)"><i class="bx bxs-book"></i><span>PWS</span>
               <i class="fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
 
-              <li class="{{ request()->is('dashboard/accounts/user*') ? 'active' : '' }}">
-                <a href="{{ route('user.index') }}"></i><span>Imunisasi Bayi</span></a>
+              <li class="{{ request()->is('dashboard/pws/imunisasi-bayi*') ? 'active' : '' }}">
+                <a href="{{ route('pws.imunisasi-bayi') }}"><i class="bx bx-briefcase-alt-2"></i><span>Imunisasi Bayi</span></a>
               </li>
-              <li class="{{ request()->is('dashboard/accounts/user*') ? 'active' : '' }}">
-                <a href="{{ route('user.index') }}"></i><span>Imunisasi Baduta</span></a>
+              <li class="{{ request()->is('dashboard/pws/imunisasi-baduta*') ? 'active' : '' }}">
+                <a href="{{ route('pws.imunisasi-baduta') }}"><i class="bx bx-briefcase-alt-2"></i><span>Imunisasi Baduta</span></a>
               </li>
-              <li class="{{ request()->is('dashboard/accounts/user*') ? 'active' : '' }}">
-                <a href="{{ route('user.index') }}"></i><span>Imunisasi TT WUS</span></a>
+              <li class="{{ request()->is('dashboard/pws/imunisasi-wus*') ? 'active' : '' }}">
+                <a href="{{ route('pws.imunisasi-wus') }}"><i class="bx bx-briefcase-alt-2"></i><span>Imunisasi TT WUS</span></a>
               </li>
             </ul>
           </li>
