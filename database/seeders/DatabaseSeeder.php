@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
             WilayahSeeder::class,
             FaskesSeeder::class,
             BiodataSeeder::class,
-            // PermissionSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
             TahunSeeder::class,
             BulanSeeder::class,
+            KategoriSeeder::class,
+            VaksinSeeder::class,
         ]);
     }
 }

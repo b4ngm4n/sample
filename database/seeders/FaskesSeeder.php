@@ -66,7 +66,7 @@ class FaskesSeeder extends Seeder
             ],
             [
                 'nama_faskes' => 'Puskesmas Kota Barat',
-                'kode_faskes' => '75',
+                'kode_faskes' => '1071178',
                 'status_faskes' => 'aktif',
                 'jenis_faskes' => 'puskesmas',
                 'wilayah_id' => Wilayah::where('jenis_wilayah', 'kecamatan')

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->uuid()->unique();
             $table->string('nama_vaksin');
             $table->string('slug')->unique();
+            $table->string('produsen')->nullable();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

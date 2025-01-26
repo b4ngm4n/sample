@@ -19,6 +19,7 @@ class WilayahKerja extends Model
         return $this->belongsTo(Faskes::class);
     }
 
+
     public function wilayah()
     {
         return $this->belongsTo(Wilayah::class);

@@ -27,7 +27,6 @@
                   <th>Nama Wilayah</th>
                   <th>Kode Wilayah</th>
                   <th>Jenis Wilayah</th>
-                  <th>Alamat Wilayah</th>
                   <th>Tingkatan</th>
                   <th>Aksi</th>
                </tr>
@@ -41,9 +40,10 @@
                   <td>{{ $wilayah->nama_wilayah }}</td>
                   <td>{{ $wilayah->kode_wilayah }}</td>
                   <td><span class="badge bg-primary">{{ $wilayah->jenis_wilayah }}</span></td>
-                  <td>{{ $wilayah->alamat_wilayah }}</td>
                   <td>{{ $wilayah->depth }}</td>
-                  <td></td>
+                  <td>
+                     
+                  </td>
                </tr>
                @endforeach
             </tbody>

@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('stok_vaksins', function (Blueprint $table) {
             $table->id();
-            
+            $table->uuid('uuid')->unique();
+            $table->foreignId('vaksin_id')->constrained()->onDelete('cascade');
+            $table->string('kode_batch');
+            $table->date('tanggal_produksi')->nullable();
+            $table->date('expired_date')->nullable();
+            $table->integer('jumlah')->default(1);
+            $table->string('satuan')->nullable()->default('vial');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }

@@ -11,23 +11,15 @@ class Vaksin extends Model
 
     protected $fillable = [
         'nama_vaksin',
-        'nomor_batch',
         'slug',
-        'tanggal_kedaluwarsa',
         'produsen',
-        'jenis_pelayanan_id'
     ];
 
-
-    public function jenisPelayanan()
+    public function stokVaksin()
     {
-        return $this->belongsTo(JenisPelayanan::class);
+        return $this->hasMany(StokVaksin::class);
     }
 
-    public function imunisasis()
-    {
-        return $this->hasMany(Imunisasi::class);
-    }
 
     public static function boot()
     {

@@ -26,302 +26,297 @@ class WilayahSeeder extends Seeder
                 'jenis_wilayah' => 'kabkot'
             ],
             [
-                'nama_wilayah' => 'Kota Barat',
+                'nama_wilayah' => 'Kecamatan Kota Barat',
                 'kode_wilayah' => '7571010',
                 'jenis_wilayah' => 'kecamatan'
             ],
             [
-                'nama_wilayah' => 'Dungingi',
+                'nama_wilayah' => 'Kecamatan Dungingi',
                 'kode_wilayah' => '7571011',
                 'jenis_wilayah' => 'kecamatan'
             ],
             [
-                'nama_wilayah' => 'Kota Selatan',
-                'kode_wilayah' => '75',
-                'jenis_wilayah' => 'kecamatan'
-            ],
-            [
-                'nama_wilayah' => 'Gorontalo',
+                'nama_wilayah' => 'Kecamatan Kota Selatan',
                 'kode_wilayah' => '7571020',
                 'jenis_wilayah' => 'kecamatan'
             ],
             [
-                'nama_wilayah' => 'Kota Timur',
+                'nama_wilayah' => 'Kecamatan Kota Timur',
                 'kode_wilayah' => '7571021',
                 'jenis_wilayah' => 'kecamatan'
             ],
             [
-                'nama_wilayah' => 'Hulonthalangi',
+                'nama_wilayah' => 'Kecamatan Hulonthalangi',
                 'kode_wilayah' => '7571022',
                 'jenis_wilayah' => 'kecamatan'
             ],
             [
-                'nama_wilayah' => 'Dumbo Raya',
+                'nama_wilayah' => 'Kecamatan Dumbo Raya',
                 'kode_wilayah' => '7571023',
                 'jenis_wilayah' => 'kecamatan'
             ],
             [
-                'nama_wilayah' => 'Kota Utara',
+                'nama_wilayah' => 'Kecamatan Kota Utara',
                 'kode_wilayah' => '7571030',
                 'jenis_wilayah' => 'kecamatan'
             ],
             [
-                'nama_wilayah' => 'Kota Tengah',
+                'nama_wilayah' => 'Kecamatan Kota Tengah',
                 'kode_wilayah' => '7571031',
                 'jenis_wilayah' => 'kecamatan'
             ],
             [
-                'nama_wilayah' => 'Sipatana',
+                'nama_wilayah' => 'Kecamatan Sipatana',
                 'kode_wilayah' => '7571032',
                 'jenis_wilayah' => 'kecamatan'
             ],
             [
-                'nama_wilayah' => 'Dembe I',
+                'nama_wilayah' => 'Kelurahan Dembe I',
                 'kode_wilayah' => '7571010001',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Lekobalo',
+                'nama_wilayah' => 'Kelurahan Lekobalo',
                 'kode_wilayah' => '7571010002',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Pilolodaa',
+                'nama_wilayah' => 'Kelurahan Pilolodaa',
                 'kode_wilayah' => '7571010003',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Buliide',
+                'nama_wilayah' => 'Kelurahan Buliide',
                 'kode_wilayah' => '7571010004',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Tenilo',
+                'nama_wilayah' => 'Kelurahan Tenilo',
                 'kode_wilayah' => '7571010005',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Molosipat W',
+                'nama_wilayah' => 'Kelurahan Molosipat W',
                 'kode_wilayah' => '7571010006',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Buladu',
+                'nama_wilayah' => 'Kelurahan Buladu',
                 'kode_wilayah' => '7571010008',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Tuladenggi',
+                'nama_wilayah' => 'Kelurahan Tuladenggi',
                 'kode_wilayah' => '7571011001',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Libuo',
+                'nama_wilayah' => 'Kelurahan Libuo',
                 'kode_wilayah' => '7571011002',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Tomulabutao',
+                'nama_wilayah' => 'Kelurahan Tomulabutao',
                 'kode_wilayah' => '7571011003',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Huangobotu',
+                'nama_wilayah' => 'Kelurahan Huangobotu',
                 'kode_wilayah' => '7571011004',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Tomulabutao Selatan',
+                'nama_wilayah' => 'Kelurahan Tomulabutao Selatan',
                 'kode_wilayah' => '7571011005',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Biawu',
+                'nama_wilayah' => 'Kelurahan Biawu',
                 'kode_wilayah' => '7571020010',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Biawao',
+                'nama_wilayah' => 'Kelurahan Biawao',
                 'kode_wilayah' => '7571020011',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Limba B',    
+                'nama_wilayah' => 'Kelurahan Limba B',    
                 'kode_wilayah' => '7571020018',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Limba U Satu',
+                'nama_wilayah' => 'Kelurahan Limba U Satu',
                 'kode_wilayah' => '7571020019',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Limba U Dua',
+                'nama_wilayah' => 'Kelurahan Limba U Dua',
                 'kode_wilayah' => '7571020020',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Padebuolo',
+                'nama_wilayah' => 'Kelurahan Padebuolo',
                 'kode_wilayah' => '7571021006',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Ipilo',
+                'nama_wilayah' => 'Kelurahan Ipilo',
                 'kode_wilayah' => '7571021007',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Tamalate',
+                'nama_wilayah' => 'Kelurahan Tamalate',
                 'kode_wilayah' => '7571021008',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Moodu',
+                'nama_wilayah' => 'Kelurahan Moodu',
                 'kode_wilayah' => '7571021009',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Heledulaa Selatan',
+                'nama_wilayah' => 'Kelurahan Heledulaa Selatan',
                 'kode_wilayah' => '7571021010',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Heledulaa',
+                'nama_wilayah' => 'Kelurahan Heledulaa Utara',
                 'kode_wilayah' => '7571021011',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Tanjung Kramat',
+                'nama_wilayah' => 'Kelurahan Tanjung Kramat',
                 'kode_wilayah' => '7571022001',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Pohe',
+                'nama_wilayah' => 'Kelurahan Pohe',
                 'kode_wilayah' => '7571022002',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Tenda',
+                'nama_wilayah' => 'Kelurahan Tenda',
                 'kode_wilayah' => '7571022003',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Siendeng',
+                'nama_wilayah' => 'Kelurahan Siendeng',
                 'kode_wilayah' => '7571022004',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Donggala',
+                'nama_wilayah' => 'Kelurahan Donggala',
                 'kode_wilayah' => '7571022005',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Leato Selatan',
+                'nama_wilayah' => 'Kelurahan Leato Selatan',
                 'kode_wilayah' => '7571023001',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Leato Utara',
+                'nama_wilayah' => 'Kelurahan Leato Utara',
                 'kode_wilayah' => '7571023002',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Talumolo',
+                'nama_wilayah' => 'Kelurahan Talumolo',
                 'kode_wilayah' => '7571023003',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Botu',
+                'nama_wilayah' => 'Kelurahan Botu',
                 'kode_wilayah' => '7571023004',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Bugis',
+                'nama_wilayah' => 'Kelurahan Bugis',
                 'kode_wilayah' => '7571023005',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Dembe II',
+                'nama_wilayah' => 'Kelurahan Dembe II',
                 'kode_wilayah' => '7571030003',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Wongkaditi',
+                'nama_wilayah' => 'Kelurahan Wongkaditi Timur',
                 'kode_wilayah' => '7571030004',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Wongkaditi Barat',
+                'nama_wilayah' => 'Kelurahan Wongkaditi Barat',
                 'kode_wilayah' => '7571030005',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Dulomo Selatan',
+                'nama_wilayah' => 'Kelurahan Dulomo Selatan',
                 'kode_wilayah' => '7571030011',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Dulomo Utara',
+                'nama_wilayah' => 'Kelurahan Dulomo Utara',
                 'kode_wilayah' => '7571030012',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Dembe Jaya',
+                'nama_wilayah' => 'Kelurahan Dembe Jaya',
                 'kode_wilayah' => '7571030015',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Wumialo',
+                'nama_wilayah' => 'Kelurahan Wumialo',
                 'kode_wilayah' => '7571031001',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Dulalowo',
+                'nama_wilayah' => 'Kelurahan Dulalowo',
                 'kode_wilayah' => '7571031002',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Liluwo',
+                'nama_wilayah' => 'Kelurahan Liluwo',
                 'kode_wilayah' => '7571031003',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Pulubala',
+                'nama_wilayah' => 'Kelurahan Pulubala',
                 'kode_wilayah' => '7571031004',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Paguyaman',
+                'nama_wilayah' => 'Kelurahan Paguyaman',
                 'kode_wilayah' => '7571031005',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Dulalowo Timur',
+                'nama_wilayah' => 'Kelurahan Dulalowo Timur',
                 'kode_wilayah' => '7571031006',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Tapa',
+                'nama_wilayah' => 'Kelurahan Tapa',
                 'kode_wilayah' => '7571032001',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Molosipat U',
+                'nama_wilayah' => 'Kelurahan Molosipat U',
                 'kode_wilayah' => '7571032002',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Tanggikiki',
+                'nama_wilayah' => 'Kelurahan Tanggikiki',
                 'kode_wilayah' => '7571032003',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Bulotadaa Timur',
+                'nama_wilayah' => 'Kelurahan Bulotadaa Timur',
                 'kode_wilayah' => '7571032004',
                 'jenis_wilayah' => 'kelurahan'
             ],
             [
-                'nama_wilayah' => 'Bulotadaa Barat',
+                'nama_wilayah' => 'Kelurahan Bulotadaa Barat',
                 'kode_wilayah' => '7571032005',
                 'jenis_wilayah' => 'kelurahan'
             ],
