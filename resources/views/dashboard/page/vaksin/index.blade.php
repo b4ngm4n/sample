@@ -24,6 +24,8 @@
           <tr>
             <th>No</th>
             <th>Nama Vaksin</th>
+            <th>Kategori</th>
+            <th>Stok Vaksin</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -34,16 +36,28 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ Str::upper($vaksin->nama_vaksin) }}</td>
+            <td>{{ $vaksin->kategoris_count }}</td>
+            <td>
+              @if ($vaksin->stokVaksin->isEmpty())
+                <ul>Tidak Ada Stok Vaksin</ul>
+              @else
+                @foreach ($vaksin->stokVaksin as $stokVaksin)
+                <ul>{{ $stokVaksin->jumlah . ' - Expired Date : ' .
+                  \Carbon\Carbon::parse($stokVaksin->expired_date)->isoFormat('LLLL') }}</ul>
+                @endforeach
+              @endif
+            </td>
             <td>
               <ul>
 
                 @can('permission', 'read-vaksin')
-                <a href="{{ route('vaksin.show', $vaksin->uuid) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Detail Vaksin"><i
-                    class="ti-info-alt"></i></a>
+                <a href="{{ route('vaksin.show', $vaksin->uuid) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip"
+                  data-bs-placement="top" data-bs-title="Detail Vaksin"><i class="ti-info-alt"></i></a>
                 @endcan
 
                 @can('permission', 'edit-vaksin')
-                <a href="{{ route('vaksin.edit', $vaksin->uuid) }}" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Vaksin"><i
+                <a href="{{ route('vaksin.edit', $vaksin->uuid) }}" class="btn btn-sm btn-warning"
+                  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Vaksin"><i
                     class="ti-pencil-alt"></i></a>
                 @endcan
 

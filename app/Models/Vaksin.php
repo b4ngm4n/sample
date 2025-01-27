@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Vaksin extends Model
 {
@@ -21,9 +22,16 @@ class Vaksin extends Model
         return $this->hasMany(StokVaksin::class);
     }
 
+    // Akses dari KategoriVaksin
     public function kategoriVaksin(): HasMany
     {
         return $this->hasMany(KategoriVaksin::class);
+    }
+
+    // Akses Langsung ke Kategori
+    public function kategoris(): HasManyThrough
+    {
+        return $this->hasManyThrough(Kategori::class, KategoriVaksin::class, 'vaksin_id', 'id', 'id', 'kategori_id');
     }
 
     public static function boot()
