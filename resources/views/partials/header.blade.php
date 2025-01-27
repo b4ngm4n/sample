@@ -223,9 +223,9 @@
                       <a href="index.html#" class="dropdown-item"><i class="bx bx-wrench font-15"
                               aria-hidden="true"></i>
                           settings</a>
-                      <a href="index.html#" class="dropdown-item"><i class="bx bx-power-off font-15"
+                      <a href="{{ route('logout') }}" class="dropdown-item"><i class="bx bx-power-off font-15"
                               aria-hidden="true"></i>
-                          Sign-out</a>
+                          Log out</a>
                   </div>
               </div>
           </li>
