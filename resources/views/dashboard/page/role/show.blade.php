@@ -11,6 +11,7 @@
 @section('breadcrumbActive', 'Detail')
 
 @section('content')
+
 <div class="col-xl-12">
   <div class="card">
     <div class="card-title m-4">
@@ -52,9 +53,9 @@
         <div class="row">
           @foreach ($permissions as $category => $actions)
           <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-            <div class="card border">
-              <div class="card-header d-flex justify-content-between align-items-center">
-                <h6 class="card-title mb-0">{{ ucfirst($category) }}</h6>
+            <div class="card">
+              <div class="ms-3 me-2 mt-2 d-flex justify-content-between align-items-center border-bottom">
+                <h6>{{ ucfirst($category) }}</h6>
                 <div>
                   <button type="button" class="btn btn-sm btn-link text-decoration-none" id="check-all-{{ $category }}">
                     Check All

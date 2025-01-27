@@ -80,7 +80,7 @@ class PWSController extends Controller
         $faskesList = $faskesQuery->get();
 
         // 8. Dapatkan kategori vaksin ID untuk kategori bayi dan status IDL
-        $kategoriId = Kategori::where('jenis_kategori', 'bayi')
+        $kategoriId = Kategori::where('jenis_kategori', 'pws')
             ->where('status_kategori', 'idl')
             ->first()
             ->id;
@@ -132,7 +132,7 @@ class PWSController extends Controller
             $query->where('user_id', auth()->user()->id);
         })->first();
 
-        $kategoriId = Kategori::where('jenis_kategori', 'bayi')->where('status_kategori', 'idl')->first()->id;
+        $kategoriId = Kategori::where('jenis_kategori', 'pws')->where('status_kategori', 'idl')->first()->id;
 
         if (!$faskes && !auth()->user()->roles->pluck('slug')->contains('administrator')) {
             toast('Anda tidak berhak melakukan penginputan', 'error');

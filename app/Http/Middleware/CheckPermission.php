@@ -29,6 +29,7 @@ class CheckPermission
                 ], 403); // kode status 403
             }
 
+            toast('Kamu Tidak Diizinkan Mengakses Halaman Tersebut', 'error');
             // Jika user mengakses halaman ini secara langsung, maka kembalikan kode 403 dan pesan kesalahan
             abort(403, 'Unauthorized. Kamu tidak dapat izin untuk halaman ini'); // pesan kesalahan
         }

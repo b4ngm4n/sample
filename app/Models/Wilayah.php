@@ -17,11 +17,6 @@ class Wilayah extends Model
         'jenis_wilayah', //['provinsi', 'kabkot', 'kecamatan', 'kelurahan', 'desa']
     ];
 
-    public function alamats()
-    {
-        return $this->morphMany(Alamat::class, 'alamatable');
-    }
-
     public function wilayahKerja()
     {
         return $this->hasMany(WilayahKerja::class);
