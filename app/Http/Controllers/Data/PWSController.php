@@ -150,6 +150,21 @@ class PWSController extends Controller
 
         $kategoriId = Kategori::where('jenis_kategori', 'pws')->where('status_kategori', 'idl')->first()->id;
 
+        try {
+            $kategoriId = Kategori::where('jenis_kategori', 'pws')
+                    ->where('status_kategori', 'idl')
+                    ->first()
+                    ->id;
+
+            if (!KategoriVaksin::where('kategori_id', $kategoriId)->first()) {
+                toast('Anda belum menambahkan vaksin untuk kategori ini', 'error');
+                return redirect()->route('vaksin.index');
+            }
+        } catch (Exception $e) {
+            toast('Jenis Kategori "pws" dan status "idl" tidak ditemukan', 'error');
+            return redirect()->route('kategori.index');
+        }
+
         foreach ($request->jumlah as $vaksinId => $wilayahData) {
             foreach ($wilayahData as $wilayahId => $jumlah) {
                 $wilayahKerjaId = WilayahKerja::where('faskes_id', $faskesId)->where('wilayah_id', $wilayahId)->first()->id;
@@ -293,6 +308,21 @@ class PWSController extends Controller
 
         $kategoriId = Kategori::where('jenis_kategori', 'pws')->where('status_kategori', 'ibl')->first()->id;
 
+        try {
+            $kategoriId = Kategori::where('jenis_kategori', 'pws')
+                    ->where('status_kategori', 'ibl')
+                    ->first()
+                    ->id;
+
+            if (!KategoriVaksin::where('kategori_id', $kategoriId)->first()) {
+                toast('Anda belum menambahkan vaksin untuk kategori ini', 'error');
+                return redirect()->route('vaksin.index');
+            }
+        } catch (Exception $e) {
+            toast('Jenis Kategori "pws" dan status "ibl" tidak ditemukan', 'error');
+            return redirect()->route('kategori.index');
+        }
+
         foreach ($request->jumlah as $vaksinId => $wilayahData) {
             foreach ($wilayahData as $wilayahId => $jumlah) {
                 $wilayahKerjaId = WilayahKerja::where('faskes_id', $faskesId)->where('wilayah_id', $wilayahId)->first()->id;
@@ -379,10 +409,15 @@ class PWSController extends Controller
         // 8. Dapatkan kategori vaksin ID untuk kategori bayi dan status IDL
         try {
             $kategoriId = Kategori::where('jenis_kategori', 'pws')
-            ->where('status_kategori', 'tt+')
-            ->where('slug', 'LIKE', '%ibu-hamil%')
-            ->first()
-            ->id;
+                    ->where('status_kategori', 'tt+')
+                    ->where('slug', 'LIKE', '%ibu-hamil%')
+                    ->first()
+                    ->id;
+
+            if (!KategoriVaksin::where('kategori_id', $kategoriId)->first()) {
+                toast('Anda belum menambahkan vaksin untuk kategori ini', 'error');
+                return redirect()->route('vaksin.index');
+            }
         } catch (Exception $e) {
             toast('Jenis Kategori "pws" dan status "tt+" ibu-hamil tidak ditemukan', 'error');
             return redirect()->route('kategori.index');
