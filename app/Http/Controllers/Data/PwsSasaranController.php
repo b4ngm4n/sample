@@ -20,7 +20,13 @@ class PwsSasaranController extends Controller
     {
         $tahuns = Tahun::all();
 
-        $tahun = $request->get('tahun', Tahun::where('tahun', now()->year)->first()->id);
+        // $tahun = $request->get('tahun', Tahun::where('tahun', now()->year)->first());
+        if ($request->get('tahun')) {
+            $tahun = Tahun::find($request->get('tahun'));
+        } else {
+            $tahun = Tahun::where('tahun', now()->year)->first();
+        }
+
 
         $user = auth()->user();
         $faskesQuery = Faskes::query();
@@ -49,7 +55,7 @@ class PwsSasaranController extends Controller
 
         $wilayahKerja = WilayahKerja::with('faskes', 'wilayah')->where('faskes_id', $faskes->id)->get();
 
-        $pwsSasaranRecords = PwsSasaran::where('tahun_id', $tahun)
+        $pwsSasaranRecords = PwsSasaran::where('tahun_id', $tahun->id)
                                     ->whereHas('wilayahKerja', function ($query) use ($faskes) {
                                         $query->where('faskes_id', $faskes->id);
                                     })
@@ -66,7 +72,7 @@ class PwsSasaranController extends Controller
                             ->where('slug', 'LIKE', '%sasaran%')
                             ->get();
 
-        Session::put('tahun', $tahun);
+        Session::put('tahun', $tahun->id);
         Session::put('faskes', $faskes->id);
 
         return view('dashboard.page.pws.sasaran.index', compact([
