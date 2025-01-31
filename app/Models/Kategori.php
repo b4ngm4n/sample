@@ -24,6 +24,11 @@ class Kategori extends Model
         return $this->hasMany(KategoriVaksin::class);
     }
 
+    public function vaksins()
+    {
+        return $this->hasManyThrough(Vaksin::class, KategoriVaksin::class, 'kategori_id', 'id', 'id', 'vaksin_id');
+    }
+
     public static function boot()
     {
         parent::boot();

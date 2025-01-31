@@ -56,9 +56,11 @@
          <div class="row mb-4">
             <label for="alamat" class="col-sm-3 col-form-label">Alamat Faskes</label>
             <div class="col-sm-9">
-               <input type="text" class="form-control" id="alamat"
-                  value="{{ $faskes->alamat->pluck('jalan')->implode(', ') . ', ' . $faskes->alamat->pluck('wilayah.nama_wilayah')->implode(', ') . ', ' . $faskes->alamat->pluck('wilayah.parent.nama_wilayah')->implode(', ')}}"
+               @foreach ($faskes->alamat as $alamat)
+               <input type="text" class="form-control"
+                  value="{{ $alamat->jalan . ', ' . $alamat->wilayah->nama_wilayah . ', ' . $alamat->wilayah->parent->nama_wilayah }}"
                   readonly>
+               @endforeach
             </div>
          </div>
 
@@ -86,9 +88,9 @@
                <select class="select2 form-control select2-multiple" name="wilayah[]" multiple="multiple"
                   data-placeholder="Pilih Wilayah Kerja ...">
                   @foreach ($wilayahs as $name => $key)
-                     @if (!$faskes->wilayahKerja->contains(fn($item) => $item->wilayah->uuid === $key))
-                        <option value="{{ $key }}">{{ $name }}</option>
-                     @endif
+                  {{-- @if (!$faskes->wilayahKerja->contains(fn($item) => $item->wilayah->uuid === $key)) --}}
+                  <option value="{{ $key }}">{{ $name }}</option>
+                  {{-- @endif --}}
                   @endforeach
                </select>
             </div>
@@ -102,7 +104,7 @@
 <div class="col-12">
    <div class="card">
       <div class="card-title">
-         <h4 class="title ms-4 mt-4 float-start">List Wilayah Kerja</h4>
+         <h4 class="title ms-4 mt-4 mb-0 float-start">List Wilayah Kerja</h4>
       </div>
 
       <div class="card-body">
@@ -128,32 +130,37 @@
                   <td><span class="badge bg-primary">{{ $wilayahKerja->wilayah->jenis_wilayah }}</span></td>
                   <td>
                      @can('permission', 'delete-wilayah-kerja')
-                        <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
-                          data-bs-target="#hapusWilayahKerja-{{ $wilayahKerja->wilayah->uuid }}" aria-controls="hapusWilayahKerja"><i class="ti-trash"></i>
-                        </button>
-        
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="hapusWilayahKerja-{{ $wilayahKerja->wilayah->uuid }}"
-                          aria-labelledby="hapusWilayahKerjaLabel">
-                          <div class="offcanvas-header border-bottom p-4">
-                            <h5 class="offcanvas-title" id="hapusWilayahKerjaLabel">Hapus Wilayah Kerja</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                          </div>
-        
-                          <div class="offcanvas-body p-4">
-                            <form action="{{ route('faskes.destroy-wilayah-kerja', ['faskes' => $faskes->uuid, 'wilayah' => $wilayahKerja->wilayah->uuid]) }}" method="POST">
+                     <button class="btn btn-sm btn-danger" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#hapusWilayahKerja-{{ $wilayahKerja->wilayah->uuid }}"
+                        aria-controls="hapusWilayahKerja"><i class="ti-trash"></i>
+                     </button>
+
+                     <div class="offcanvas offcanvas-end" tabindex="-1"
+                        id="hapusWilayahKerja-{{ $wilayahKerja->wilayah->uuid }}"
+                        aria-labelledby="hapusWilayahKerjaLabel">
+                        <div class="offcanvas-header border-bottom p-4">
+                           <h5 class="offcanvas-title" id="hapusWilayahKerjaLabel">Hapus Wilayah Kerja</h5>
+                           <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                        </div>
+
+                        <div class="offcanvas-body p-4">
+                           <form
+                              action="{{ route('faskes.destroy-wilayah-kerja', ['faskes' => $faskes->uuid, 'wilayah' => $wilayahKerja->wilayah->uuid]) }}"
+                              method="POST">
                               @csrf
                               @method('DELETE')
                               <div class="mb-3">
-                                <span class="fs-6">Hapus {{ $wilayahKerja->wilayah->nama_wilayah }}?</span>
+                                 <span class="fs-6">Hapus {{ $wilayahKerja->wilayah->nama_wilayah }}?</span>
                               </div>
-        
+
                               <div class="mt-4">
-                                <button type="submit" class="btn btn-danger w-md">Hapus</button>
+                                 <button type="submit" class="btn btn-danger w-md">Hapus</button>
                               </div>
-                            </form>
-                          </div>
+                           </form>
                         </div>
-                        @endcan
+                     </div>
+                     @endcan
                   </td>
                </tr>
                @endforeach

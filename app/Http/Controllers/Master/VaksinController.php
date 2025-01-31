@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\Http\Controllers\Controller;
 use App\Models\Kategori;
 use App\Models\KategoriVaksin;
+use App\Models\StokVaksin;
 use App\Models\Vaksin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +21,8 @@ class VaksinController extends Controller
 
     public function create()
     {
-        return view('dashboard.page.vaksin.create');
+        $kategoris = Kategori::all();
+        return view('dashboard.page.vaksin.create', compact('kategoris'));
     }
 
     public function store(Request $request)
@@ -43,17 +45,21 @@ class VaksinController extends Controller
         $vaksin->save();
 
         if ($request->kategori) {
-            $vaksin->kategoriVaksin()->attach($request->kategori);
+            KategoriVaksin::create([
+                'vaksin_id' => $vaksin->id,
+                'kategori_id' => Kategori::where('uuid', $request->kategori)->first()->id,
+            ]);
         }
 
+        toast('Berhasil menambahkan vaksin', 'success');
         return redirect()->route('vaksin.index');
     }
 
     public function show(Vaksin $vaksin)
     {
-        $kategoris = Kategori::class;
-        $vaksin->with('stokVaksin', 'kategoris');
-        return view('dashboard.page.vaksin.show', compact('vaksin'));
+        $kategoris = Kategori::all();
+        $vaksin->with('stokVaksin', 'kategoris')->get();
+        return view('dashboard.page.vaksin.show', compact('vaksin', 'kategoris'));
     }
 
     public function edit(Vaksin $vaksin)
@@ -74,7 +80,7 @@ class VaksinController extends Controller
             return redirect()->back()->withErrors($validasi)->withInput();
         }
 
-        if (Str::slug($request->nama_vaksin) == $vaksin->slug) {
+        if (Vaksin::where('slug', Str::slug($request->nama_vaksin))->whereNotIn('id', [$vaksin->id])->exists()) {
             toast('Nama Vaksin Sudah Ada', 'error');
             return redirect()->back();
         }
@@ -85,10 +91,8 @@ class VaksinController extends Controller
             'produsen' => $request->produsen
         ]);
 
-        $vaksin->kategoriVaksin()->sync($request->kategori);
-
-        return redirect()->route('vaksin.index');
-
+        toast('Berhasil merubah data vaksin', 'success');
+        return redirect()->back();
     }
 
     public function destroy(Vaksin $vaksin)
@@ -98,4 +102,82 @@ class VaksinController extends Controller
         toast('Berhasil menghapus vaksin', 'success');
         return redirect()->back();
     }
+
+    // STOK VAKSIN
+    public function storeStokVaksin(Request $request, Vaksin $vaksin)
+    {
+        $validasi = Validator::make($request->all(), [
+            'jumlah' => 'required',
+            'satuan' => 'required',
+            'kode_batch' => 'required',
+            'tanggal_produksi' => 'required',
+            'tanggal_expired' => 'required',
+        ]);
+
+        if ($validasi->fails()) {
+            toast('Gagal menambahkan stok vaksin', 'error');
+            return redirect()->back()->withErrors($validasi)->withInput();
+        }
+
+        $vaksin->stokVaksin()->create([
+            'kode_batch' => $request->kode_batch,
+            'tanggal_produksi' => $request->tanggal_produksi,
+            'tanggal_expired' => $request->tanggal_expired,
+            'jumlah' => $request->jumlah,
+            'satuan' => $request->satuan,
+            'keterangan' => $request->keterangan
+        ]);
+
+        toast('Berhasil menambahkan stok vaksin', 'success');
+
+        return redirect()->back();
+    }
+
+    public function destroyStokVaksin(StokVaksin $stokVaksin)
+    {
+        $stokVaksin->delete();
+
+        toast('Berhasil menghapus stok vaksin', 'success');
+        return redirect()->back();
+    }
+    // END STOK VAKSIN
+
+
+    // KATEGORI VAKSIN
+    public function storeKategoriVaksin(Request $request, Vaksin $vaksin)
+    {
+        $validasi = Validator::make($request->all(), [
+            'kategori.*' => 'required|exists:kategoris,uuid',
+        ], [
+            'kategori.*.required' => 'Kategori harus diisi',
+            'kategori.*.exists' => 'Kategori tidak ditemukan',
+        ]);
+
+        if ($validasi->fails()) {
+            toast('Gagal menambahkan kategori vaksin', 'error');
+            return redirect()->back()->withErrors($validasi)->withInput();
+        }
+
+        $kategoriId = Kategori::whereIn('uuid', $request->kategori)->pluck('id');
+        
+        foreach ($kategoriId as $id) {
+            KategoriVaksin::create([
+                'vaksin_id' => $vaksin->id,
+                'kategori_id' => $id
+            ]);
+        }
+
+        toast('Berhasil menambahkan kategori vaksin', 'success');
+        return redirect()->back();
+    }
+
+    public function destroyKategoriVaksin(KategoriVaksin $kategoriVaksin)
+    {
+        $kategoriVaksin->delete();
+
+        toast('Berhasil menghapus kategori vaksin', 'success');
+        return redirect()->back();
+    }
+
+    // END KATEGORI VAKSIN
 }

@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Pws extends Model
+class PwsSasaran extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'tahun_id',
-        'bulan_id',
-        'kategori_vaksin_id',
+        'kategori_id',
         'wilayah_kerja_id',
+        'jumlah',
+        'jenis_data'
     ];
 
     public function tahun(): BelongsTo
@@ -23,23 +23,13 @@ class Pws extends Model
         return $this->belongsTo(Tahun::class);
     }
 
-    public function bulan(): BelongsTo
+    public function kategori(): BelongsTo
     {
-        return $this->belongsTo(Bulan::class);
+        return $this->belongsTo(Kategori::class);
     }
 
     public function wilayahKerja(): BelongsTo
     {
         return $this->belongsTo(WilayahKerja::class);
-    }
-
-    public function kategoriVaksin(): BelongsTo
-    {
-        return $this->belongsTo(KategoriVaksin::class);
-    }
-
-    public function pwsDetail(): HasMany
-    {
-        return $this->hasMany(PwsDetail::class);
     }
 }

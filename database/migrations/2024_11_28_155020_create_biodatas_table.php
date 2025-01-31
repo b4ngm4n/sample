@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nama_tengah', 50)->nullable();
             $table->string('nama_belakang', 50)->nullable();
             $table->string('slug')->unique();
-            $table->char('nik', 16)->nullable();
+            $table->char('nik')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('tempat_lahir', 255)->nullable();
             $table->string('agama', 100)->nullable();

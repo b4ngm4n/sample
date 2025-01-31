@@ -1,16 +1,16 @@
 @extends('dashboard.app')
 
-@section('title', 'Imunisasi WUS')
+@section('title', 'TT WUS Tidak Hamil')
 
-@section('breadcrumbTitle', 'Inputan Data Imunisasi TT WUS - '. $faskes->nama_faskes)
+@section('breadcrumbTitle', 'Inputan Data TT WUS Tidak Hamil- '. $faskes->nama_faskes)
 
-@section('breadcrumbActive', 'Imunisasi WUS')
+@section('breadcrumbActive', 'TT WUS Tidak Hamil')
 
 @section('content')
 <div class="col-md-12">
    <div class="card">
       <div class="card-body">
-         <form action="{{ route('pws.imunisasi-wus') }}" method="GET" id="filterForm">
+         <form action="{{ route('pws.imunisasi-wus-tidak-hamil') }}" method="GET" id="filterForm">
             <div class="row">
                <!-- Tahun -->
                <div class="col-md-4">
@@ -61,9 +61,9 @@
 <div class="col-md-12">
    <div class="card">
       <div class="card-body">
-         <form action="{{ route('pws.imunisasi-wus') }}" method="POST">
+         <form action="{{ route('pws.imunisasi-wus-tidak-hamil') }}" method="POST">
             @csrf
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="datatable">
                <thead>
                   <tr>
                      <th></th>
@@ -79,18 +79,20 @@
                      @foreach ($data['wilayahKerja'] as $wk)
                      <td>
                         <div class="row">
-                           <div class="col-md-6">
-                              <label>L</label>
-                              <input type="number" name="jumlah[{{ $vaksin->id }}][{{ $wk->id }}][L]"
-                                 class="form-control" value="{{ $pwsData[$vaksin->id][$wk->id]['L'] ?? '' }}">
-                           </div>
-                           <div class="col-md-6">
-                              <label>P</label>
-                              <input type="number" name="jumlah[{{ $vaksin->id }}][{{ $wk->id }}][P]"
-                                 class="form-control" value="{{ $pwsData[$vaksin->id][$wk->id]['P'] ?? '' }}">
-                           </div>
+                            <div class="col-md-6">
+                                <label>Suntik</label>
+                                <input type="number" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][Suntik]"
+                                    class="form-control"
+                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_suntik'] ?? '' }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Status</label>
+                                <input type="number" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][Status]"
+                                    class="form-control"
+                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_status'] ?? '' }}">
+                            </div>
                         </div>
-                     </td>
+                    </td>
                      @endforeach
                   </tr>
                   @endforeach

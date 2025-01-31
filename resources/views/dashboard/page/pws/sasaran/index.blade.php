@@ -1,17 +1,17 @@
 @extends('dashboard.app')
 
-@section('title', 'Imunisasi Bayi')
+@section('title', 'Data Sasaran')
 
-@section('breadcrumbTitle', 'Inputan Data Imunisasi Bayi - '. $faskes->nama_faskes)
+@section('breadcrumbTitle', 'Data Sasaran - '. $faskes->nama_faskes)
 
-@section('breadcrumbActive', 'Imunisasi Bayi')
+@section('breadcrumbActive', 'Data Sasaran')
 
 @section('content')
 
 <div class="col-md-12">
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('pws.imunisasi-bayi') }}" method="GET" id="filterForm">
+            <form action="{{ route('pws.sasaran') }}" method="GET" id="filterForm">
                 <div class="row">
                     <!-- Tahun -->
                     <div class="col-md-4">
@@ -25,21 +25,9 @@
                         </select>
                     </div>
 
-                    <!-- Bulan -->
-                    <div class="col-md-4">
-                        <label for="bulan" class="form-label">Bulan</label>
-                        <select name="bulan" id="bulan" class="select2 form-control w-100" style="width: 100%;">
-                            @foreach ($bulans as $bulanItem)
-                            <option value="{{ $bulanItem->id }}" {{ $bulanItem->id == $bulan ? 'selected' : '' }}>
-                                {{ $bulanItem->bulan }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-
                     <!-- Faskes -->
                     @if ($faskesList->isNotEmpty())
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <label for="faskes" class="form-label">Faskes</label>
                         <select name="faskes" id="faskes" class="select2 form-control w-100" style="width: 100%;">
                             @foreach ($faskesList as $faskesItem)
@@ -63,36 +51,55 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('pws.imunisasi-bayi') }}" method="POST">
+            <form action="{{ route('pws.sasaran') }}" method="POST">
                 @csrf
-                <table class="table table-striped table-bordered" id="datatable-buttons">
+                <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th></th>
-                            @foreach ($data['wilayahKerja'] as $wk)
-                            <th>{{ $wk->wilayah->nama_wilayah }}</th>
+                            <th>#</th>
+                            @foreach ($kategoris as $kategori)
+                            <th class="text-dark">{{ Str::upper($kategori->nama_kategori) }}</th>
                             @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data['vaksins'] as $vaksin)
+                        @foreach ($wilayahKerja as $wk)
                         <tr>
-                            <th>{{ $vaksin->nama_vaksin }}</th>
-                            @foreach ($data['wilayahKerja'] as $wk)
+                            <th class="text-dark">{{ $wk->wilayah->nama_wilayah }}</th>
+                            @foreach ($kategoris as $kategori)
                             <td>
                                 <div class="row">
+                                    @if ($kategori->status_kategori == 'tt+')
+                                    <div class="col-md-6">
+                                        <label>IBU HAMIL</label>
+                                        <input type="number"
+                                            name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][ibu_hamil]"
+                                            class="form-control"
+                                            value="{{ $pwsSasaran[$kategori->id][$wk->wilayah->id]['ibu-hamil'] ?? '' }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>TIDAK HAMIL</label>
+                                        <input type="number"
+                                            name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][tidak_hamil]"
+                                            class="form-control"
+                                            value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['tidak-hamil'] ?? '' }}">
+                                    </div>
+                                    @else
                                     <div class="col-md-6">
                                         <label>L</label>
-                                        <input type="number" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][L]"
+                                        <input type="number"
+                                            name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][l]"
                                             class="form-control"
-                                            value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki'] ?? '' }}">
+                                            value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['l'] ?? '' }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label>P</label>
-                                        <input type="number" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][P]"
+                                        <input type="number"
+                                            name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][p]"
                                             class="form-control"
-                                            value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_perempuan'] ?? '' }}">
+                                            value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['p'] ?? '' }}">
                                     </div>
+                                    @endif
                                 </div>
                             </td>
                             @endforeach

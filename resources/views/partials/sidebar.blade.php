@@ -47,6 +47,12 @@
               <i class="fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
 
+              @can('permission', 'list-pws-sasaran')
+              <li class="{{ request()->is('dashboard/pws/sasaran*') ? 'active' : '' }}">
+                <a href="{{ route('pws.sasaran') }}"><i class="bx bx-book"></i><span>Data Sasaran</span></a>
+              </li>
+              @endcan
+
               @can('permission', 'list-pws-imunisasi-bayi')
               <li class="{{ request()->is('dashboard/pws/imunisasi-bayi*') ? 'active' : '' }}">
                 <a href="{{ route('pws.imunisasi-bayi') }}"><i class="bx bx-briefcase-alt-2"></i><span>Imunisasi Bayi</span></a>
@@ -59,11 +65,18 @@
               </li>
               @endcan
 
-              @can('permission', 'list-pws-imunisasi-wus')
-              <li class="{{ request()->is('dashboard/pws/imunisasi-wus*') ? 'active' : '' }}">
-                <a href="{{ route('pws.imunisasi-wus') }}"><i class="bx bx-briefcase-alt-2"></i><span>Imunisasi TT WUS</span></a>
+              @can('permission', 'list-pws-imunisasi-wus-ibu-hamil')
+              <li class="{{ request()->is('dashboard/pws/imunisasi-wus-ibu-hamil*') ? 'active' : '' }}">
+                <a href="{{ route('pws.imunisasi-wus-ibu-hamil') }}"><i class="bx bx-briefcase-alt-2"></i><span>TT WUS Ibu Hamil</span></a>
               </li>
               @endcan
+
+              @can('permission', 'list-pws-imunisasi-wus-tidak-hamil')
+              <li class="{{ request()->is('dashboard/pws/imunisasi-wus-tidak-hamil*') ? 'active' : '' }}">
+                <a href="{{ route('pws.imunisasi-wus-tidak-hamil') }}"><i class="bx bx-briefcase-alt-2"></i><span>TT WUS Tidak Hamil</span></a>
+              </li>
+              @endcan
+
             </ul>
           </li>
           @endcan

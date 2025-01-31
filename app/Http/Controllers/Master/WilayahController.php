@@ -61,14 +61,8 @@ class WilayahController extends Controller
 
     public function show(Wilayah $wilayah) 
     {
-        // $faskes = $wilayah->with('faskes.children')->first();
-        // dd($faskes);
-        // return json_decode($wilayah->with('faskes'));
-        // return response()->json(Faskes::withDepth()->get());
-        // return response()->json();
         $datafaskes = Faskes::with('children')->where('wilayah_id', $wilayah->id)->get();
-        // dd($datafaskes);
-        
+
         return view('dashboard.page.wilayah.show', compact('wilayah', 'datafaskes'));
     }
 

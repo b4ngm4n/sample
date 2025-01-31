@@ -23,14 +23,14 @@
             </div>
 
             <div class="mb-3">
-               <label for="jenis_pelayanan_" class="form-label">Jenis Vaksin</label>
-               <select name="jenis_pelayanan" class="select2 form-select" data-placeholder="Pilih Jenis Vaksin...">
-                  @foreach ($jenisPelayanans as $name => $key)
-                  <option value="{{ $key }}">{{ $name }}</option>
+               <label for="kategori" class="form-label">Kategori</label>
+               <select name="kategori" class="select2 form-select" data-placeholder="Pilih Kategori Vaksin...">
+                  @foreach ($kategoris as $kategori)
+                  <option value="{{ $kategori->uuid }}">{{ $kategori->nama_kategori }}</option>
                   @endforeach
                </select>
 
-               @error('jenis_pelayanan')
+               @error('kategori')
                <small class="text-danger">{{ $message }}</small>
                @enderror
             </div>
@@ -65,7 +65,25 @@
             </div>
 
             <div class="mb-3">
-               <label class="form-label" for="tanggal_kedaluwarsa">tanggal_kedaluwarsa</label>
+               <label class="form-label" for="jumlah">Jumlah</label>
+               <input type="text" class="form-control" id="jumlah" name="jumlah" value="{{ old('jumlah') }}">
+
+               @error('jumlah')
+               <small class="text-danger">{{ $message }}</small>
+               @enderror
+            </div>
+
+            <div class="mb-3">
+               <label class="form-label" for="tanggal_produksi">Tangagl Produksi</label>
+               <input type="date" class="form-control" id="tanggal_produksi" name="tanggal_produksi" value="{{ old('tanggal_produksi') }}">
+
+               @error('tanggal_produksi')
+               <small class="text-danger">{{ $message }}</small>
+               @enderror
+            </div>
+
+            <div class="mb-3">
+               <label class="form-label" for="tanggal_kedaluwarsa">Tanggal Kedaluwarsa</label>
                <input type="date" class="form-control" id="tanggal_kedaluwarsa" name="tanggal_kedaluwarsa" value="{{ old('tanggal_kedaluwarsa') }}">
 
                @error('tanggal_kedaluwarsa')

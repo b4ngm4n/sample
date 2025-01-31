@@ -15,13 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tahun_id')->constrained()->onDelete('restrict');
             $table->foreignId('bulan_id')->constrained()->onDelete('restrict');
-            $table->foreignId('faskes_id')->constrained()->onDelete('restrict');
-            $table->foreignId('vaksin_id')->constrained()->onDelete('restrict');
-            $table->foreignId('wilayah_id')->constrained()->onDelete('restrict');
-            $table->integer('jumlah_imunisasi_l')->default(0); //jumlah imunisasi laki laki;
-            $table->integer('jumlah_imunisasi_p')->default(0); //jumlah imunisasi perempuan;
-            $table->foreignId('kategori_id')->nullable()->constrained()->onDelete('set null');
-            $table->text('keterangan')->nullable();
+            $table->foreignId('wilayah_kerja_id')->constrained()->onDelete('restrict');
+            $table->foreignId('kategori_vaksin_id')->constrained()->onDelete('restrict');
             $table->timestamps();
         });
     }

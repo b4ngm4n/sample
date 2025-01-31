@@ -43,7 +43,13 @@
                   <td>{{ $faskes->kode_faskes }}</td>
                   <td><span class="badge bg-primary">{{ $faskes->jenis_faskes }}</span></td>
                   <td>{{ $faskes->depth }}</td>
-                  <td>{{ $faskes->alamat->pluck('jalan')->implode(', ') . ', '. $faskes->alamat->pluck('wilayah.nama_wilayah')->implode(', ') . ', '. $faskes->alamat->pluck('wilayah.parent.nama_wilayah')->implode(', ') }}</td>
+                  <td>
+                     <ul class="d-flex flex-column gap-1">
+                        @foreach ($faskes->alamat as $alamat)
+                        <li>{{ $alamat->jalan . ', ' . $alamat->wilayah->nama_wilayah . ', ' . $alamat->wilayah->parent->nama_wilayah }}</li>
+                        @endforeach
+                     </ul>
+                  </td>
                   <td>{{ $faskes->wilayah_kerja_count }}</td>
                   <td>
                      <ul class="d-flex flex-row gap-2">
