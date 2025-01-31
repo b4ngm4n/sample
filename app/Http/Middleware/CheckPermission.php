@@ -32,6 +32,7 @@ class CheckPermission
             toast('Kamu Tidak Diizinkan Mengakses Halaman Tersebut', 'error');
             // Jika user mengakses halaman ini secara langsung, maka kembalikan kode 403 dan pesan kesalahan
             abort(403, 'Unauthorized. Kamu tidak dapat izin untuk halaman ini'); // pesan kesalahan
+            return redirect()->back();
         }
 
         return $next($request);
