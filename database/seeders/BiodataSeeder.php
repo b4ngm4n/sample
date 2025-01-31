@@ -21,12 +21,9 @@ class BiodataSeeder extends Seeder
             'nama_belakang' => 'Mustpaa',
             'tanggal_lahir' => date(now()),
             'tempat_lahir' => 'Gorontalo',
-            'alamat' => 'Jl. K.H Adam Zakaria, Kel. Dembe Jaya, Kec. Kota Utara, Kota Gorontalo, Gorontalo',
             'no_hp' => '082154488769',
             'agama' => 'Islam',
             'slug' => Str::slug('Salman Mustapa')
         ]);
-
-        
     }
 }
