@@ -18,7 +18,7 @@ class VaksinController extends Controller
     {
         $vaksins = Vaksin::withCount('kategoris')->with('stokVaksin')->orderBy('urutan_vaksin', 'asc')->get();
 
-        return view('dashboard.page.vaksin.index', compact('vaksins', 'urutan'));
+        return view('dashboard.page.vaksin.index', compact('vaksins'));
     }
 
     public function create()
