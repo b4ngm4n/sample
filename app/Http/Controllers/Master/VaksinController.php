@@ -17,7 +17,7 @@ class VaksinController extends Controller
     public function index()
     {
         $vaksins = Vaksin::withCount('kategoris')->with('stokVaksin')->orderBy('urutan_vaksin', 'asc')->get();
-        $urutan = Vaksin::first()->urutan_vaksin + 1;
+
         return view('dashboard.page.vaksin.index', compact('vaksins', 'urutan'));
     }
 
@@ -67,7 +67,13 @@ class VaksinController extends Controller
 
     public function edit(Vaksin $vaksin)
     {
-        $urutan = Vaksin::where('urutan_vaksin', '!=', null)->first()->urutan_vaksin + 1;
+        
+        $urutan = Vaksin::where('urutan_vaksin', '!=', null)->first()->urutan_vaksin;
+        if ($urutan) {
+            $urutan += 1;
+        } else {
+            $urutan = 1;
+        }
 
         return view('dashboard.page.vaksin.edit', compact('vaksin', 'urutan'));
     }

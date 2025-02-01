@@ -8,7 +8,7 @@
                         <tr>
                             <th class="text-center"></th>
                             @foreach ($data['wilayahKerja'] as $wk)
-                            <th>{{ $wk->wilayah->nama_wilayah }}</th>
+                            <th class="text-center">{{ $wk->wilayah->nama_wilayah }}</th>
                             @endforeach
                         </tr>
                     </thead>
