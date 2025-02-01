@@ -35,7 +35,7 @@
 
             <div class="mb-3">
                <label class="form-label" for="urutan-vaksin">Urutan Vaksin</label>
-               <input type="text" class="form-control" id="urutan-vaksin" name="urutan_vaksin" value="{{ $vaksin->urutan_vaksin !== null ? $vaksin->urutan_vaksin : $urutan }}">
+               <input type="text" class="form-control" id="urutan-vaksin" name="urutan_vaksin" value="{{ old('urutan_vaksin', $vaksin->urutan_vaksin) }}">
 
                @error('urutan_vaksin')
                <small class="text-danger">{{ $message }}</small>
