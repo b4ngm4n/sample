@@ -115,7 +115,7 @@ class VaksinController extends Controller
         ]);
 
         toast('Berhasil merubah data vaksin', 'success');
-        return redirect()->back();
+        return redirect()->route('vaksin.index');
     }
 
     public function destroy(Vaksin $vaksin)
