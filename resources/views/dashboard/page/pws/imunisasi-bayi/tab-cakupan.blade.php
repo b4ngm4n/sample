@@ -1,27 +1,127 @@
 <div class="col-md-12">
    <div class="card">
       <div class="card-body">
-         <table class="table table-striped table-bordered text-center">
+         <table class="table table-bordered">
             <thead>
                <tr>
-                  <th></th>
+                  <th class="text-center text-dark" rowspan="2">Vaksin</th>
                   @foreach ($data['wilayahKerja'] as $wk)
-                  <th>{{ $wk->wilayah->nama_wilayah }} <br>(L + P)</th>
+                  <th class="text-center text-dark">{{ $wk->wilayah->nama_wilayah }}</th>
                   @endforeach
+                  <th class="text-center text-dark bg-warning">Total</th>
+               </tr>
+               <tr>
+                  @foreach ($data['wilayahKerja'] as $wk)
+                  <th>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <label>L</label>
+                        </div>
+                        <div class="col-md-6">
+                           <label>P</label>
+                        </div>
+                     </div>
+                  </th>
+                  @endforeach
+                  <th class="bg-warning">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <label>L</label>
+                        </div>
+                        <div class="col-md-6">
+                           <label>P</label>
+                        </div>
+                     </div>
+                  </th>
                </tr>
             </thead>
             <tbody>
+               @php
+               // $totalPerKolom = [];
+               $totalKolomLaki = [];
+               $totalKolomPerempuan = [];
+               @endphp
                @foreach ($data['vaksins'] as $vaksin)
                <tr>
-                  <th>{{ $vaksin->nama_vaksin }}</th>
+                  <th class="text-nowrap text-dark">{{ $vaksin->nama_vaksin }}</th>
+                  @php
+                  $totalBarisLaki = 0;
+                  $totalBarisPerempuan = 0;
+                  @endphp
                   @foreach ($data['wilayahKerja'] as $wk)
+                  @php
+                  $jumlahL = $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki'] ?? 0;
+                  $jumlahP = $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_perempuan'] ?? 0;
+
+                  $totalWilayah = $jumlahL + $jumlahP;
+
+                  // $totalPerKolom[$wk->wilayah_id] = ($totalPerKolom[$wk->wilayah_id] ?? 0) + $totalWilayah;
+                  $totalKolomLaki[$wk->wilayah_id] = ($totalKolomLaki[$wk->wilayah_id] ?? 0) + $jumlahL;
+                  $totalKolomPerempuan[$wk->wilayah_id] = ($totalKolomPerempuan[$wk->wilayah_id] ?? 0) + $jumlahP;
+
+                  $totalBarisLaki += $jumlahL;
+                  $totalBarisPerempuan += $jumlahP;
+
+                  @endphp
+
+                  {{-- UNTUK DATA --}}
                   <td>
-                     {{ isset($pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki']) ? ($pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki'] + $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_perempuan']) : 0 }}
+                     <div class="row">
+                        <div class="col-md-6">
+                           <input type="text" disabled readonly class="w-100 text-center" value="{{ $jumlahL }}">
+                        </div>
+                        <div class="col-md-6">
+                           <input type="text" disabled readonly class="w-100 text-center" value="{{ $jumlahP }}">
+                        </div>
+                     </div>
                   </td>
                   @endforeach
+                  <td class="bg-warning">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <input type="text" disabled readonly class="w-100 text-center" value="{{ $totalBarisLaki }}">
+                        </div>
+                        <div class="col-md-6">
+                           <input type="text" disabled readonly class="w-100 text-center"
+                              value="{{ $totalBarisPerempuan }}">
+                        </div>
+                     </div>
+                  </td>
+
                </tr>
                @endforeach
             </tbody>
+            <tfoot>
+               <tr>
+                  <th class="text-center bg-warning text-dark">Total</th>
+                  @foreach ($data['wilayahKerja'] as $wk)
+                  <th class="text-center bg-warning text-dark">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <input type="text" disabled readonly class="w-100 text-center"
+                              value="{{ $totalKolomLaki[$wk->wilayah_id] ?? 0 }}">
+                        </div>
+                        <div class="col-md-6">
+                           <input type="text" disabled readonly class="w-100 text-center"
+                              value="{{ $totalKolomPerempuan[$wk->wilayah_id] ?? 0 }}">
+                        </div>
+                     </div>
+                  </th>
+                  @endforeach
+                  <th class="text-center bg-warning text-dark">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <input type="text" disabled readonly class="w-100 text-center"
+                              value="{{ array_sum($totalKolomLaki) }}">
+                        </div>
+                        <div class="col-md-6">
+                           <input type="text" disabled readonly class="w-100 text-center"
+                              value="{{ array_sum($totalKolomPerempuan) }}">
+                        </div>
+                     </div>
+                  </th>
+               </tr>
+            </tfoot>
          </table>
       </div>
    </div>
