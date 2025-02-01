@@ -24,7 +24,16 @@ class VaksinController extends Controller
     public function create()
     {
         $kategoris = Kategori::all();
-        return view('dashboard.page.vaksin.create', compact('kategoris'));
+        if (Vaksin::where('urutan_vaksin', '!==', null)->exists()) {
+            // Ambil nilai urutan vaksin terbesar yang bukan null
+            // dan tambahkan 1 untuk menjadi urutan vaksin yang baru
+           $urutan = Vaksin::where('urutan_vaksin', '!==', null)->max('urutan_vaksin')->first()->urutan_vaksin;
+           $urutan += 1;
+        
+        } else {
+            $urutan = 1;
+        }
+        return view('dashboard.page.vaksin.create', compact('kategoris', 'urutan'));
     }
 
     public function store(Request $request)
