@@ -60,47 +60,38 @@
 
 <div class="col-md-12">
    <div class="card">
-      <div class="card-body">
-         <form action="{{ route('pws.imunisasi-wus-ibu-hamil') }}" method="POST">
-            @csrf
-            <table class="table table-striped table-bordered" id="datatable">
-               <thead>
-                  <tr>
-                     <th></th>
-                     @foreach ($data['wilayahKerja'] as $wk)
-                     <th>{{ $wk->wilayah->nama_wilayah }}</th>
-                     @endforeach
-                  </tr>
-               </thead>
-               <tbody>
-                  @foreach ($data['vaksins'] as $vaksin)
-                  <tr>
-                     <th>{{ $vaksin->nama_vaksin }}</th>
-                     @foreach ($data['wilayahKerja'] as $wk)
-                     <td>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Suntik</label>
-                                <input type="number" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][Suntik]"
-                                    class="form-control"
-                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_suntik'] ?? '' }}">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Status</label>
-                                <input type="number" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][Status]"
-                                    class="form-control"
-                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_status'] ?? '' }}">
-                            </div>
-                        </div>
-                    </td>
-                     @endforeach
-                  </tr>
-                  @endforeach
-               </tbody>
-            </table>
-            <button type="submit" class="btn btn-primary float-end"><i class="ti-save me-2"></i>Simpan</button>
-         </form>
-      </div>
+       <div class="card-body">
+           <div class="d-md-flex align-items-center justify-content-between profile-body-header">
+               <ul class="nav nav-tabs justify-content-start profile-body-tabs" id="myTab" role="tablist">
+                   <li class="nav-item" role="presentation">
+                       <button class="nav-link active" id="inputan-tab" data-bs-toggle="tab"
+                           data-bs-target="#inputan-tab-pane" type="button" role="tab"
+                           aria-controls="inputan-tab-pane" aria-selected="true">Inputan Data</button>
+                   </li>
+                   <li class="nav-item" role="presentation">
+                       <button class="nav-link" id="kumulatif-tab" data-bs-toggle="tab" data-bs-target="#kumulatif-tab-pane"
+                           type="button" role="tab" aria-controls="kumulatif-tab-pane" aria-selected="false"
+                           tabindex="-1">Akumulasi Data</button>
+                   </li>
+
+               </ul>
+
+           </div>
+
+           <div class="tab-content" id="myTabContent">
+               <div class="tab-pane fade active show" id="inputan-tab-pane" role="tabpanel"
+                   aria-labelledby="inputan-tab" tabindex="0">
+                   @include('dashboard.page.pws.imunisasi-wus-ibu-hamil.tab-inputan')
+               </div>
+
+               <div class="tab-pane fade p-0 border-0" id="kumulatif-tab-pane" role="tabpanel" aria-labelledby="kumulatif-tab"
+                   tabindex="0">
+                   @include('dashboard.page.pws.imunisasi-wus-ibu-hamil.tab-cakupan')
+               </div>
+           </div>
+
+       </div>
    </div>
 </div>
+
 @endsection

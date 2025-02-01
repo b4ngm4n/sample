@@ -34,6 +34,15 @@
             </div>
 
             <div class="mb-3">
+               <label class="form-label" for="urutan-vaksin">Urutan Vaksin</label>
+               <input type="text" class="form-control" id="urutan-vaksin" name="urutan_vaksin" value="{{ $vaksin->urutan_vaksin !== null ? $vaksin->urutan_vaksin : $urutan }}">
+
+               @error('urutan_vaksin')
+               <small class="text-danger">{{ $message }}</small>
+               @enderror
+            </div>
+
+            <div class="mb-3">
                <label class="form-label" for="produsen">Produsen</label>
                <input type="text" class="form-control" id="produsen" name="produsen" value="{{ old('produsen', $vaksin->produsen) }}"
                   placeholder="Contoh: Sinovac Biotech Ltd">

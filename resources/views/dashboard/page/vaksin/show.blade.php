@@ -28,6 +28,12 @@
             </div>
          </div>
          <div class="row mb-4">
+            <label for="urutan-vaksin" class="col-sm-3 col-form-label">Urutan Vaksin</label>
+            <div class="col-sm-9">
+               <input type="text" class="form-control" id="urutan-vaksin" value="{{ $vaksin->urutan_vaksin }}" readonly>
+            </div>
+         </div>
+         <div class="row mb-4">
             <label for="produsen" class="col-sm-3 col-form-label">Produsen</label>
             <div class="col-sm-9">
                <input type="text" class="form-control" id="produsen" value="{{ $vaksin->produsen }}" readonly>
@@ -58,11 +64,11 @@
                   <input type="text" class="form-control" id="kode_batch" name="kode_batch" placeholder="F123">
                </div>
                <div class="mb-3">
-                  <label for="tanggal_produksi">Kode Batch</label>
+                  <label for="tanggal_produksi">Tanggal Produksi</label>
                   <input type="date" class="form-control" id="tanggal_produksi" name="tanggal_produksi">
                </div>
                <div class="mb-3">
-                  <label for="expired_date">Kode Batch</label>
+                  <label for="expired_date">Tanggal Expired</label>
                   <input type="date" class="form-control" id="expired_date" name="expired_date">
                </div>
                <div class="mb-3">

@@ -36,7 +36,7 @@ class PWSController extends Controller
         // kemudian kategori akan kita jadikan untuk mendapatkan data vaksin untuk PWS
         $vaksins = Vaksin::whereHas('kategoriVaksin', function ($query) use ($kategori) {
                 $query->where('kategori_id', $kategori);
-            })->get();
+            })->orderBy('urutan_vaksin', 'asc')->get();
 
         // disini kita akan mendapatkan wilayahKerja berdasarkan faskes id 
         // nah makanya kita butuh verifikasi yang login tetapi hanya sebatas dinkes kabkot.

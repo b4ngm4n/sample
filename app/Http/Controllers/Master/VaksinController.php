@@ -13,10 +13,12 @@ use Illuminate\Support\Str;
 
 class VaksinController extends Controller
 {
+
     public function index()
     {
-        $vaksins = Vaksin::withCount('kategoris')->with('stokVaksin')->get();
-        return view('dashboard.page.vaksin.index', compact('vaksins'));
+        $vaksins = Vaksin::withCount('kategoris')->with('stokVaksin')->orderBy('urutan_vaksin', 'asc')->get();
+        $urutan = Vaksin::first()->urutan_vaksin + 1;
+        return view('dashboard.page.vaksin.index', compact('vaksins', 'urutan'));
     }
 
     public function create()
@@ -41,6 +43,7 @@ class VaksinController extends Controller
         $vaksin = new Vaksin();
         $vaksin->nama_vaksin = $request->nama_vaksin;
         $vaksin->slug = Str::slug($request->nama_vaksin);
+        $vaksin->urutan_vaksin = $request->urutan_vaksin;
         $vaksin->produsen = $request->produsen;
         $vaksin->save();
 
@@ -64,7 +67,9 @@ class VaksinController extends Controller
 
     public function edit(Vaksin $vaksin)
     {
-        return view('dashboard.page.vaksin.edit', compact('vaksin'));
+        $urutan = Vaksin::where('urutan_vaksin', '!=', null)->first()->urutan_vaksin + 1;
+
+        return view('dashboard.page.vaksin.edit', compact('vaksin', 'urutan'));
     }
 
     public function update(Request $request, Vaksin $vaksin)
@@ -87,6 +92,7 @@ class VaksinController extends Controller
 
         $vaksin->update([
             'nama_vaksin' => $request->nama_vaksin,
+            'urutan_vaksin' => $request->urutan_vaksin,
             'slug' => Str::slug($request->nama_vaksin),
             'produsen' => $request->produsen
         ]);

@@ -24,6 +24,7 @@
           <tr>
             <th>No</th>
             <th>Nama Vaksin</th>
+            <th>Urutan Vaksin</th>
             <th>Kategori</th>
             <th>Stok Vaksin</th>
             <th>Aksi</th>
@@ -36,6 +37,7 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ Str::upper($vaksin->nama_vaksin) }}</td>
+            <td>{{ $vaksin->urutan_vaksin }}</td>
             <td>{{ $vaksin->kategoris_count }}</td>
             <td>
               @if ($vaksin->stokVaksin->isEmpty())

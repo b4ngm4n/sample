@@ -13,6 +13,7 @@ class Vaksin extends Model
 
     protected $fillable = [
         'nama_vaksin',
+        'urutan_vaksin',
         'slug',
         'produsen',
     ];

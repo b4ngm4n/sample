@@ -86,7 +86,7 @@
 
 @endsection
 
-@push('script')
+{{-- @push('script')
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
     document.getElementById('download-button').addEventListener('click', function () {
@@ -114,4 +114,4 @@
         });
     }
 </script>
-@endpush
+@endpush --}}

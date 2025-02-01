@@ -13,10 +13,10 @@
             <tbody>
                @foreach ($data['vaksins'] as $vaksin)
                <tr>
-                  <th>{{ $vaksin->nama_vaksin }}</th>
+                  <th class="text-nowrap">{{ $vaksin->nama_vaksin }}</th>
                   @foreach ($data['wilayahKerja'] as $wk)
                   <td>
-                     {{ isset($pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki']) ? ($pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki'] + $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_perempuan']) : 0 }}
+                     {{ isset($pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki']) ? ($pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki'] + $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_perempuan']) : 0  }}
                   </td>
                   @endforeach
                </tr>
