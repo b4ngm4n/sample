@@ -23,13 +23,13 @@
                                 <label>Suntik</label>
                                 <input type="text" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][Suntik]"
                                     class="w-100 text-center"
-                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_suntik'] ?? '' }}">
+                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_suntik'] ?? 0 }}">
                             </div>
                             <div class="col-md-6">
                                 <label>Status</label>
                                 <input type="text" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][Status]"
                                     class="w-100 text-center"
-                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_status'] ?? '' }}">
+                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_status'] ?? 0 }}">
                             </div>
                         </div>
                     </td>

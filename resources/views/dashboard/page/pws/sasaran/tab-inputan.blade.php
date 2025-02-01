@@ -24,27 +24,27 @@
                               <label>IBU HAMIL</label>
                               <input type="number" name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][ibu_hamil]"
                                  class="form-control"
-                                 value="{{ $pwsSasaran[$kategori->id][$wk->wilayah->id]['ibu-hamil'] ?? '' }}">
+                                 value="{{ $pwsSasaran[$kategori->id][$wk->wilayah->id]['ibu-hamil'] ?? 0 }}">
                            </div>
                            <div class="col-md-6">
                               <label>TIDAK HAMIL</label>
                               <input type="number"
                                  name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][tidak_hamil]"
                                  class="form-control"
-                                 value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['tidak-hamil'] ?? '' }}">
+                                 value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['tidak-hamil'] ?? 0 }}">
                            </div>
                            @else
                            <div class="col-md-6">
                               <label>L</label>
                               <input type="number" name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][l]"
                                  class="form-control"
-                                 value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['l'] ?? '' }}">
+                                 value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['l'] ?? 0 }}">
                            </div>
                            <div class="col-md-6">
                               <label>P</label>
                               <input type="number" name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][p]"
                                  class="form-control"
-                                 value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['p'] ?? '' }}">
+                                 value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['p'] ?? 0 }}">
                            </div>
                            @endif
                         </div>
