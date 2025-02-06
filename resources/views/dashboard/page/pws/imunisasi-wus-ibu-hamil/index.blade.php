@@ -95,3 +95,47 @@
 </div>
 
 @endsection
+
+@push('script')
+    <script>
+
+    document.getElementById('btnCakupanIbuHamil').addEventListener('click', function () {
+        // Panggil fungsi untuk membuat gambar dari tabel
+        captureTable();
+    });
+
+    function captureTable() {
+        // Ambil elemen kontainer tabel
+        const tableContainer = document.getElementById('tableCakupanIbuHamil');
+
+
+
+         // Tambahkan judul sebelum mengonversi ke gambar
+        const title = document.createElement('div');
+        title.style.textAlign = 'center';
+        title.style.fontSize = '20px';
+        title.style.marginBottom = '10px';
+        title.textContent = "Laporan Cakupan Imunisasi WUS Ibu Hamil";
+        tableContainer.insertBefore(title, tableContainer.firstChild);
+
+        // Konversi elemen HTML menjadi gambar menggunakan html2canvas
+        html2canvas(tableContainer).then(function(canvas) {
+            // Hapus judul setelah konversi
+            tableContainer.removeChild(title);
+
+            // Dapatkan data URL gambar PNG
+            const imgData = canvas.toDataURL('image/png');
+
+            // Dapatkan tanggal saat ini menggunakan variabel PHP
+            const currentDate = "{{ date('d-m-Y') }}";
+
+            // Buat elemen <a> untuk menautkan data URL dan simpan gambar
+            const link = document.createElement('a');
+            link.href = imgData;
+            link.download = 'Cakupan_Imunisasi_WUS_Ibu_Hamil_' + currentDate + '.png';
+            link.click();
+        });
+    }
+
+    </script>
+@endpush

@@ -24,13 +24,13 @@
                                 <label>L</label>
                                 <input type="text" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][L]"
                                     class="w-100 text-center"
-                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki'] ?? 0 }}">
+                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_laki_laki'] ?? '' }}">
                             </div>
                             <div class="col-md-6">
                                 <label>P</label>
                                 <input type="text" name="jumlah[{{ $vaksin->id }}][{{ $wk->wilayah_id }}][P]"
                                     class="w-100 text-center"
-                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_perempuan'] ?? 0 }}">
+                                    value="{{ $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_perempuan'] ?? '' }}">
                             </div>
                         </div>
                     </td>

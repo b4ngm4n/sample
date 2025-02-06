@@ -1,6 +1,9 @@
 <div class="col-md-12">
    <div class="card">
-      <div class="card-body">
+      <div class="mb-0 mt-3 me-3">
+         <button id="btnCakupanBaduta" class="btn btn-sm btn-outline-primary float-end"><i class="ti-download me-2"></i>Gambar</button>
+      </div>
+      <div class="card-body"  id="tableCakupanBaduta">
          <table class="table table-bordered">
             <thead>
                <tr>

@@ -33,3 +33,6 @@
 
 {{-- FORM WIZARD --}}
 <script src="{{ asset('assets/js/form-wizard-custom.js') }}"></script>
+
+{{-- HTML CANVAS --}}
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>

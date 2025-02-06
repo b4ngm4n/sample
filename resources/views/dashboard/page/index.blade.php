@@ -16,7 +16,7 @@
                               <h2 class="mb-4">Kelola data apapun jadi<br>
                               Lebih mudah</h2>
 
-                              <span class="badge bg-primary p-2 fs-6">Super App - Dinas Kesehatan Kota Gorontalo</span>
+                              <span class="badge bg-primary p-2 fs-6 text-wrap">Super App - Dinas Kesehatan Kota Gorontalo</span>
                           </div>
                           <div class="dash-image">
                               <img src="{{ asset('assets/img/bg-img/banner.png') }}" alt="">
@@ -25,6 +25,37 @@
                   </div>
               </div>
           </div>
+
+          <div class="col-12">
+            <div class="card">
+                <div class="mt-3 me-3 ms-3 d-flex justify-content-between">
+                    <div>
+                        <h6>Rekapan Tahunan</h6>
+                    </div>
+                    <div>
+                        {{-- <form action="filter" method="get">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="tahun">Tahun</label>
+                                        <select name="tahun" id="tahun" class="form-control">
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-primary" type="submit">Filter</button>
+                                </div>
+                            </div>
+                        </form> --}}
+                    </div>
+                </div>
+                <div class="card-body">
+                    COMMING SOON
+                </div>
+            </div>
+        </div>
           
       </div>
   </div>
