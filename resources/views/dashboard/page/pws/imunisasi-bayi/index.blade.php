@@ -30,7 +30,7 @@
                         <label for="bulan" class="form-label">Bulan</label>
                         <select name="bulan" id="bulan" class="select2 form-control w-100" style="width: 100%;">
                             @foreach ($bulans as $bulanItem)
-                            <option value="{{ $bulanItem->id }}" {{ $bulanItem->id == $bulan ? 'selected' : '' }}>
+                            <option value="{{ $bulanItem->id }}" {{ $bulanItem->id == $bulan->id ? 'selected' : '' }}>
                                 {{ $bulanItem->bulan }}
                             </option>
                             @endforeach
