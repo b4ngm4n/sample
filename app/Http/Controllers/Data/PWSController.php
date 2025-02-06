@@ -59,9 +59,17 @@ class PWSController extends Controller
         $bulans = Bulan::all();
 
         // 2. Ambil bulan dan tahun default (terbaru) jika tidak ada filter
-        $tahun = $request->get('tahun', Tahun::where('tahun', now()->year)->first()->id);
-        $bulan = $request->get('bulan', Bulan::where('bulan', Carbon::parse(now())->isoFormat('MMMM'))->first()->id);
-
+        if ($request->get('tahun')) {
+            $tahun = Tahun::where('id', $request->get('tahun'))->first();
+         } else {
+             $tahun = Tahun::where('tahun', now()->year)->first();
+         }
+         if ($request->get('bulan')) {
+             $bulan = Bulan::where('id', $request->get('bulan'))->first();
+         } else {
+             $bulan = Bulan::where('bulan', Carbon::parse(now())->isoFormat('MMMM'))->first();
+         }
+        
         // 3. Identifikasi user yang login dan jenis faskes mereka
         $user = auth()->user();
         $faskesQuery = Faskes::query();
@@ -105,8 +113,8 @@ class PWSController extends Controller
         $data = $this->getWilayahKerjaData($kategoriId, $faskes->id);
 
         // 10. Ambil data PWS berdasarkan filter
-        $pwsRecords = PWS::where('tahun_id', $tahun)
-            ->where('bulan_id', $bulan)
+        $pwsRecords = PWS::where('tahun_id', $tahun->id)
+            ->where('bulan_id', $bulan->id)
             ->whereHas('kategoriVaksin', function ($query) use ($kategoriId) {
                 $query->where('kategori_id', $kategoriId);
             })->whereHas('wilayahKerja', function ($query) use ($faskes) {
@@ -124,8 +132,8 @@ class PWSController extends Controller
         }
 
         //  Simpan Session agar dapat digunakan sebagai ketika melakukan store
-        Session::put('tahun', $tahun);
-        Session::put('bulan', $bulan);
+        Session::put('tahun', $tahun->id);
+        Session::put('bulan', $bulan->id);
         Session::put('faskes', $faskes->id);
 
         // 12. Tampilkan data ke view
@@ -213,13 +221,22 @@ class PWSController extends Controller
 
     public function getImunisasiBaduta(Request $request)
     {
+        // dd($request->all());
         // 1. Ambil semua data tahun dan bulan untuk filter
         $tahuns = Tahun::all();
         $bulans = Bulan::all();
 
         // 2. Ambil bulan dan tahun default (terbaru) jika tidak ada filter
-        $tahun = $request->get('tahun', Tahun::where('tahun', now()->year)->first()->id);
-        $bulan = $request->get('bulan', Bulan::where('bulan', Carbon::parse(now())->isoFormat('MMMM'))->first()->id);
+        if ($request->get('tahun')) {
+           $tahun = Tahun::where('id', $request->get('tahun'))->first();
+        } else {
+            $tahun = Tahun::where('tahun', now()->year)->first();
+        }
+        if ($request->get('bulan')) {
+            $bulan = Bulan::where('id', $request->get('bulan'))->first();
+        } else {
+            $bulan = Bulan::where('bulan', Carbon::parse(now())->isoFormat('MMMM'))->first();
+        }
 
         // 3. Identifikasi user yang login dan jenis faskes mereka
         $user = auth()->user();
@@ -264,8 +281,8 @@ class PWSController extends Controller
         $data = $this->getWilayahKerjaData($kategoriId, $faskes->id);
 
         // 10. Ambil data PWS berdasarkan filter
-        $pwsRecords = PWS::where('tahun_id', $tahun)
-            ->where('bulan_id', $bulan)
+        $pwsRecords = PWS::where('tahun_id', $tahun->id)
+            ->where('bulan_id', $bulan->id)
             ->whereHas('kategoriVaksin', function ($query) use ($kategoriId) {
                 $query->where('kategori_id', $kategoriId);
             })->whereHas('wilayahKerja', function ($query) use ($faskes) {
@@ -283,8 +300,8 @@ class PWSController extends Controller
         }
 
         //  Simpan Session agar dapat digunakan sebagai ketika melakukan store
-        Session::put('tahun', $tahun);
-        Session::put('bulan', $bulan);
+        Session::put('tahun', $tahun->id);
+        Session::put('bulan', $bulan->id);
         Session::put('faskes', $faskes->id);
 
         // 12. Tampilkan data ke view
@@ -376,8 +393,16 @@ class PWSController extends Controller
         $bulans = Bulan::all();
 
         // 2. Ambil bulan dan tahun default (terbaru) jika tidak ada filter
-        $tahun = $request->get('tahun', Tahun::where('tahun', now()->year)->first()->id);
-        $bulan = $request->get('bulan', Bulan::where('bulan', Carbon::parse(now())->isoFormat('MMMM'))->first()->id);
+        if ($request->get('tahun')) {
+            $tahun = Tahun::where('id', $request->get('tahun'))->first();
+         } else {
+             $tahun = Tahun::where('tahun', now()->year)->first();
+         }
+         if ($request->get('bulan')) {
+             $bulan = Bulan::where('id', $request->get('bulan'))->first();
+         } else {
+             $bulan = Bulan::where('bulan', Carbon::parse(now())->isoFormat('MMMM'))->first();
+         }
 
         // 3. Identifikasi user yang login dan jenis faskes mereka
         $user = auth()->user();
@@ -427,8 +452,8 @@ class PWSController extends Controller
         $data = $this->getWilayahKerjaData($kategoriId, $faskes->id);
 
         // 10. Ambil data PWS berdasarkan filter
-        $pwsRecords = PWS::where('tahun_id', $tahun)
-            ->where('bulan_id', $bulan)
+        $pwsRecords = PWS::where('tahun_id', $tahun->id)
+            ->where('bulan_id', $bulan->id)
             ->whereHas('kategoriVaksin', function ($query) use ($kategoriId) {
                 $query->where('kategori_id', $kategoriId);
             })->whereHas('wilayahKerja', function ($query) use ($faskes) {
@@ -446,8 +471,8 @@ class PWSController extends Controller
         }
 
         //  Simpan Session agar dapat digunakan sebagai ketika melakukan store
-        Session::put('tahun', $tahun);
-        Session::put('bulan', $bulan);
+        Session::put('tahun', $tahun->id);
+        Session::put('bulan', $bulan->id);
         Session::put('faskes', $faskes->id);
 
         return view('dashboard.page.pws.imunisasi-wus-ibu-hamil.index', compact([
@@ -526,8 +551,16 @@ class PWSController extends Controller
         $bulans = Bulan::all();
 
         // 2. Ambil bulan dan tahun default (terbaru) jika tidak ada filter
-        $tahun = $request->get('tahun', Tahun::where('tahun', now()->year)->first()->id);
-        $bulan = $request->get('bulan', Bulan::where('bulan', Carbon::parse(now())->isoFormat('MMMM'))->first()->id);
+        if ($request->get('tahun')) {
+            $tahun = Tahun::where('id', $request->get('tahun'))->first();
+         } else {
+             $tahun = Tahun::where('tahun', now()->year)->first();
+         }
+         if ($request->get('bulan')) {
+             $bulan = Bulan::where('id', $request->get('bulan'))->first();
+         } else {
+             $bulan = Bulan::where('bulan', Carbon::parse(now())->isoFormat('MMMM'))->first();
+         }
 
         // 3. Identifikasi user yang login dan jenis faskes mereka
         $user = auth()->user();
@@ -578,8 +611,8 @@ class PWSController extends Controller
         $data = $this->getWilayahKerjaData($kategoriId, $faskes->id);
 
         // 10. Ambil data PWS berdasarkan filter
-        $pwsRecords = PWS::where('tahun_id', $tahun)
-            ->where('bulan_id', $bulan)
+        $pwsRecords = PWS::where('tahun_id', $tahun->id)
+            ->where('bulan_id', $bulan->id)
             ->whereHas('kategoriVaksin', function ($query) use ($kategoriId) {
                 $query->where('kategori_id', $kategoriId);
             })->whereHas('wilayahKerja', function ($query) use ($faskes) {
@@ -597,8 +630,8 @@ class PWSController extends Controller
         }
 
         //  Simpan Session agar dapat digunakan sebagai ketika melakukan store
-        Session::put('tahun', $tahun);
-        Session::put('bulan', $bulan);
+        Session::put('tahun', $tahun->id);
+        Session::put('bulan', $bulan->id);
         Session::put('faskes', $faskes->id);
 
         return view('dashboard.page.pws.imunisasi-wus-tidak-hamil.index', compact([

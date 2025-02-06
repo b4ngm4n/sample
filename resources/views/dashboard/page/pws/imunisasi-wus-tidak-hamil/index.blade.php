@@ -17,7 +17,7 @@
                   <label for="tahun" class="form-label">Tahun</label>
                   <select name="tahun" id="tahun" class="select2 form-control w-100" style="width: 100%;">
                      @foreach ($tahuns as $tahunItem)
-                     <option value="{{ $tahunItem->id }}" {{ $tahunItem->id == $tahun ? 'selected' : '' }}>
+                     <option value="{{ $tahunItem->id }}" {{ $tahunItem->id == $tahun->id ? 'selected' : '' }}>
                         {{ $tahunItem->tahun }}
                      </option>
                      @endforeach
