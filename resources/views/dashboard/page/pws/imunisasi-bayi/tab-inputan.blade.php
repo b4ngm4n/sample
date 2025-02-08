@@ -7,16 +7,16 @@
                     <thead>
                         <tr>
                             <th class="text-center"></th>
-                            @foreach ($data['wilayahKerja'] as $wk)
+                            @foreach ($wilayahKerja as $wk)
                             <th class="text-center">{{ $wk->wilayah->nama_wilayah }}</th>
                             @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data['vaksins'] as $vaksin)
+                        @foreach ($vaksins as $vaksin)
                         <tr>
                             <th class="text-nowrap">{{ $vaksin->nama_vaksin }}</th>
-                            @foreach ($data['wilayahKerja'] as $wk)
+                            @foreach ($wilayahKerja as $wk)
                             <td>
                                 <div class="row">
                                     <div class="col-md-6">

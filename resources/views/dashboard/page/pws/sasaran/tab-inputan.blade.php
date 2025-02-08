@@ -22,28 +22,28 @@
                            @if ($kategori->status_kategori == 'tt+')
                            <div class="col-md-6">
                               <label>IBU HAMIL</label>
-                              <input type="number" name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][ibu_hamil]"
-                                 class="form-control"
+                              <input name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][ibu_hamil]"
+                                 class="w-100 text-center"
                                  value="{{ $pwsSasaran[$kategori->id][$wk->wilayah->id]['ibu-hamil'] ?? 0 }}">
                            </div>
                            <div class="col-md-6">
                               <label>TIDAK HAMIL</label>
-                              <input type="number"
+                              <input
                                  name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][tidak_hamil]"
-                                 class="form-control"
+                                 class="w-100 text-center"
                                  value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['tidak-hamil'] ?? 0 }}">
                            </div>
                            @else
                            <div class="col-md-6">
                               <label>L</label>
-                              <input type="number" name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][l]"
-                                 class="form-control"
+                              <input name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][l]"
+                                 class="w-100 text-center"
                                  value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['l'] ?? 0 }}">
                            </div>
                            <div class="col-md-6">
                               <label>P</label>
-                              <input type="number" name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][p]"
-                                 class="form-control"
+                              <input name="jumlah[{{ $kategori->id }}][{{ $wk->wilayah_id }}][p]"
+                                 class="w-100 text-center"
                                  value="{{ $pwsSasaran[$kategori->id][$wk->wilayah_id]['p'] ?? 0 }}">
                            </div>
                            @endif

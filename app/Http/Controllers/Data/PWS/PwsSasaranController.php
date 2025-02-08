@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Data;
+namespace App\Http\Controllers\Data\PWS;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faskes;
 use App\Models\Kategori;
 use App\Models\PwsSasaran;
 use App\Models\Tahun;
-use App\Models\Vaksin;
 use App\Models\WilayahKerja;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 

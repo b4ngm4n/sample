@@ -8,13 +8,13 @@
             <thead>
                <tr>
                   <th class="text-center text-dark" rowspan="2">Vaksin</th>
-                  @foreach ($data['wilayahKerja'] as $wk)
+                  @foreach ($wilayahKerja as $wk)
                   <th class="text-center text-dark">{{ $wk->wilayah->nama_wilayah }}</th>
                   @endforeach
                   <th class="text-center text-dark bg-warning">Total</th>
                </tr>
                <tr>
-                  @foreach ($data['wilayahKerja'] as $wk)
+                  @foreach ($wilayahKerja as $wk)
                   <th>
                      <div class="row">
                         <div class="col-md-6">
@@ -44,14 +44,14 @@
                $totalKolomSuntik = [];
                $totalKolomStatus = [];
                @endphp
-               @foreach ($data['vaksins'] as $vaksin)
+               @foreach ($vaksins as $vaksin)
                <tr>
                   <th class="text-nowrap text-dark">{{ $vaksin->nama_vaksin }}</th>
                   @php
                   $totalBarisSuntik = 0;
                   $totalBarisStatus = 0;
                   @endphp
-                  @foreach ($data['wilayahKerja'] as $wk)
+                  @foreach ($wilayahKerja as $wk)
                   @php
                   $jumlahSuntik = $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_suntik'] ?? 0;
                   $jumlahStatus = $pwsData[$vaksin->id][$wk->wilayah_id]['jumlah_wus_status'] ?? 0;
@@ -97,7 +97,7 @@
             <tfoot>
                <tr>
                   <th class="text-center bg-warning text-dark">Total</th>
-                  @foreach ($data['wilayahKerja'] as $wk)
+                  @foreach ($wilayahKerja as $wk)
                   <th class="text-center bg-warning text-dark">
                      <div class="row">
                         <div class="col-md-6">

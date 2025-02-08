@@ -7,8 +7,11 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Data\PWSController;
-use App\Http\Controllers\Data\PwsSasaranController;
+use App\Http\Controllers\Data\PWS\PwsBadutaController;
+use App\Http\Controllers\Data\PWS\PwsBayiController;
+use App\Http\Controllers\Data\PWS\PwsWusIbuHamilController;
+use App\Http\Controllers\Data\PWS\PwsWusTidakHamilController;
+use App\Http\Controllers\Data\PWS\PwsSasaranController;
 use App\Http\Controllers\Database\TableController;
 use App\Http\Controllers\Master\FaskesController;
 use App\Http\Controllers\Master\KategoriController;
@@ -91,18 +94,20 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     });
 
     Route::group(['prefix' => 'pws', 'as' => 'pws.'], function () {
-        Route::get('/imunisasi-bayi', [PWSController::class, 'getImunisasiBayi'])->name('imunisasi-bayi')->middleware('permission:list-pws-imunisasi-bayi');
-        Route::get('/imunisasi-baduta', [PWSController::class, 'getImunisasiBaduta'])->name('imunisasi-baduta')->middleware('permission:list-pws-imunisasi-baduta');
-        Route::get('/imunisasi-wus-ibu-hamil', [PWSController::class, 'getImunisasiWUSIbuHamil'])->name('imunisasi-wus-ibu-hamil')->middleware('permission:list-pws-imunisasi-wus-ibu-hamil');
-        Route::get('/imunisasi-wus-tidak-hamil', [PWSController::class, 'getImunisasiWUSTidakHamil'])->name('imunisasi-wus-tidak-hamil')->middleware('permission:list-pws-imunisasi-wus-tidak-hamil');
+        Route::get('/imunisasi-bayi', [PwsBayiController::class, 'index'])->name('imunisasi-bayi')->middleware('permission:list-pws-imunisasi-bayi');
+        Route::post('imunisasi-bayi', [PwsBayiController::class, 'store'])->name('imunisasi-bayi')->middleware('permission:store-pws-imunisasi-bayi');
+        
+        Route::get('/imunisasi-baduta', [PwsBadutaController::class, 'index'])->name('imunisasi-baduta')->middleware('permission:list-pws-imunisasi-baduta');
+        Route::post('imunisasi-baduta', [PwsBadutaController::class, 'store'])->name('imunisasi-baduta')->middleware('permission:store-pws-imunisasi-baduta');
+        
+        Route::get('/imunisasi-wus-ibu-hamil', [PwsWusIbuHamilController::class, 'index'])->name('imunisasi-wus-ibu-hamil')->middleware('permission:list-pws-imunisasi-wus-ibu-hamil');
+        Route::post('imunisasi-wus-ibu-hamil', [PwsWusIbuHamilController::class, 'store'])->name('imunisasi-wus-ibu-hamil')->middleware('permission:store-pws-imunisasi-wus-ibu-hamil');
+        
+        Route::get('/imunisasi-wus-tidak-hamil', [PwsWusTidakHamilController::class, 'index'])->name('imunisasi-wus-tidak-hamil')->middleware('permission:list-pws-imunisasi-wus-tidak-hamil');
+        Route::post('imunisasi-wus-tidak-hamil', [PwsWusTidakHamilController::class, 'store'])->name('imunisasi-wus-tidak-hamil')->middleware('permission:store-pws-imunisasi-wus-tidak-hamil');
 
-        Route::post('imunisasi-bayi', [PWSController::class, 'storeImunisasiBayi'])->name('imunisasi-bayi')->middleware('permission:store-pws-imunisasi-bayi');
-        Route::post('imunisasi-baduta', [PWSController::class, 'storeImunisasiBaduta'])->name('imunisasi-baduta')->middleware('permission:store-pws-imunisasi-baduta');
-        Route::post('imunisasi-wus-ibu-hamil', [PWSController::class, 'storeImunisasiWUSIbuHamil'])->name('imunisasi-wus-ibu-hamil')->middleware('permission:store-pws-imunisasi-wus-ibu-hamil');
-        Route::post('imunisasi-wus-tidak-hamil', [PWSController::class, 'storeImunisasiWUSTidakHamil'])->name('imunisasi-wus-tidak-hamil')->middleware('permission:store-pws-imunisasi-wus-tidak-hamil');
-
-        Route::get('sasaran', [PwsSasaranController::class, 'index'])->name('sasaran')->middleware('permission:list-pws-sasaran');
-        Route::post('sasaran', [PwsSasaranController::class, 'store'])->name('sasaran')->middleware('permission:store-pws-sasaran');
+        Route::get('/sasaran', [PwsSasaranController::class, 'index'])->name('sasaran')->middleware('permission:list-pws-sasaran');
+        Route::post('/sasaran', [PwsSasaranController::class, 'store'])->name('sasaran')->middleware('permission:store-pws-sasaran');
     });
 
     // GROUPING ACCOUNT
